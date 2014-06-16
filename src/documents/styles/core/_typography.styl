@@ -1,0 +1,124 @@
+a
+  color: $purple
+  text-decoration: none
+  p &
+    text-decoration: underline
+
+a:focus
+  outline: thin dotted
+
+a:hover,
+a:active
+  outline: 0
+
+a:active,
+a:hover
+  color: darken($purple, 5%)
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6
+  font-weight: 400
+
+h1,
+h2
+  line-height: 1
+  margin: 0 0 0.5em
+
+h2
+  font-size: 36px
+
+h3
+  font-size: 28px
+  line-height: 1.1
+  margin: 0 0 0.5em
+
+h4
+  font-size: 20px
+  line-height: 1.2
+
+h5
+  font-size: 18px
+  line-height: 1.3333333333
+
+h6
+  font-size: 16px
+  line-height: 1.5
+
+address
+  font-style: italic
+  margin-bottom: 24px
+
+abbr[title]
+  border-bottom: 1px dotted #2b2b2b
+  cursor: help
+
+b,
+strong
+  font-weight: 700
+
+cite,
+dfn,
+em,
+i
+  font-style: italic
+
+mark,
+ins
+  background: #fff9c0
+  text-decoration: none
+
+p
+  margin: 0 0 24px
+  &:empty
+    display: none
+
+small
+  font-size: smaller
+
+big
+  font-size: 125%
+
+del
+  color: #767676
+
+sup,
+sub
+  font-size: 75%
+  height: 0
+  line-height: 0
+  position: relative
+  vertical-align: baseline
+
+sup
+  bottom: 1ex
+
+sub
+  top: .5ex
+
+dl
+  margin-bottom: 24px
+
+dt
+  font-weight: bold
+
+dd
+  margin-bottom: 24px
+
+ul,
+ol
+  list-style: none
+  margin: 0 0 24px 20px
+
+ul
+  list-style: disc
+
+ol
+  list-style: decimal
+
+li > ul,
+li > ol
+  margin: 0 0 0 20px

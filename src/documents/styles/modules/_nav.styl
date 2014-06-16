@@ -1,0 +1,71 @@
+.site-navigation
+  @extend $u-cf
+  margin: 20px 0 10px
+  display: block
+  font-size: 18px
+
+  a
+    color: #888
+    float: left
+    padding: 3px 20px 2px
+    margin: 0 2px
+    border-style: solid
+    border-width: $nav-border-size 0
+    border-color: $light-complementary-color
+
+    &:hover,
+    &:focus,
+    &.active
+      color: #111
+
+    &:focus,
+    &.active
+      border-color: $purple
+
+
+// .site-navigation {
+//     position: relative;
+//     -webkit-box-sizing: border-box;
+//     -moz-box-sizing:    border-box;
+//     box-sizing:         border-box;
+//     font-size: 14px;
+//     padding-top: 24px;
+// }
+
+// .site-navigation.toggled-on {
+//     padding: 72px 0 36px;
+// }
+
+// .site-navigation .nav-menu {
+//     border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+//     display: none;
+// }
+
+// .site-navigation a {
+//     color: #333;
+//     padding: 10px;
+//     background-color: lighten($light-complementary-color, 12%);
+// }
+
+.menu-toggle {
+    cursor: pointer;
+    font-size: 0;
+    height: 48px;
+    margin: 0;
+    overflow: hidden;
+    position: absolute;
+    top: 0;
+    left: 0;
+    text-align: center;
+    width: 48px;
+    background-color: $purple;
+    &:hover {
+        background-color: darken($purple, 5%);
+    }
+}
+
+.menu-toggle:before {
+    color: #fff;
+    content: "\f419";
+    margin-top: 16px;
+}

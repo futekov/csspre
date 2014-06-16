@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="<%= @getPreparedDescription() %>" />
+    <meta name="keywords" content="<%= @getPreparedKeywords() %>" />
+
+    <title><%= @getPreparedTitle() %></title>
+
+    <%- @getBlock("styles").add(["/styles/styles.css"]).toHTML() %>
+    <link href='http://fonts.googleapis.com/css?family=Iceland' rel='stylesheet' type='text/css'>
+
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-50631028-1', 'csspre.com');
+      ga('require', 'displayfeatures');
+      ga('send', 'pageview');
+
+    </script>
+  </head>
+  <body class="site">
+    <header>
+      <% if @document.url is '/': %> 
+        <h1 class="site-title"><%= @site.title %></h1>
+      <% else: %>
+        <h2 class="site-title">
+          <a href="/" class="logo__text big-link"><%= @site.title %></a>
+        </h2>
+      <% end %>
+      <nav class="site-navigation">
+        <% for page in @getCollection("pages").toJSON(): %>
+          <a href="<%= page.url %>" class="<%= if page.id is @document.id then 'active' else 'inactive' %>">
+            <%= page.title %>
+          </a>
+        <% end %>
+      </nav>
+    </header>
+
+    <section>
+      <% if @document.url is '/': %> 
+        <h2 class="page-title"><%= @document.title %></h2>
+      <% else: %>
+        <h1 class="page-title"><%= @document.title %></h1>
+      <% end %>
+      
+      <%- @content %>
+    </section>
+
+    <%- @getBlock("scripts").add(["/vendor/jquery.js", "/scripts/codepen.js"]).toHTML() %>
+  </body>
+</html>

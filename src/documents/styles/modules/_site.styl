@@ -1,0 +1,31 @@
+html
+  background-image: url("http://subtlepatterns.com/patterns/triangular.png")
+  padding: 0 2%
+
+.site
+  background-color: #f6f7f8
+  background-color: rgba(255, 255, 255, 0.66)
+  max-width: $site-width
+  margin: 0 auto
+  padding: 20px
+  position: relative
+
+.site-title
+  margin: 0
+  font-size: 82px
+  font-family: 'Iceland', sans-serif
+  line-height: 0.8
+  color: $purple
+  @media screen and (max-width: 800px)
+    font-size: 49px
+  @media screen and (max-width: 450px)
+    font-size: 32px
+
+.site-title a
+  color: $purple
+  &:hover
+    color: lighten($purple, 15%)
+
+.page-title
+  font-size: 54px
+  font-family: 'Iceland', sans-serif

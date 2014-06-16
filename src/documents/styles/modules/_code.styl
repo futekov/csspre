@@ -1,0 +1,70 @@
+$code-head-size = 33px
+
+p,
+li
+  > code
+    background: #D8D8D8
+    padding: 1px 4px
+    border-radius: 3px
+    border: 1px solid #ccc
+
+code,
+kbd,
+tt,
+var,
+samp,
+pre
+  font-family: monospace, serif
+  font-size: 16px
+  -webkit-hyphens: none
+  -moz-hyphens:    none
+  -ms-hyphens:     none
+  hyphens:         none
+  line-height: 1.6
+
+pre
+  border: 1px solid $purple
+  border-top: 0
+  margin-top: $code-head-size
+  margin-bottom: 30px
+  max-width: 100%
+  position: relative
+  background-color: rgba(255, 255, 255, 0.66)
+
+  code
+    display: block
+    padding: 12px
+    white-space: pre
+    overflow: auto
+
+  &[data-type]:before
+    content: attr(data-type)
+    color: #fff
+    position: absolute
+    top: -($code-head-size)
+    left: -1px
+    right: -1px
+    background: $purple
+    background: linear-gradient(135deg, transparent 9px, $purple 9px)
+    font-weight: 700
+    padding: 5px 0 4px
+    text-indent: 15px
+    text-transform: uppercase
+    font-family: "Consolas", monospace
+
+  // overwrite content if a preprocessor is used 
+  &[data-csspre]
+    border-color: #4d4d4d
+    &:before
+      content: attr(data-csspre)
+      background: @border-color
+      background: linear-gradient(135deg, transparent 9px, @border-color 9px)
+    
+.codepen-button
+  position: absolute
+  top: -($code-head-size)
+  right: 5px
+  @media screen and (min-width: 960px)
+    opacity: 0.8
+    &:hover
+      opacity: 1

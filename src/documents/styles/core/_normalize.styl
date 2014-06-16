@@ -1,0 +1,239 @@
+html
+  font-size: 1em
+  line-height: 1.4
+
+
+body,
+button,
+input,
+select,
+textarea
+  color: #2b2b2b
+  font-family: sans-serif
+  font-size: 16px
+  font-weight: 400
+  line-height: 1.5
+
+
+::-webkit-input-placeholder
+  color: #939393
+
+:-moz-placeholder
+  color: #939393
+
+::-moz-placeholder
+  color: #939393
+  opacity: 1 /* Since FF19 lowers the opacity of the placeholder by default */
+
+:-ms-input-placeholder
+  color: #939393
+
+
+
+
+::selection
+  background: $purple
+  color: #fff
+  text-shadow: none
+
+::-moz-selection
+  background: $purple
+  color: #fff
+  text-shadow: none
+
+hr
+  display: block
+  height: 1px
+  border: 0
+  border-top: 1px solid #ccc
+  margin: 1em 0
+  padding: 0
+
+audio,
+canvas,
+img,
+video
+  vertical-align: middle
+
+fieldset
+  border: 0
+  margin: 0
+  padding: 0
+
+textarea
+  resize: vertical
+
+
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+nav,
+section
+  display: block
+
+
+
+audio,
+canvas,
+video
+  display: inline-block
+  max-width: 100%
+
+html
+  -webkit-text-size-adjust: 100%
+  -ms-text-size-adjust:   100%
+
+embed,
+iframe,
+object,
+video
+  margin-bottom: 24px
+  max-width: 100%
+
+figure
+  margin: 0
+
+
+
+
+/* Form elements */
+
+input,
+textarea
+  border: 1px solid rgba(0, 0, 0, 0.1)
+  color: #2b2b2b
+  padding: 8px 10px 7px
+
+textarea
+  width: 100%
+
+input:focus,
+textarea:focus
+  border: 1px solid rgba(0, 0, 0, 0.3)
+  outline: 0
+
+fieldset
+  border: 1px solid rgba(0, 0, 0, 0.1)
+  margin: 0 0 24px
+  padding: 11px 12px 0
+
+legend
+  white-space: normal
+
+button,
+input,
+select,
+textarea
+  -webkit-box-sizing: border-box
+  -moz-box-sizing:    border-box
+  box-sizing:         border-box
+  font-size: 100%
+  margin: 0
+  max-width: 100%
+  vertical-align: baseline
+
+button,
+input
+  line-height: normal
+
+input,
+textarea
+  background-image: -webkit-linear-gradient(hsla(0,0%,100%,0), hsla(0,0%,100%,0)) /* Removing the inner shadow, rounded corners on iOS inputs */
+
+button,
+html input[type="button"],
+input[type="reset"],
+input[type="submit"]
+  -webkit-appearance: button
+  cursor: pointer
+
+button[disabled],
+input[disabled]
+  cursor: default
+
+input[type="checkbox"],
+input[type="radio"],
+input[type="image"]
+  padding: 0
+
+input[type="image"]
+  border: 0
+  &:focus
+    border: 0
+
+button::-moz-focus-inner,
+input::-moz-focus-inner
+  border: 0
+  padding: 0
+
+
+
+
+
+
+
+
+
+@media print
+  *
+    background: transparent !important
+    color: #000 !important /* Black prints faster: h5bp.com/s */
+    box-shadow: none !important
+    text-shadow: none !important
+
+  a,
+  a:visited
+    text-decoration: underline
+
+  a[href]:after
+    content: " (" attr(href) ")"
+
+  abbr[title]:after
+    content: " (" attr(title) ")"
+
+  pre,
+  blockquote
+    border: 1px solid #999
+    page-break-inside: avoid
+
+  thead
+    display: table-header-group /* h5bp.com/t */
+
+  tr,
+  img
+    page-break-inside: avoid
+
+  img
+    max-width: 100% !important
+    -ms-interpolation-mode: bicubic
+    border: 0
+
+  @page
+    margin: 0.5cm
+
+  p,
+  h2,
+  h3
+    orphans: 3
+    widows: 3
+
+  h2,
+  h3
+    page-break-after: avoid
+  
+
+/* Does the same thing as <meta name="viewport" content="width=device-width">,
+ * but in the future W3C standard way. -ms- prefix is required for IE10+ to
+ * render responsive styling in Windows 8 "snapped" views IE10+ does not honor
+ * the meta tag. See http://core.trac.wordpress.org/ticket/25888.
+ */
+@-ms-viewport
+  width: device-width
+
+@viewport
+  width: device-width

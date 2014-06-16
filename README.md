@@ -1,4 +1,3 @@
-csspre
-======
+# CSS PRE
 
-CSS PRE site source
+Built with [DocPad](http://docpad.org)

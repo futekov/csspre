@@ -1,0 +1,30 @@
+---
+layout: base
+---
+
+<div class="row">
+  <div class="col-8">
+    <div class="row">
+      <% for document in @getCollection("posts").toJSON(): %>
+        <div class="col-6 tile">
+          <a href="<%= document.url %>">
+            <time datetime="<%= @postDatetime(document.date) %>">
+              <%= @postDate(document.date) %>
+            </time>
+            <h3>
+              <%= document.title %>
+            </h3>
+            <div>
+              <%- document.description %>
+            </div>
+          </a>
+        </div>
+      <% end %>
+    </div>
+  </div>
+  <div class="col-4">
+    <p>CSS PRE is a project that aims to collect as much information about the popular CSS Preprocessors as possible, in order to serve as a one-stop reference.</p>
+    <p>It is a collaborative project, suggesting an edit is <a href="https://github.com/futekov/csspre">easily done through GitHub</a>.</p>
+    <p>CSS PRE is created by Alexander Futekov and built with <a href="http://docpad.org/">DocPad</a>.</p>
+  </div>
+</div>
