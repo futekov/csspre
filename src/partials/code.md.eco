@@ -1,0 +1,3 @@
+<div class="col-<%= @cols or '12' %>">
+  <pre data-type="css" <%= if @lang then "data-csspre='#{@lang}'" %> id="<%= @name %>"><code><% if !@lang: %><%= @partial("#{@name}.css") %><% else if @lang is "stylus": %><%= @partial("#{@name}.styl") %><% else: %><%= @partial("#{@name}.#{@lang}") %><% end %></code></pre>
+</div>

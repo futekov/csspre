@@ -1,5 +1,0 @@
-<div class="col-<%= @cols or '12' %>">
-  <pre data-type="css" <%= if @lang then "data-csspre='#{@lang}'" %> id="<%= @name %>"><code><%= @partial("#{@name}", {lang: 'less', cols: '4'}) %></code></pre>
-</div>
-
-
