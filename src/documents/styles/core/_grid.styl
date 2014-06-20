@@ -22,55 +22,24 @@ $screen-normal = 930px + $grid-gutter-width
 $screen-medium = 1200px + $grid-gutter-width
 $screen-max = 1500px + $grid-gutter-width
 
+$grid-col-class = col
 
-grid-cols-setup($class)
-  for i in 1..$grid-columns
-    {$class}-{i}
-      @extend $col-common
-      width: ( (100% - ((($grid-columns / i) - 1) * $grid-gutter-width)) / ($grid-columns / i) )
-      @media screen and (max-width: 800px)
-        width: 100%
-        & + &
-          margin-left: 0 !important
 
+for i in 1..$grid-columns
+  .{$grid-col-class}-{i}
+    @extend $col-common
+    width: ( (100% - ((($grid-columns / i) - 1) * $grid-gutter-width)) / ($grid-columns / i) )
+    @media screen and (max-width: 800px)
+      width: 100%
+      margin-left: 0 !important
       & + &
+        margin-top: $grid-gutter-width
+
+    & + &
+      margin-left: $grid-gutter-width
+    if i == 2 || 4
+      & + .{$grid-col-class}-{$grid-columns - i}
         margin-left: $grid-gutter-width
-      if i == 2 || 4
-        & + {$class}-{$grid-columns - i}
-          margin-left: $grid-gutter-width
-
-
 
 .container
   max-width: 1170px + $grid-gutter-width * 2
-
-grid-cols-setup('.col')
-
-
-+media($screen-normal)
-  .col-1
-    width: (2 / $grid-columns) * 100%
-
-  .col--offset-1
-    margin-left: (2 / $grid-columns) * 100%
-
-  .col-2
-    width: (4 / $grid-columns) * 100%
-
-  .col--offset-2
-    margin-left: (4 / $grid-columns) * 100%
-
-  .col-3
-    width: (6 / $grid-columns) * 100%
-
-  .col--offset-3
-    margin-left: (6 / $grid-columns) * 100%
-
-  .col-9,
-  .col-10
-    width: (8 / $grid-columns) * 100%
-
-  .col--offset-9,
-  .col--offset-10
-    width: (8 / $grid-columns) * 100%
-
