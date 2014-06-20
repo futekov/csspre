@@ -29,9 +29,9 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // build the button template that will open a new tab with CodePen.io and our snippet
     var form =
-      '<form action="http://codepen.io/pen/define" method="POST" target="_blank" name=\'' + snippetID + '\'>' + 
+      '<form action="http://codepen.io/pen/define" method="POST" target="_blank" name=\'' + snippetID + cssPre.toUpperCase() + '\'>' + 
         '<input type="hidden" name="data" value=\'' + JSONstring + '\'>' + 
-        '<input type="image" src="http://s.cdpn.io/3/cp-arrow-right.svg" width="33" height="33" class="codepen-button" onclick="ga(\'send\', \'event\', \'snippet\', \'click\', \'' + snippetID + '\')">' +
+        '<input type="image" src="//csspre.com/images/codepen-arrow-right.svg" width="33" height="33" class="codepen-button" onclick="ga(\'send\', \'event\', \'snippet\', \'click\', \'' + snippetID + cssPre.toUpperCase() + '\')">' +
       '</form>';
 
     // append the form
