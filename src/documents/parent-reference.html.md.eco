@@ -1,0 +1,79 @@
+---
+layout: "post"
+title: "Parent References"
+date: 2014-06-20
+description: "How to use the magical &"
+---
+
+So you've discovered that preprocessors support nesting stuff, you use it here and there and after a while you want to be able to do more than setting a child selector.
+
+Well, you can.
+
+It's called a parent reference - `&`, and it allows you to do some pretty cool stuff.
+
+
+
+## Selector append
+
+With the parent reference, you can easily attach a [pseudo class](https://developer.mozilla.org/en-US/docs/Web/CSS/Pseudo-classes) to the selector:
+
+<%- @partial('code', {name: 'parent-reference-append', lang: 'less', cols: '4'}) %>
+<%- @partial('code', {name: 'parent-reference-append', lang: 'sass', cols: '4'}) %>
+<%- @partial('code', {name: 'parent-reference-append', lang: 'stylus', cols: '4'}) %>
+<%- @partial('code', {name: 'parent-reference-append'}) %>
+
+You can also add [class](https://developer.mozilla.org/en-US/docs/Web/CSS/Class_selectors), [id](https://developer.mozilla.org/en-US/docs/Web/CSS/ID_selectors), and [attribute](https://developer.mozilla.org/en-US/docs/Web/CSS/Attribute_selectors) selectors in this way.
+
+
+
+## Extend the name of the selector
+
+If you need to extend the name of a selector you can do it in the same way as above:
+
+<%- @partial('code', {name: 'parent-reference-extend-name', lang: 'less', cols: '4'}) %>
+<%- @partial('code', {name: 'parent-reference-extend-name', lang: 'sass', cols: '4'}) %>
+<%- @partial('code', {name: 'parent-reference-extend-name', lang: 'stylus', cols: '4'}) %>
+<%- @partial('code', {name: 'parent-reference-extend-name'}) %>
+
+This allows for BEM-like names in your CSS. You can read more about this technique from these articles:
+
+* [Even Easier BEM-ing with Sass 3.3](http://www.alwaystwisted.com/post.php?s=2014-02-27-even-easier-bem-ing-with-sass-33)
+* [Support for BEM modules in Sass 3.3](http://mikefowler.me/2013/10/17/support-for-bem-modules-sass-3.3/)
+* [Sass BEM-Selector Support and Trailing Ampersand](http://jonsuh.com/blog/sass-bem-selector-and-trailing-ampersand/)
+
+
+## Parent selector
+
+We can also have a trailing ampersand - when we put it after...
+
+By having a trailing parent reference, you can add a parent selector:
+
+<%- @partial('code', {name: 'parent-reference-selector', lang: 'less', cols: '4'}) %>
+<%- @partial('code', {name: 'parent-reference-selector', lang: 'sass', cols: '4'}) %>
+<%- @partial('code', {name: 'parent-reference-selector', lang: 'stylus', cols: '4'}) %>
+<%- @partial('code', {name: 'parent-reference-selector'}) %>
+
+This can be used to target browsers if we use the classic ie targeting solution [as described by Paul Irish](http://www.paulirish.com/2008/conditional-stylesheets-vs-css-hacks-answer-neither/).
+
+Another case where the parent selector can be useful is for parent element states where the children get specific classes.
+
+
+
+## Selector prepend
+
+Appending selectors might work when you are appending a class, id, or attribute selector, but what if we need to add a html element like `ol` to `.test`? With selector appending we will end up with `.testol` which is not what we want. For cases like this we need to prepend the selector.
+
+Unfortunately, for now only Stylus allows prepending selectors:
+
+<%- @partial('code', {name: 'parent-reference-prepend', lang: 'stylus', cols: '6'}) %>
+<%- @partial('code', {name: 'parent-reference-prepend', cols: '6'}) %>
+
+
+## Multiple parent references
+
+Need something weirder with a repeating class in the selector for example? No problem, just use several ampersands and chain the appropriately:
+
+<%- @partial('code', {name: 'parent-reference-multiple', lang: 'less', cols: '4'}) %>
+<%- @partial('code', {name: 'parent-reference-multiple', lang: 'sass', cols: '4'}) %>
+<%- @partial('code', {name: 'parent-reference-multiple', lang: 'stylus', cols: '4'}) %>
+<%- @partial('code', {name: 'parent-reference-multiple'}) %>

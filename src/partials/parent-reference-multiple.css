@@ -1,0 +1,6 @@
+.multi-reference {
+  foo: bar;
+}
+.multi-reference + .multi-reference {
+  baz: qux;
+}
