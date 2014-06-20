@@ -6,8 +6,8 @@ layout: base
   <div class="col-8">
     <div class="row">
       <% for document in @getCollection("posts").toJSON(): %>
-        <div class="col-6 tile">
-          <a href="<%= document.url %>">
+        <div class="col-6">
+          <a href="<%= document.url %>" class="tile">
             <time datetime="<%= @postDatetime(document.date) %>">
               <%= @postDate(document.date) %>
             </time>

@@ -1,15 +1,17 @@
 .tile
+  padding: 0.6em 1em
+  display: block
+  color: #333
+  border-style: solid
+  border-width: $nav-border-size 0
+  border-color: $light-complementary-color
   background-color: #eee
   background-color: rgba(255, 255, 255, 0.66)
-  &:hover
+  &:hover,
+  &:focus
+    color: #000
     background-color: #fff
-  a
-    padding: 0.6em 1em
-    display: block
-    color: #333
-    border-style: solid
-    border-width: $nav-border-size 0
-    border-color: $light-complementary-color
+
   time
     float: right
     color: #aaa
