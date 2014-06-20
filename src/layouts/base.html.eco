@@ -55,6 +55,5 @@
       <%- @content %>
     </section>
 
-    <%- @getBlock("scripts").add(["/vendor/jquery.js", "/scripts/codepen.js"]).toHTML() %>
   </body>
 </html>
