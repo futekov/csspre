@@ -4,6 +4,7 @@
 moment = require('moment')
 
 # Define the DocPad Configuration
+
 docpadConfig = {
     templateData:
         # SETTINGS
@@ -29,6 +30,13 @@ docpadConfig = {
         postDatetime: (date, format="YYYY-MM-DD") -> return moment(date).format(format)
         postDate: (date, format="MMMM DD, YYYY") -> return moment(date).format(format)
 
+        code: (name, lang="css", cols="12") ->
+            prt = if lang == "stylus" then @partial("#{name}.styl") else @partial("#{name}.#{lang}")
+            lng = if lang != "css" then "data-csspre='#{lang}'" else ""
+            id  = name + "-" + lang
+            '<div class=\'col-' + cols + '\'>' +
+                '<pre data-type="css" ' + lng + ' id=\'' + id + '\'><code>' + prt + '</code></pre>' +
+            '</div>'
 
     collections:
         pages: (database) ->
