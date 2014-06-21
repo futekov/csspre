@@ -3,20 +3,24 @@ layout: base
 ---
 
 <div class="post">
-	<%- @content %>
+  <time datetime="<%= @postDatetime(@document.date) %>">
+    <%= @postDatetime(@document.date) %>
+  </time>
+  <%- @content %>
+
+  <h2>Interactive</h2>
+  <p>This article is far from perfect, you can <a href="//github.com/futekov/csspre/blob/master/src/documents<%- @document.url %>.html.md.eco" target="_blank">suggest improvements on GitHub</a> or leave a comment below.</p>
+
+  <div id="disqus_thread"></div>
+  <script type="text/javascript">
+    var disqus_shortname = 'csspre';
+    (function() {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+  </script>
+  <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
 </div>
+
 <%- @getBlock("scripts").add("/scripts/codepen.js").toHTML() %>
-
-
-<h3 id="comments">Comments</h3>
-
-<div id="disqus_thread"></div>
-<script type="text/javascript">
-  var disqus_shortname = 'csspre'; // required: replace example with your forum shortname
-  (function() {
-    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-  })();
-</script>
-<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>

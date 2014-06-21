@@ -17,10 +17,10 @@ It's called a parent reference - `&`, and it allows you to do some pretty cool s
 
 With the parent reference, you can easily attach a [pseudo class](https://developer.mozilla.org/en-US/docs/Web/CSS/Pseudo-classes) to the selector:
 
-<%- @partial('code', {name: 'parent-reference-append', lang: 'less', cols: '4'}) %>
-<%- @partial('code', {name: 'parent-reference-append', lang: 'sass', cols: '4'}) %>
-<%- @partial('code', {name: 'parent-reference-append', lang: 'stylus', cols: '4'}) %>
-<%- @partial('code', {name: 'parent-reference-append'}) %>
+<%- @code('parent-reference-append', 'less', 4) %>
+<%- @code('parent-reference-append', 'sass', 4) %>
+<%- @code('parent-reference-append', 'stylus', 4) %>
+<%- @code('parent-reference-append') %>
 
 You can also add [class](https://developer.mozilla.org/en-US/docs/Web/CSS/Class_selectors), [id](https://developer.mozilla.org/en-US/docs/Web/CSS/ID_selectors), and [attribute](https://developer.mozilla.org/en-US/docs/Web/CSS/Attribute_selectors) selectors in this way.
 
@@ -30,10 +30,10 @@ You can also add [class](https://developer.mozilla.org/en-US/docs/Web/CSS/Class_
 
 If you need to extend the name of a selector you can do it in the same way as above:
 
-<%- @partial('code', {name: 'parent-reference-extend-name', lang: 'less', cols: '4'}) %>
-<%- @partial('code', {name: 'parent-reference-extend-name', lang: 'sass', cols: '4'}) %>
-<%- @partial('code', {name: 'parent-reference-extend-name', lang: 'stylus', cols: '4'}) %>
-<%- @partial('code', {name: 'parent-reference-extend-name'}) %>
+<%- @code('parent-reference-extend-name', 'less', 4) %>
+<%- @code('parent-reference-extend-name', 'sass', 4) %>
+<%- @code('parent-reference-extend-name', 'stylus', 4) %>
+<%- @code('parent-reference-extend-name') %>
 
 This allows for BEM-like names in your CSS. You can read more about this technique from these articles:
 
@@ -48,10 +48,10 @@ We can also have a trailing ampersand - when we put it after...
 
 By having a trailing parent reference, you can add a parent selector:
 
-<%- @partial('code', {name: 'parent-reference-selector', lang: 'less', cols: '4'}) %>
-<%- @partial('code', {name: 'parent-reference-selector', lang: 'sass', cols: '4'}) %>
-<%- @partial('code', {name: 'parent-reference-selector', lang: 'stylus', cols: '4'}) %>
-<%- @partial('code', {name: 'parent-reference-selector'}) %>
+<%- @code('parent-reference-selector', 'less', 4) %>
+<%- @code('parent-reference-selector', 'sass', 4) %>
+<%- @code('parent-reference-selector', 'stylus', 4) %>
+<%- @code('parent-reference-selector') %>
 
 This can be used to target browsers if we use the classic ie targeting solution [as described by Paul Irish](http://www.paulirish.com/2008/conditional-stylesheets-vs-css-hacks-answer-neither/).
 
@@ -65,15 +65,15 @@ Appending selectors might work when you are appending a class, id, or attribute 
 
 Unfortunately, for now only Stylus allows prepending selectors:
 
-<%- @partial('code', {name: 'parent-reference-prepend', lang: 'stylus', cols: '6'}) %>
-<%- @partial('code', {name: 'parent-reference-prepend', cols: '6'}) %>
+<%- @code('parent-reference-prepend', 'stylus', 6) %>
+<%- @code('parent-reference-prepend', 'css', 6) %>
 
 
 ## Multiple parent references
 
 Need something weirder with a repeating class in the selector for example? No problem, just use several ampersands and chain the appropriately:
 
-<%- @partial('code', {name: 'parent-reference-multiple', lang: 'less', cols: '4'}) %>
-<%- @partial('code', {name: 'parent-reference-multiple', lang: 'sass', cols: '4'}) %>
-<%- @partial('code', {name: 'parent-reference-multiple', lang: 'stylus', cols: '4'}) %>
-<%- @partial('code', {name: 'parent-reference-multiple'}) %>
+<%- @code('parent-reference-multiple', 'less', 4) %>
+<%- @code('parent-reference-multiple', 'sass', 4) %>
+<%- @code('parent-reference-multiple', 'stylus', 4) %>
+<%- @code('parent-reference-multiple') %>
