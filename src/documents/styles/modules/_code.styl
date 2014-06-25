@@ -1,4 +1,6 @@
 $code-head-size = 33px
+$codepen-button-width = 40px
+$codepen-button-height = 28px
 
 p,
 li
@@ -62,11 +64,11 @@ pre
     
 .codepen-button
   position: absolute
-  top: -($code-head-size)
+  top: -(floor(($code-head-size + $codepen-button-height) / 2))
   right: 5px
-  width: 34px
-  height: @width
+  width: $codepen-button-width
+  height: $codepen-button-height
   @media screen and (min-width: 960px)
-    opacity: 0.8
+    opacity: 0.85
     &:hover
       opacity: 1

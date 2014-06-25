@@ -15,6 +15,8 @@ docpadConfig = {
 
             keywords: "css, preprocessors, preprocessor, less, sass, scss, stylus"
 
+            url: "http://csspre.com"
+
         # FUNCTIONS
         getPreparedTitle: -> if @document.title then "#{@document.title} | #{@site.title}" else @site.title
 
@@ -46,6 +48,8 @@ docpadConfig = {
             database.findAllLive({layout:'post'}, [date:-1])
 
     plugins:
+        rss:
+            collection: "posts"
         stylus:
             stylusLibraries:
                 nib: false
