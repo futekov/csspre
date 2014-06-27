@@ -1,0 +1,11 @@
+@column-name: col;
+@column-count: 4;
+
+.generate-column(@i: 1) when (@i =< @column-count) {
+  .@{column-name}-@{i} {
+    width: @i * (100% / @column-count);
+  }
+  .generate-column(@i + 1);
+}
+
+.generate-column();

@@ -1,0 +1,35 @@
+---
+layout: "post"
+title: "Loops"
+date: 2014-06-27
+description: "Loops and iterations"
+---
+
+Loops are useful when you need to create a set of selectors/values that have an underlying mathematical relation of some sort.
+
+## Basic loop
+
+Let's build something simple - a very basic grid system with four columns.
+
+We will put the columns class name and their number in variables and utilize them through [variable interpolation](/variables#interpolating-variables).
+
+<%- @code('loop-basic-1', 'less', 6) %>
+<%- @code('loop-basic-2', 'less', 6) %>
+<%- @code('loop-basic', 'sass', 6) %>
+<%- @code('loop-basic', 'stylus', 6) %>
+<%- @code('loop-basic') %>
+
+You will notice that Less offers two ways to write a loop, the first way is standard with a mixin that is later called. The second one is a bit hacky and much uglier, but doesn't require calling the mixin later.
+
+In all of the preprocessors you can have both inclusive ranges and exclusive ones. For Less an inclusive range can be achieved with `=<` and for an exclusive one - `<`. In Sass inclusive ranges use `through` and exclusive - `to`. For Stylus inclusive ranges are written with `..` and exclusive - `...`.
+
+
+## Leveling up
+
+Often when you do a loop you want to iterate through something more than numbers, probably a list of colors or some other values. Here is an example of how you can create numbered selectors with values, extracted from a variable.
+
+<%- @code('loop-intermediate-1', 'less', 6) %>
+<%- @code('loop-intermediate-2', 'less', 6) %>
+<%- @code('loop-intermediate', 'sass', 6) %>
+<%- @code('loop-intermediate', 'stylus', 6) %>
+<%- @code('loop-intermediate') %>

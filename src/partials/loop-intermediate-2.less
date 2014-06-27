@@ -1,0 +1,9 @@
+@colors: foo, bar, baz;
+
+.color-mixin(@i: 1) when (@i =< length(@colors)) {
+  &.color-@{i} {
+    background: extract(@colors, @i);
+  }
+  .color-mixin(@i + 1);
+};
+.color-mixin();

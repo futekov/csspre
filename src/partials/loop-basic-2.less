@@ -1,0 +1,10 @@
+@column-name: col;
+@column-count: 4;
+
+.@{column-name} {
+  .-(@i: 1) when (@i =< @column-count) {
+    &-@{i} {
+      width: @i * (100% / @column-count);
+    }.-(@i + 1);
+  }.-;
+}
