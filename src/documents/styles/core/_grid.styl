@@ -1,5 +1,5 @@
 $grid-columns = 12
-$grid-gutter-width = 2%
+$grid-gutter-size = 2%
 
 // Common styles for grid columns
 $col-common
@@ -13,33 +13,25 @@ $col-common
     display: inline
     zoom: 1
 
-// Media queries breakpoints
-// --------------------------------------------------
-$screen-min = 290px + $grid-gutter-width
-$screen-small = 560px + $grid-gutter-width
-$screen-modest = 740px + $grid-gutter-width
-$screen-normal = 930px + $grid-gutter-width
-$screen-medium = 1200px + $grid-gutter-width
-$screen-max = 1500px + $grid-gutter-width
-
 $grid-col-class = col
-
 
 for i in 1..$grid-columns
   .{$grid-col-class}-{i}
     @extend $col-common
-    width: ( (100% - ((($grid-columns / i) - 1) * $grid-gutter-width)) / ($grid-columns / i) )
+    width: ( (100% - ((($grid-columns / i) - 1) * $grid-gutter-size)) / ($grid-columns / i) )
+    margin-bottom: $grid-gutter-size
     @media screen and (max-width: 800px)
       width: 100%
       margin-left: 0 !important
       & + &
-        margin-top: $grid-gutter-width
+        margin-top: $grid-gutter-size
 
     & + &
-      margin-left: $grid-gutter-width
+      margin-left: $grid-gutter-size
     if i == 2 || 4
       & + .{$grid-col-class}-{$grid-columns - i}
-        margin-left: $grid-gutter-width
-
-.container
-  max-width: 1170px + $grid-gutter-width * 2
+        margin-left: $grid-gutter-size
+    if i == 6
+      p + & + .{$grid-col-class}-{i} + .{$grid-col-class}-{i},
+      &:first-child + .{$grid-col-class}-{i} + .{$grid-col-class}-{i}
+          margin-left: 0
