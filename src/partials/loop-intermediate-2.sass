@@ -1,0 +1,6 @@
+$colors: foo, bar, baz
+
+@each $color in $colors
+  $i: index($colors, $color)
+  .color-#{$i}
+    background: $color
