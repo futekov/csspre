@@ -1,6 +1,11 @@
 $grid-columns = 12
 $grid-gutter-size = 2%
 
+.grid
+  margin-left: -2%
+  > *
+    margin-left: abs(@margin-left)
+
 // Common styles for grid columns
 $col-common
   position: relative
@@ -9,29 +14,20 @@ $col-common
   font-size: 16px
   vertical-align: top
   margin-right: -(@font-size / 4)
-  .ie7 &
-    display: inline
-    zoom: 1
 
 $grid-col-class = col
 
-for i in 1..$grid-columns
-  .{$grid-col-class}-{i}
+for $i in 1..$grid-columns
+  .{$grid-col-class}-{$i}
     @extend $col-common
-    width: ( (100% - ((($grid-columns / i) - 1) * $grid-gutter-size)) / ($grid-columns / i) )
+    width: (100% / (12 / $i)) - unit($grid-gutter-size, '')
     margin-bottom: $grid-gutter-size
-    @media screen and (max-width: 800px)
-      width: 100%
-      margin-left: 0 !important
-      & + &
-        margin-top: $grid-gutter-size
 
-    & + &
-      margin-left: $grid-gutter-size
-    if i == 2 || 4
-      & + .{$grid-col-class}-{$grid-columns - i}
-        margin-left: $grid-gutter-size
-    if i == 6
-      p + & + .{$grid-col-class}-{i} + .{$grid-col-class}-{i},
-      &:first-child + .{$grid-col-class}-{i} + .{$grid-col-class}-{i}
-          margin-left: 0
+    // all non-50% rows should become 100% at a ~ tablet-sized screen
+    if $i != ($grid-columns / 2)
+      @media screen and (max-width: 800px)
+        width: 100% - unit($grid-gutter-size, '')
+    // 50% columns should become 100% on smaller screens
+    else
+      @media screen and (max-width: 500px)
+        width: 100% - unit($grid-gutter-size, '')
