@@ -18,11 +18,11 @@ docpadConfig = {
             url: "http://csspre.com"
 
         # FUNCTIONS
-        getPreparedTitle: -> if @document.title then "#{@document.title} | #{@site.title}" else @site.title
+        getPreparedTitle: -> if @document.title then "#{@document.title} ◩ #{@site.title}" else @site.title
 
         getPreparedDescription:->
             # if document description exists use it, otherwise use the site's description
-            @site.description
+            if @document.description then "#{@document.description}" else @site.description
 
         getPreparedKeywords: ->
             # merge the document keywords with the site keywords

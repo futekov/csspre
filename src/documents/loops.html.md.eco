@@ -33,6 +33,6 @@ Often when you do a loop you want to iterate through something more than numbers
 <%- @code('loop-intermediate-1', 'sass', 6) %>
 <%- @code('loop-intermediate-2', 'sass', 6) %>
 <%- @code('loop-intermediate', 'stylus', 6) %>
-<%- @code('loop-intermediate') %>
+<%- @code('loop-intermediate', 'css', 6) %>
 
 In addition to an index-based iteration, Sass can also iterate through values directly. As Sass [does not yet provide](https://github.com/sass/sass/issues/996) an index variable when iterating values, we have to retrieve it manually.
