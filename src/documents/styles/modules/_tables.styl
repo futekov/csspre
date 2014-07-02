@@ -18,27 +18,32 @@ td
 th
   border-width: 0 1px 1px 0
   font-weight: bold
+  @media only screen and (max-width: 700px)
+    font-size: 13px
+    font-weight: normal
 
 td
   border-width: 0 1px 1px 0
 
 .table-content
   position: relative
-  margin-top: ($code-head-size * 2)
+  margin-top: 2em
   table-layout: fixed
   border-color: #444
+
+  @media only screen and (max-width: 800px)
+    font-size: 14px
 
   th
     background-color: #ccc
 
   td
-    padding: 6px
+    padding: 5px
 
   td,
   th
     border-color #444
     text-align: center
-    height: 27px
     &.disabled
       background-color: @border-color
 
@@ -48,21 +53,19 @@ td
 
   caption
     color: #fff
-    position: absolute
-    top: -($code-head-size)
+    top: -2em
     left: 0
     right: -1px
     background: $purple
     background: linear-gradient(135deg, transparent 9px, $purple 9px)
     font-weight: 700
-    padding: 5px 0 4px
-    text-indent: 15px
+    padding: 5px 0 4px 15px
     text-transform: uppercase
     font-family: "Consolas", monospace
 
   a
     display: block
-    font-size: 18px
+    font-size: 1.1em
     text-decoration: none
     background-color: lighten($light-complementary-color, 25%)
     color: #000

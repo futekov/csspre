@@ -28,8 +28,8 @@ layout: base
     <p>Created by <a href="https://plus.google.com/103815255084056663758?rel=author">Alexander Futekov</a> and built with <a href="http://docpad.org/">DocPad</a>.</p>
     <div>Get notified:</div>
     <ul>
-      <li><a href="http://csspre.com/rss.xml">Subscribe to the RSS feed</a></li>
-      <li><a href="https://twitter.com/csspre">Follow @csspre at Twitter</a></li>
+      <li>Subscribe to the <a href="http://csspre.com/rss.xml">RSS feed</a></li>
+      <li><a href="https://twitter.com/csspre">Follow @csspre</a> at Twitter</li>
     </ul>
   </div>
 </div>
