@@ -11,7 +11,7 @@ docpadConfig = {
         site:
             title: "CSS PREprocessors"
 
-            description: "CSS Preprocessors - guides, tutorials, reference"
+            description: "CSS Preprocessors - preprocessor comparisons and reference guide, play around with all code snippets, explore tools for conversion from/to CSS"
 
             keywords: "css, preprocessors, preprocessor, less, sass, scss, stylus"
 
