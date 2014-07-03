@@ -2,7 +2,7 @@
 layout: "post"
 title: "Parent Reference"
 date: 2014-06-20
-description: "How to use the magical &"
+description: "Add magic to your selectors and reduce repetition with the parent reference - &, useful for BEM fans"
 ---
 
 So you've discovered that preprocessors support nesting stuff, you use it here and there and after a while you want to be able to do more than setting a child selector.

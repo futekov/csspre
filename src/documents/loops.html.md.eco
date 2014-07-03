@@ -2,7 +2,7 @@
 layout: "post"
 title: "Loops"
 date: 2014-06-27
-description: "Loops and iterations"
+description: "Create loops, iterate through items or lists of items, use 'for', 'each', and 'while' directives"
 ---
 
 Loops are useful when you need to create a set of selectors/values that have an underlying mathematical relation of some sort.

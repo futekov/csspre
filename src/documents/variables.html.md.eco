@@ -2,7 +2,7 @@
 layout: "post"
 title: "Variables"
 date: 2014-06-12
-description: "Setting and using variables"
+description: "Setting and using variables, scoping variables, interpolating variables, default variable values"
 ---
 
 CSS is extremely repetitive. And if you are working on a big, complex project you will have identical values/colors all around the place. When the time comes for a minor modification or a global refactoring chances are that you will forget to change something somewhere.
