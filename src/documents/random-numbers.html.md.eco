@@ -1,0 +1,54 @@
+---
+layout: "post"
+title: "Random Numbers"
+date: 2014-07-05
+description: "How to generate random numbers in preprocessors and use them for cache invalidation or random colors"
+---
+
+
+## Generating a random number
+
+Sometimes you just need a random number.
+
+Here's how to get a random integer between `1` and `100`:
+
+<%- @code('random-number-basic', 'less', 6) %>
+<%- @code('random-number-basic', 'sass', 6) %>
+<%- @code('random-number-basic', 'stylus', 6) %>
+<%- @code('random-number-basic', 'css', 6) %>
+
+Note that Sass' built-in random function can get an upper-limit parameter, so `random(100)` will give you a value from the range `1-100`.
+
+It is apparent from these snippets that Sass offers the cleanest solution in terms of syntax, Stylus can work with a similar syntax but only after setting up a function, and Less requires us to define a mixin, call it, and then use the generated variable from it somewhere.
+
+However, if you need to modify the lower limit in Sass you have to add or subtract a number after that, (note that this will affect the upper limit as well), the next examples on this page increase/decrease the upper/lower limits with simple addition and subtraction.
+
+
+
+## Cache Invalidation with random numbers
+
+Random numbers can also be useful if you need to invalidate the cache of a certain external asset that is called from the CSS (such as background image or font).
+
+A simple example is adding a four-digit random number as a query parameter:
+
+<%- @code('random-number-cache', 'less', 6) %>
+<%- @code('random-number-cache', 'sass', 6) %>
+<%- @code('random-number-cache', 'stylus', 6) %>
+<%- @code('random-number-cache', 'css', 6) %>
+
+
+
+## Random colors
+
+You can get a unique color on every compilation by using random number generation.
+
+One option is to set specific ranges for the R, G and/or B in a RGB color (for example 40-220, to avoid very dark or very light colors).
+
+However, it's much more useful to randomize only the Hue in HSL and preset the Lightness and Saturation to get colors that look related and are of the same lightness/darkness:
+
+<%- @code('random-number-color', 'less', 6) %>
+<%- @code('random-number-color', 'sass', 6) %>
+<%- @code('random-number-color', 'stylus', 6) %>
+<%- @code('random-number-color', 'css', 6) %>
+
+Using the same approach you can get a color that is always blue-ish just by setting the random hue value to be somewhere between `180` and `270`.
