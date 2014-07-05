@@ -1,0 +1,8 @@
+.make-random(@min, @max) { 
+  @rnd: `Math.floor(Math.random() * @{max} + @{min})`;
+}
+
+.random-number-color {
+  .make-random(0, 360);
+  color: hsl(@rnd, 50%, 50%);
+}

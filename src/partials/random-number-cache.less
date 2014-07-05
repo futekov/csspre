@@ -1,0 +1,8 @@
+.make-random(@min, @max) { 
+  @rnd: `Math.floor(Math.random() * @{max} + @{min})`;
+}
+
+.random-number-cache-invalidation {
+  .make-random(1000, 9999);
+  background-image: src('x.jpg?v=@{rnd}');
+}

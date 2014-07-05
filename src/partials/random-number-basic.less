@@ -1,0 +1,8 @@
+.make-random(@min, @max) { 
+  @rnd: `Math.floor(Math.random() * @{max} + @{min})`;
+}
+
+.random-integer {
+  .make-random(1, 100);
+  foo: @rnd;
+}
