@@ -19,7 +19,7 @@ We will put the columns class name and their number in variables and utilize the
 <%- @code('loop-basic', 'stylus', 6) %>
 <%- @code('loop-basic') %>
 
-You will notice that Less offers two ways to write a loop, the first way is standard with a mixin that is later called. The second one is a bit hacky and much uglier, but doesn't require calling the mixin later.
+You will notice that Less offers two ways to write a loop, the first way is standard with a [mixin](/mixins#mixin-basics) that is later called. The second one is a bit hacky and much uglier, but doesn't require calling the mixin later.
 
 In all of the preprocessors you can have both inclusive ranges and exclusive ones. For Less an inclusive range can be achieved with `=<` and for an exclusive one - `<`. In Sass inclusive ranges use `through` and exclusive - `to`. For Stylus inclusive ranges are written with `..` and exclusive - `...`.
 
