@@ -1,0 +1,19 @@
+---
+layout: "post"
+title: "Placeholder Selectors"
+date: 2014-07-23
+description: "Reuse styles from Placeholder Selectors (or Silent Placeholders, or Silent Classes) that are not outputted to the CSS."
+---
+
+Placeholder Selectors are like classes, that will not be outputted to the generated CSS, but are easy to reuse in your code. Besides, you can name them anything and no one will ever know!
+
+Here is how to use them, note that `placeholder-2` won't be visible in the final CSS because we haven't called it anywhere.
+
+Less doesn't support actual Placeholder Selectors, but you can simulate one by using a mixin.
+
+<%- @code('placeholder-selectors-basic', 'less', 4) %>
+<%- @code('placeholder-selectors-basic', 'sass', 4) %>
+<%- @code('placeholder-selectors-basic', 'stylus', 4) %>
+<%- @code('placeholder-selectors-basic') %>
+
+Because Sass and Stylus use `@extend`, they will produce more efficient CSS. If two selectors, let's call them `.selector-1` and `.selector-2`, both extend the same placeholder, then the resulting CSS will have a selector that combines the common styles - `.selector-1, .selector-2 {...}`.
