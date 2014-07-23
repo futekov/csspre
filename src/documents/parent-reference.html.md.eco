@@ -77,3 +77,14 @@ Need something weirder with a repeating class in the selector for example? No pr
 <%- @code('parent-reference-multiple', 'sass', 4) %>
 <%- @code('parent-reference-multiple', 'stylus', 4) %>
 <%- @code('parent-reference-multiple') %>
+
+## Combinatorial explosion
+
+The idea for combinatorial explosion [comes from Less](http://lesscss.org/features/#parent-selectors-feature-combinatorial-explosion) and it can be useful for covering many combinations of selectors. Simulating it in Sass and Stylus is also possible.
+
+<%- @code('parent-reference-explosion', 'less', 4) %>
+<%- @code('parent-reference-explosion', 'sass', 4) %>
+<%- @code('parent-reference-explosion', 'stylus', 4) %>
+<%- @code('parent-reference-explosion') %>
+
+This technique might be useful not only for adding space between elements that are direct siblings (the `+` selector), but also for covering direct descendants (the `>` selector).

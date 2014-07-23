@@ -1,0 +1,16 @@
+p,
+ul,
+ol {
+  foo: bar;
+}
+p + p,
+p + ul,
+p + ol,
+ul + p,
+ul + ul,
+ul + ol,
+ol + p,
+ol + ul,
+ol + ol {
+  baz: qux;
+}
