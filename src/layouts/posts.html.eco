@@ -8,12 +8,12 @@ layout: base
       <% for document in @getCollection("posts").toJSON(): %>
         <div class="col-6">
           <a href="<%= document.url %>" class="tile">
-            <time datetime="<%= @postDatetime(document.date) %>">
-              <%= @postDate(document.date) %>
-            </time>
             <h3>
               <%= document.title %>
             </h3>
+            <time datetime="<%= @postDatetime(document.date) %>">
+              <%= @postDate(document.date) %>
+            </time>
             <div>
               <%- document.description %>
             </div>
