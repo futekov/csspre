@@ -2,25 +2,30 @@
 layout: base
 ---
 
-<div class="post grid">
-  <time datetime="<%= @postDatetime(@document.date) %>">
+<div class="meta">
+  <time datetime="<%= @postDatetime(@document.date) %>" itemprop="datePublished">
     <%= @postDatetime(@document.date) %>
   </time>
-  <%- @content %>
-
-  <h2>Interactive</h2>
-  <p>This article is far from perfect, you can <a href="//github.com/futekov/csspre/blob/master/src/documents<%- @document.url %>.html.md.eco" target="_blank">suggest improvements on GitHub</a> or leave a comment below.</p>
-
-  <div id="disqus_thread"></div>
-  <script type="text/javascript">
-    var disqus_shortname = 'csspre';
-    (function() {
-      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-      dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-    })();
-  </script>
-  <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+  by
+  <a href="https://plus.google.com/+AlexanderFutekov" rel="author" itemprop="author">Alexander Futekov</a>
 </div>
+
+<div class="post grid" itemprop="articleBody">
+  <%- @content %>
+</div>
+
+<h2>Interactive</h2>
+<p>This article is far from perfect, you can <a href="//github.com/futekov/csspre/blob/master/src/documents<%- @document.url %>.html.md.eco" target="_blank">suggest improvements on GitHub</a> or leave a comment below.</p>
+
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+  var disqus_shortname = 'csspre';
+  (function() {
+    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
 
 <%- @getBlock("scripts").add("/scripts/codepen.js").toHTML() %>
