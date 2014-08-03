@@ -15,7 +15,7 @@ layout: base
 </div>
 
 <h2>Interactive</h2>
-<p>This article is far from perfect, you can <a href="//github.com/futekov/csspre/blob/master/src/documents<%- @document.url %>.html.md.eco" target="_blank">suggest improvements on GitHub</a> or leave a comment below.</p>
+<p>This article is far from perfect, you can <a href="https://github.com/futekov/csspre/blob/master/src/documents<%- @document.url %>.html.md.eco" target="_blank">suggest improvements on GitHub</a> or leave a comment below.</p>
 
 <div id="disqus_thread"></div>
 <script type="text/javascript">

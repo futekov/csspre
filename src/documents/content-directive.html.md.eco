@@ -1,0 +1,42 @@
+---
+layout: "post"
+title: "Content Directive"
+date: 2014-08-04
+description: "Uses for the @content directive, pre-built selectors, placeholders pseudo element, media query mixins"
+---
+
+The @content directive is a way to pass a block of styles to a [mixin](/mixins), this is useful in cases when you don't want to limit your future self in terms of number of parameters a mixin can accept.
+
+
+## Basic use
+
+The @content directive allows you to use a common set of selectors everywhere you declare a mixin.
+
+<%- @code('content-directive-basic', 'less', '6') %>
+<%- @code('content-directive-basic', 'sass', '6') %>
+<%- @code('content-directive-basic', 'stylus', '6') %>
+<%- @code('content-directive-basic', 'css', '6') %>
+
+Notice that for Stylus, we need a `+` before calling the mixin every time when you're passing content to it (below it, indented).
+
+
+## Simpler media queries
+
+You can use the @content directive to simplify your responsive styles:
+
+<%- @code('content-directive-media', 'less', '6') %>
+<%- @code('content-directive-media', 'sass', '6') %>
+<%- @code('content-directive-media', 'stylus', '6') %>
+<%- @code('content-directive-media', 'css', '6') %>
+
+
+## Placeholder pseudo element
+
+Another very useful case where the @content directive can help is when defining styles for placeholder text - you can put a @content directive in each vendor-specific selector (can also be used for keyframes which are still prefixed).
+
+<%- @code('content-directive-placeholder-text', 'less', '6') %>
+<%- @code('content-directive-placeholder-text', 'sass', '6') %>
+<%- @code('content-directive-placeholder-text', 'stylus', '6') %>
+<%- @code('content-directive-placeholder-text', 'css', '6') %>
+
+To learn more about placeholder text styling I recommend reading this [great article by Treehouse](http://blog.teamtreehouse.com/the-css3-placeholder-pseudo-element), it explains nicely what can and cannot be styled about the placeholder text.

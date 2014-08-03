@@ -1,0 +1,8 @@
+.media-test {
+  width: 400px;
+}
+@media only screen and (max-width: 980px) {
+  .media-test {
+    max-width: 100%;
+  }
+}

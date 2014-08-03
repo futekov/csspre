@@ -2,10 +2,12 @@
 layout: "post"
 title: "Variables"
 date: 2014-06-12
-description: "Setting and using variables, scoping variables, interpolating variables, default variable values"
+description: "Setting and using variables, scoping variables, default variable values, property lookup"
 ---
 
 CSS is extremely repetitive. And if you are working on a big, complex project you will have identical values/colors all around the place. When the time comes for a minor modification or a global refactoring chances are that you will forget to change something somewhere.
+
+This article is covers only basic uses of variables, for more advanced use check the [Variable Interpolation article](/variable-interpolation).
 
 Here is the basic syntax for variables.
 
@@ -15,25 +17,12 @@ Here is the basic syntax for variables.
 <%- @code('variables-basic') %>
 
 
-
-## Interpolating variables
-
-You can interpolate a variable anywhere - in the property, value, and even the selector.
-
-<%- @code('variables-interpolation', 'less', '4') %>
-<%- @code('variables-interpolation', 'sass', '4') %>
-<%- @code('variables-interpolation', 'stylus', '4') %>
-<%- @code('variables-interpolation') %>
-
-
-
 ## Lazy loaded variables
 
 Only Less supports lazy-loaded variables - you can type the variable even after the place you are calling it from and it will work. For example, this Less code works:
 
 <%- @code('variables-lazy', 'less', '6') %>
 <%- @code('variables-lazy', 'css', '6') %>
-
 
 
 ## Default values
@@ -74,6 +63,7 @@ It works close to how scoped variables operate. In the example below you will se
 <%- @code('variables-lookup', 'css', '6') %>
 
 Property lookups, just like scoped variables are a great way to center an object. For example, you can set a negative `margin-left` that is half the width of the object, and a `margin-top` that is half its height, in addition to `left: 50%` and `right: 50%`.
+
 
 ## Variables accept many formats
 

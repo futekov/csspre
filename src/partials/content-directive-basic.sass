@@ -1,0 +1,9 @@
+=active()
+  &.is-active,
+  &:hover
+    @content
+
+.content-directive
+  foo: bar
+  +active()
+    baz: qux

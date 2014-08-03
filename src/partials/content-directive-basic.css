@@ -1,0 +1,7 @@
+.content-directive {
+  foo: bar;
+}
+.content-directive.is-active,
+.content-directive:hover {
+  baz: qux;
+}

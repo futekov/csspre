@@ -3,10 +3,10 @@ layout: base
 ---
 
 <div class="grid">
-  <div class="col-8">
+  <div class="col-9">
     <div class="grid">
       <% for document in @getCollection("posts").toJSON(): %>
-        <div class="col-6">
+        <div class="col-4">
           <a href="<%= document.url %>" class="tile">
             <h3>
               <%= document.title %>
@@ -22,7 +22,7 @@ layout: base
       <% end %>
     </div>
   </div>
-  <div class="col-4">
+  <div class="col-3">
     <p>CSS PRE is a project that aims to collect as much information about the popular CSS Preprocessors as possible, in order to serve as a one-stop reference.</p>
     <p>It is a collaborative project, <a href="https://github.com/futekov/csspre">edits on GitHub</a> are welcome.</p>
     <p>Created by <a href="https://plus.google.com/103815255084056663758?rel=author">Alexander Futekov</a> and built with <a href="http://docpad.org/">DocPad</a>.</p>

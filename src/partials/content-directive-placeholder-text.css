@@ -1,0 +1,12 @@
+.text-input::-webkit-input-placeholder {
+  color: #acacac;
+  text-transform: uppercase;
+}
+.text-input::-moz-placeholder {
+  color: #acacac;
+  text-transform: uppercase;
+}
+.text-input:-ms-input-placeholder {
+  color: #acacac;
+  text-transform: uppercase;
+}
