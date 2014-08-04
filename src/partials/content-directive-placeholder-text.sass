@@ -1,0 +1,14 @@
+=placeholder-text()
+  &::-webkit-input-placeholder
+    @content
+
+  &::-moz-placeholder
+    @content
+
+  &:-ms-input-placeholder
+    @content
+
+.text-input
+  +placeholder-text()
+    color: #acacac
+    text-transform: uppercase
