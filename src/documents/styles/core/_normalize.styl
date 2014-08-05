@@ -13,21 +13,6 @@ textarea
   font-weight: 400
   line-height: 1.5
 
-
-::-webkit-input-placeholder
-  color: #939393
-
-:-moz-placeholder
-  color: #939393
-
-::-moz-placeholder
-  color: #939393
-  opacity: 1 /* Since FF19 lowers the opacity of the placeholder by default */
-
-:-ms-input-placeholder
-  color: #939393
-
-
 ::selection
   background: $purple
   color: #fff
@@ -37,28 +22,6 @@ textarea
   background: $purple
   color: #fff
   text-shadow: none
-
-hr
-  display: block
-  height: 1px
-  border: 0
-  border-top: 1px solid #ccc
-  margin: 1em 0
-  padding: 0
-
-audio,
-canvas,
-img,
-video
-  vertical-align: middle
-
-fieldset
-  border: 0
-  margin: 0
-  padding: 0
-
-textarea
-  resize: vertical
 
 article,
 aside,
@@ -75,12 +38,6 @@ section
 time
   display: inline-block
 
-audio,
-canvas,
-video
-  display: inline-block
-  max-width: 100%
-
 html
   -webkit-text-size-adjust: 100%
   -ms-text-size-adjust:   100%
@@ -92,35 +49,14 @@ video
   margin-bottom: 24px
   max-width: 100%
 
-figure
-  margin: 0
-
-
-
-
-/* Form elements */
-
-input,
-textarea
+input
   border: 1px solid rgba(0, 0, 0, 0.1)
   color: #2b2b2b
   padding: 8px 10px 7px
 
-textarea
-  width: 100%
-
-input:focus,
-textarea:focus
-  border: 1px solid rgba(0, 0, 0, 0.3)
-  outline: 0
-
-fieldset
-  border: 1px solid rgba(0, 0, 0, 0.1)
-  margin: 0 0 24px
-  padding: 11px 12px 0
-
-legend
-  white-space: normal
+  &:focus
+    border: 1px solid rgba(0, 0, 0, 0.3)
+    outline: 0
 
 button,
 input,
@@ -142,23 +78,8 @@ input,
 textarea
   background-image: -webkit-linear-gradient(hsla(0,0%,100%,0), hsla(0,0%,100%,0)) /* Removing the inner shadow, rounded corners on iOS inputs */
 
-button,
-html input[type="button"],
-input[type="reset"],
-input[type="submit"]
-  -webkit-appearance: button
-  cursor: pointer
-
-button[disabled],
-input[disabled]
-  cursor: default
-
-input[type="checkbox"],
-input[type="radio"],
 input[type="image"]
   padding: 0
-
-input[type="image"]
   border: 0
   &:focus
     border: 0
@@ -167,8 +88,6 @@ button::-moz-focus-inner,
 input::-moz-focus-inner
   border: 0
   padding: 0
-
-
 
 
 @media print

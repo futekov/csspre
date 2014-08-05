@@ -8,16 +8,13 @@ a
     &:active
       border-bottom: 1px solid $purple
 
-a:focus
-  outline: thin dotted
+  &:focus
+    outline: thin dotted
 
-a:hover,
-a:active
-  outline: 0
-
-a:active,
-a:hover
-  color: darken($purple, 25%)
+  &:hover,
+  &:active
+    outline: 0
+    color: darken($purple, 25%)
 
 h1,
 h2,
@@ -50,53 +47,10 @@ b,
 strong
   font-weight: 700
 
-cite,
-dfn,
-em,
-i
-  font-style: italic
-
-mark,
-ins
-  background: #fff9c0
-  text-decoration: none
-
 p
   margin: 0 0 24px
   &:empty
     display: none
-
-small
-  font-size: smaller
-
-big
-  font-size: 125%
-
-del
-  color: #767676
-
-sup,
-sub
-  font-size: 75%
-  height: 0
-  line-height: 0
-  position: relative
-  vertical-align: baseline
-
-sup
-  bottom: 1ex
-
-sub
-  top: .5ex
-
-dl
-  margin-bottom: 24px
-
-dt
-  font-weight: bold
-
-dd
-  margin-bottom: 24px
 
 ul,
 ol
