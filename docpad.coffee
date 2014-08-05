@@ -56,6 +56,12 @@ docpadConfig = {
             stylusOptions:
                 compress: true
                 'include css': true
+        feedr:
+            feeds:
+                githubRepo:
+                    url: "https://api.github.com/repos/futekov/csspre"
+                githubContributors:
+                    url: "https://api.github.com/repos/futekov/csspre/contributors"
 }
 
 # Export the DocPad Configuration

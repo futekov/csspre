@@ -1,0 +1,29 @@
+---
+layout: base
+title: "About"
+pageOrder: 3
+description: "Read more about this site, learn why CSS Preprocessors are awesome."
+---
+
+CSS PRE is your one-stop reference for the three most popular CSS Preprocessors - <a href="http://lesscss.org/" target="_blank">Less</a>, <a href="http://sass-lang.com/" target="_blank">Sass</a>, <a href="http://learnboost.github.io/stylus/" target="_blank">Stylus</a>. The preprocessor languages will be always ordered alphabetically for when mentioning them or when listing code snippets.
+
+[Contribute on GitHub](<%= @feedr.feeds.githubRepo.html_url %>) to make the site better (currently we have <%= @feedr.feeds.githubRepo.watchers %> watchers). 
+
+## Syntax
+
+The code examples for Sass on this site use the [indented syntax](http://sass-lang.com/documentation/file.INDENTED_SYNTAX.html), in the future SCSS syntax snippets may be added as well.
+
+Stylus allows extreme freedom in terms of syntax, one can omit braces, semicolons, and even colons. To be future-proof, this site will only show Stylus snippets with colons (no semicolons or braces) and with a `$` sign before each variable (which is currently [optional](http://learnboost.github.io/stylus/docs/variables.html)) because this is [how Stylus will most likely work in the future](https://github.com/LearnBoost/stylus/wiki/1.0.0#what-to-change-in-syntax). I advise you to read Stylus' resources on [what is allowed in terms of syntax](http://learnboost.github.io/stylus/docs/selectors.html).
+
+## Versions
+
+This site is closely tied to CodePen, as a result all code is written to be compatible with the versions of the preprocessors that CodePen supports - [Less](http://codepen.io/versions/#less-version), [Sass](http://codepen.io/versions/#sass-version), and [Stylus](http://codepen.io/versions/#stylus-version).
+
+## Thanks to
+
+[The great people at CodePen](http://codepen.io/about/), thanks to them all code snippets can be launched in a new tab and played around with.
+
+And our contributors at GitHub:
+
+<% for user in @feedr.feeds.githubContributors: %>
+<% continue if user.is_user %>* [<%=user.login%>](<%=user.html_url%>)<% end %>
