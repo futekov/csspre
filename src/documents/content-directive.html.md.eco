@@ -2,7 +2,7 @@
 layout: "post"
 title: "Content Directive"
 date: 2014-08-04
-description: "Uses for the @content directive, pre-built selectors, placeholders pseudo element, media query mixins"
+description: "Uses for the <code>@content</code> directive, pre-built selectors, placeholders pseudo element, media query mixins"
 ---
 
 The @content directive is a way to pass a block of styles to a [mixin](/mixins), this is useful in cases when you don't want to limit your future self in terms of number of parameters a mixin can accept.

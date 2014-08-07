@@ -2,7 +2,7 @@
 layout: "post"
 title: "Comments"
 date: 2014-07-01
-description: "When to use single-line comments and when block comments, comment quirks you should be aware of"
+description: "When to use single-line <code>// ...</code> and block <code>/* ... */</code> comments, quirks you should be aware of"
 ---
 
 Commenting your CSS is important, it is even more important for preprocessors, where you may write some weird-looking things to achieve a specific output or to workaround a preprocessor bug.

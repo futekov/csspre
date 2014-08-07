@@ -1,37 +1,43 @@
 $codepen-button-width = 40px
 $codepen-button-height = 28px
 
-p,
-li
-  > code
-    background: #D8D8D8
-    padding: 1px 4px
-    border-radius: 3px
-    border: 1px solid #bbb
-
-code,
-pre
+code
+  background: #eee
+  padding: 0.05em 0.2em
+  border-radius: 3px
+  border: 1px solid #ccc
+  color: $purple
+  white-space: nowrap
   font-family: monospace, serif
-  font-size: 16px
+  font-size: 1em
   -webkit-hyphens: none
   -moz-hyphens:    none
   -ms-hyphens:     none
   hyphens:         none
   line-height: 1.4
+  td &,
+  th &
+    background: initial
+    padding: initial
+    border: none
+    color: initial
+    white-space: initial
 
-pre
-  border-top: 0
-  margin-top: 0
-  max-width: 100%
-  position: relative
-
-  code
+  pre &
     display: block
     padding: 12px
     white-space: pre
     overflow: auto
     border: 1px solid $purple
     background-color: $transparent-bg
+    color: initial
+    border-radius: initial
+
+pre
+  border-top: 0
+  margin-top: 0
+  max-width: 100%
+  position: relative
 
   &[data-type]
     &:before
