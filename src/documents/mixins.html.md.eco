@@ -43,7 +43,7 @@ If, for whatever reason, you want to set the parameters of a mixin in a particul
 
 
 
-## Unknow number of parameters
+## Unknown number of parameters
 
 If you want to have a mixin with a varying number of parameters, all CSS preprocessors allow you output all arguments like so:
 
