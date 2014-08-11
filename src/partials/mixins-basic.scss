@@ -1,0 +1,8 @@
+@mixin mixin {
+  foo: bar;
+}
+
+.include-mixin {
+  @include mixin;
+  baz: qux;
+}

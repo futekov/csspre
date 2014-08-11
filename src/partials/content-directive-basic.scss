@@ -1,0 +1,13 @@
+@mixin active {
+  &.is-active,
+  &:hover {
+    @content;
+  }
+}
+
+.content-directive {
+  foo: bar;
+  @include active {
+    baz: qux;
+  }
+}

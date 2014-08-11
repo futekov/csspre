@@ -1,0 +1,12 @@
+@mixin media-max($num) {
+  @media only screen and (max-width: $num) {
+    @content;
+  }
+}
+
+.media-test {
+  width: 400px;
+  @include media-max(980px) {
+    max-width: 100;
+  }
+}

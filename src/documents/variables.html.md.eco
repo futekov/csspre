@@ -11,9 +11,10 @@ This article is covers only basic uses of variables, for more advanced use check
 
 Here is the basic syntax for variables.
 
-<%- @code('variables-basic', 'less', '4') %>
-<%- @code('variables-basic', 'sass', '4') %>
-<%- @code('variables-basic', 'stylus', '4') %>
+<%- @code('variables-basic', 'less', 6) %>
+<%- @code('variables-basic', 'scss', 6) %>
+<%- @code('variables-basic', 'sass', 6) %>
+<%- @code('variables-basic', 'stylus', 6) %>
 <%- @code('variables-basic') %>
 
 
@@ -21,8 +22,8 @@ Here is the basic syntax for variables.
 
 Only Less supports lazy-loaded variables - you can type the variable even after the place you are calling it from and it will work. For example, this Less code works:
 
-<%- @code('variables-lazy', 'less', '6') %>
-<%- @code('variables-lazy', 'css', '6') %>
+<%- @code('variables-lazy', 'less', 6) %>
+<%- @code('variables-lazy', 'css', 6) %>
 
 
 ## Default values
@@ -31,9 +32,10 @@ Default values for variables work just like regular values, but if both are decl
 
 Such default values can be useful for cases when you are not sure whether a regular value for a variable is or will be declared.
 
-<%- @code('variables-default', 'sass', '4') %>
-<%- @code('variables-default', 'stylus', '4') %>
-<%- @code('variables-default', 'css', '4') %>
+<%- @code('variables-default', 'scss', 6) %>
+<%- @code('variables-default', 'sass', 6) %>
+<%- @code('variables-default', 'stylus', 6) %>
+<%- @code('variables-default', 'css', 6) %>
 
 Less does not support setting a default variable, this has been [discussed before](https://github.com/less/less.js/pull/313) [a](https://github.com/less/less.js/pull/1104) [number](https://github.com/less/less.js/issues/1109) [of](https://github.com/less/less.js/pull/1705) [times](https://github.com/less/less.js/issues/1706) and Less is unlikely to get this feature, as its variables are lazy-loaded (see the previous section) and this may lead to confusion.
 
@@ -46,11 +48,12 @@ Scoped variables work only within the current selector and all child selectors.
 
 Note that Stylus allows another way of doing this - by defining the variable and the value at the same time.
 
-<%- @code('variables-scoped', 'less', '3') %>
-<%- @code('variables-scoped', 'sass', '3') %>
-<%- @code('variables-scoped-1', 'stylus', '3') %>
-<%- @code('variables-scoped-2', 'stylus', '3') %>
-<%- @code('variables-scoped') %>
+<%- @code('variables-scoped', 'less', 4) %>
+<%- @code('variables-scoped', 'scss', 4) %>
+<%- @code('variables-scoped', 'sass', 4) %>
+<%- @code('variables-scoped-1', 'stylus', 4) %>
+<%- @code('variables-scoped-2', 'stylus', 4) %>
+<%- @code('variables-scoped', 'css', 4) %>
 
 
 ## Property lookup
@@ -59,8 +62,8 @@ Stylus supports another feature that is not yet present in other preprocessors -
 
 It works close to how scoped variables operate. In the example below you will see that the `.child` bubbles up until it finds a `@foo`.
 
-<%- @code('variables-lookup', 'stylus', '6') %>
-<%- @code('variables-lookup', 'css', '6') %>
+<%- @code('variables-lookup', 'stylus', 6) %>
+<%- @code('variables-lookup', 'css', 6) %>
 
 Property lookups, just like scoped variables are a great way to center an object. For example, you can set a negative `margin-left` that is half the width of the object, and a `margin-top` that is half its height, in addition to `left: 50%` and `right: 50%`.
 

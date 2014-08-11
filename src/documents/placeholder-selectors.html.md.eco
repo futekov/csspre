@@ -11,9 +11,10 @@ Here is how to use them, note that `placeholder-2` won't be visible in the final
 
 Less doesn't support actual Placeholder Selectors, but you can simulate one by using a mixin.
 
-<%- @code('placeholder-selectors-basic', 'less', 4) %>
-<%- @code('placeholder-selectors-basic', 'sass', 4) %>
-<%- @code('placeholder-selectors-basic', 'stylus', 4) %>
+<%- @code('placeholder-selectors-basic', 'less', 6) %>
+<%- @code('placeholder-selectors-basic', 'scss', 6) %>
+<%- @code('placeholder-selectors-basic', 'sass', 6) %>
+<%- @code('placeholder-selectors-basic', 'stylus', 6) %>
 <%- @code('placeholder-selectors-basic') %>
 
 Because Sass and Stylus use `@extend`, they will produce more efficient CSS. If two selectors, let's call them `.selector-1` and `.selector-2`, both extend the same placeholder, then the resulting CSS will have a selector that combines the common styles - `.selector-1, .selector-2 {...}`.

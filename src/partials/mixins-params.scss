@@ -1,0 +1,8 @@
+@mixin bordered($color, $thickness: 1px) {
+  border: $thickness solid $color;
+}
+
+.mixins-params {
+  @include bordered(#cbf40d);
+  @include bordered(#d04fbc, 3px);
+}

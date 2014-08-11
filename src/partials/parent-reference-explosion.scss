@@ -1,0 +1,10 @@
+$selectors: "p, ul, ol";
+
+#{$selectors} {
+  foo: bar;
+  & + {
+    #{$selectors} {
+      baz: qux;
+    }
+  }
+}

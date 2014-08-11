@@ -1,0 +1,18 @@
+@mixin placeholder-text {
+  &::-webkit-input-placeholder {
+    @content;
+  }
+  &::-moz-placeholder {
+    @content;
+  }
+  &:-ms-input-placeholder {
+    @content;
+  }
+}
+
+.text-input {
+  @include placeholder-text {
+    color: #acacac;
+    text-transform: uppercase;
+  }
+}

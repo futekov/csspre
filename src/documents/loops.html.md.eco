@@ -15,9 +15,10 @@ We will put the columns class name and their number in variables and utilize the
 
 <%- @code('loop-basic-1', 'less', 6) %>
 <%- @code('loop-basic-2', 'less', 6) %>
+<%- @code('loop-basic', 'scss', 6) %>
 <%- @code('loop-basic', 'sass', 6) %>
 <%- @code('loop-basic', 'stylus', 6) %>
-<%- @code('loop-basic') %>
+<%- @code('loop-basic', 'css', 6) %>
 
 You will notice that Less offers two ways to write a loop, the first way is standard with a [mixin](/mixins#mixin-basics) that is later called. The second one is a bit hacky and much uglier, but doesn't require calling the mixin later.
 
@@ -30,6 +31,8 @@ Often when you do a loop you want to iterate through something more than numbers
 
 <%- @code('loop-intermediate-1', 'less', 6) %>
 <%- @code('loop-intermediate-2', 'less', 6) %>
+<%- @code('loop-intermediate-1', 'scss', 6) %>
+<%- @code('loop-intermediate-2', 'scss', 6) %>
 <%- @code('loop-intermediate-1', 'sass', 6) %>
 <%- @code('loop-intermediate-2', 'sass', 6) %>
 <%- @code('loop-intermediate', 'stylus', 6) %>

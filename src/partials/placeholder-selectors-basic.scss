@@ -1,0 +1,11 @@
+%placeholder-1 {
+  foo: bar;
+}
+
+%placeholder-2 {
+  baz: qux;
+}
+
+.include-placeholder-1 {
+  @extend %placeholder-1;
+}

@@ -1,0 +1,8 @@
+$column-name: col;
+$column-count: 4;
+
+@for $i from 1 through $column-count {
+  .#{$column-name}-#{$i} {
+    width: $i * 100% / $column-count;
+  }
+}
