@@ -1,30 +1,35 @@
 html
   background-image: url("//csspre.com/images/triangular-pattern.png")
-  padding: 0 2%
+  background-size: 30px 30px
+  padding: 0
+
+header
+  background: $purple
+  text-align: center
 
 .site
   background-color: #f6f7f8
-  background-color: $transparent-bg
+  background-color: rgba(255,255,255,0.36)
   max-width: $site-width
-  margin: 0 auto
-  padding: 2.4% 3.6%
+  margin: -44px auto 0
+  padding: 50px 3.6% 1%
   position: relative
 
 .site-title
   margin: 0
   font-size: 82px
   font-family: 'Iceland', sans-serif
-  line-height: 0.8
-  color: $purple
+  line-height: 1.1
+  color: #eee
   @media screen and (max-width: 800px)
     font-size: 49px
   @media screen and (max-width: 450px)
     font-size: 32px
 
 .site-title a
-  color: $purple
+  color: #eee
   &:hover
-    color: lighten($purple, 15%)
+    color: #fff
 
 .page-title
   font-size: 54px

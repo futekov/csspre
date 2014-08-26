@@ -1,23 +1,24 @@
 .site-navigation
   @extend $u-cf
-  margin: 20px 0 10px
-  display: block
+  position: relative
+  margin: 10px 0 0
   font-size: 18px
+  z-index: 1
 
   a
-    color: #888
-    float: left
-    padding: 3px 3% 2px
-    margin: 0 2px
+    display: inline-block
+    color: #ccc
+    padding: (3 + $nav-border-size) 3% 2px
+    margin: 0 -4px
     border-style: solid
-    border-width: $nav-border-size 0
-    border-color: $light-complementary-color
+    border-width: 0 0 $nav-border-size
+    border-color: transparent
 
     &:hover
-      color: #111
+      color: #eee
 
     &:focus,
     &.active,
     &:active
-      color: #111
-      border-color: $purple
+      color: #eee
+      border-color: @color

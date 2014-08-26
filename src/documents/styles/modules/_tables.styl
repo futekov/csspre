@@ -30,6 +30,7 @@ td
   margin-top: 2em
   table-layout: fixed
   border-color: #444
+  background: $transparent-bg
 
   @media only screen and (max-width: 800px)
     font-size: 14px
@@ -67,8 +68,8 @@ td
     display: block
     font-size: 1.1em
     text-decoration: none
-    background-color: lighten($light-complementary-color, 25%)
+    background-color: $light-complementary-color
     color: #000
     &:hover,
     &:focus
-      background-color: $light-complementary-color
+      background-color: darken($light-complementary-color, 15%)

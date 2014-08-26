@@ -25,7 +25,7 @@
 
     </script>
   </head>
-  <body class="site">
+  <body>
     <header>
       <% if @document.url is '/': %> 
         <h1 class="site-title"><%= @site.title %></h1>
@@ -44,10 +44,10 @@
     </header>
 
     <% if @document.url is '/': %> 
-    <section>
+    <section class="site">
       <h2 class="page-title"><%= @document.title %></h2>
     <% else: %>
-    <section itemscope itemtype="http://schema.org/Article">
+    <section class="site" itemscope itemtype="http://schema.org/Article">
       <h1 class="page-title" itemprop="name"><%= @document.title %></h1>
     <% end %>
       
