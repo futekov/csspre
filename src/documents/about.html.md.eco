@@ -7,7 +7,7 @@ description: "Read more about this site, learn why CSS Preprocessors are awesome
 
 CSS PRE is your one-stop reference for the three most popular CSS Preprocessors - <a href="http://lesscss.org/" target="_blank">Less</a>, <a href="http://sass-lang.com/" target="_blank">Sass</a>, <a href="http://learnboost.github.io/stylus/" target="_blank">Stylus</a>.
 
-[Contribute on GitHub](<%= @feedr.feeds.githubRepo.html_url %>) to make the site better (currently we have <%= @feedr.feeds.githubRepo.watchers %> watchers). 
+[Contribute on GitHub](<%= @feedr.feeds.githubRepo.html_url %>) to make the site better (currently we have <%= @feedr.feeds.githubRepo.watchers %> stargazers). 
 
 ## Syntax
 
