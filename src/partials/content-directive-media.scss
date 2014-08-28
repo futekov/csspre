@@ -7,6 +7,6 @@
 .media-test {
   width: 400px;
   @include media-max(980px) {
-    max-width: 100;
+    max-width: 100%;
   }
 }
