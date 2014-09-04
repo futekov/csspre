@@ -1,11 +1,9 @@
-$code-button-width = 40px
 $code-button-height = 28px
 
 code
   background: #e6e6e6
   padding: 0.05em 0.2em
   border-radius: 3px
-  border: 1px solid #aaa
   color: $purple
   white-space: nowrap
   font-family: "Lucida Console", "Lucida Sans Typewriter", Monaco, "Bitstream Vera Sans Mono", monospace
@@ -28,7 +26,6 @@ code
     padding: 12px
     white-space: pre
     overflow: auto
-    border: 1px solid $purple
     background-color: $transparent-bg
     color: initial
     border-radius: initial
@@ -47,7 +44,7 @@ pre
       background: $purple
       background: linear-gradient(135deg, transparent 9px, $purple 9px)
       font-weight: 700
-      padding: 5px 0 4px
+      padding: 5px 0
       text-indent: 15px
       text-transform: uppercase
       font-family: "Consolas", monospace
@@ -56,29 +53,19 @@ pre
   &[data-csspre]
     &:before
       content: attr(data-csspre)
-      background: #6d6d6d
+      background: #5e5e5e
       background: linear-gradient(135deg, transparent 9px, @background 9px)
-    code
-      border-color: #6d6d6d
 
-.jsbin-button
-  position: absolute
-  top: 3px
-  right: 50px
-  width: $code-button-height
-  height: $code-button-height
-  @media screen and (min-width: 960px)
-    opacity: 0.85
-    &:hover
-      opacity: 1
-
+.jsbin-button,
 .codepen-button
   position: absolute
   top: 3px
-  right: 5px
-  width: $code-button-width
+  right: 10px
   height: $code-button-height
   @media screen and (min-width: 960px)
-    opacity: 0.85
+    opacity: 0.66
     &:hover
       opacity: 1
+
+.jsbin-button
+  right: 50px
