@@ -31,7 +31,7 @@ document.addEventListener('DOMContentLoaded', function() {
     var formCodePen =
       '<form action="http://codepen.io/pen/define" method="POST" target="_blank" name=\'' + snippetID + '\'>' +
         '<input type="hidden" name="data" value=\'' + JSONstring + '\'>' +
-        '<input type="image" src="/images/codepen-arrow-right.svg" class="codepen-button" title="Edit this snippet on CodePen" onclick="ga(\'send\', \'event\', \'snippet\', \'click-cdpn\', \'' + snippetID + '\')">' +
+        '<input type="image" src="/images/codepen.svg" class="codepen-button" title="Edit this snippet on CodePen" onclick="ga(\'send\', \'event\', \'snippet\', \'click-cdpn\', \'' + snippetID + '\')">' +
       '</form>';
     var formJsBin =
       '<form action="http://jsbin.com/?css,output" method="POST" target="_blank" name=\'' + snippetID + '\'>' +
