@@ -28,4 +28,4 @@ layout: base
 </script>
 <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
 
-<%- @getBlock("scripts").add("/scripts/codepen.js").toHTML() %>
+<%- @getBlock("scripts").add("/scripts/code-edit.js").toHTML() %>

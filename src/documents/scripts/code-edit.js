@@ -10,7 +10,7 @@ document.addEventListener('DOMContentLoaded', function() {
         ,codepenData = {
            title              : ""
           ,description        : ""
-          ,html               : ""
+          ,html               : "<style>head,head style:first-of-type{display:block;white-space:pre;font:1.2em monospace;}</style>"
           ,html_pre_processor : "none"
           ,css                : cssCode
           ,css_pre_processor  : cssPre
@@ -27,14 +27,18 @@ document.addEventListener('DOMContentLoaded', function() {
         ,JSONstring = JSON.stringify(codepenData).replace(/"/g, "&quot;").replace(/'/g, "&apos;")
         ;
 
-    // build the button template that will open a new tab with CodePen.io and our snippet
-    var form =
-      '<form action="http://codepen.io/pen/define" method="POST" target="_blank" name=\'' + snippetID + '\'>' + 
-        '<input type="hidden" name="data" value=\'' + JSONstring + '\'>' + 
-        '<input type="image" src="//csspre.com/images/codepen-arrow-right.svg" class="codepen-button" title="Edit this snippet on CodePen" onclick="ga(\'send\', \'event\', \'snippet\', \'click\', \'' + snippetID + '\')">' +
+    // build the buttons that will open new tabs in either CodePen.io or jsbin.com with our snippet loaded
+    var formCodePen =
+      '<form action="http://codepen.io/pen/define" method="POST" target="_blank" name=\'' + snippetID + '\'>' +
+        '<input type="hidden" name="data" value=\'' + JSONstring + '\'>' +
+        '<input type="image" src="/images/codepen-arrow-right.svg" class="codepen-button" title="Edit this snippet on CodePen" onclick="ga(\'send\', \'event\', \'snippet\', \'click-cdpn\', \'' + snippetID + '\')">' +
       '</form>';
-
-    // append the form
-    el.innerHTML = el.innerHTML + form;
+    var formJsBin =
+      '<form action="http://jsbin.com/?css,output" method="POST" target="_blank" name=\'' + snippetID + '\'>' +
+        '<input type="hidden" name=\'' + cssPre + '\' value=\'' + cssCode + '\'>' +
+        '<input type="image" src="/images/jsbin.svg" class="jsbin-button" title="Edit this snippet on JS Bin" onclick="ga(\'send\', \'event\', \'snippet\', \'click-jsbin\', \'' + snippetID + '\')">' +
+      '</form>';
+    // append the forms
+    el.innerHTML = el.innerHTML + formJsBin + formCodePen;
   };
 });

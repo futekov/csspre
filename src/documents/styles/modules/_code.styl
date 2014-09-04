@@ -1,5 +1,5 @@
-$codepen-button-width = 40px
-$codepen-button-height = 28px
+$code-button-width = 40px
+$code-button-height = 28px
 
 code
   background: #e6e6e6
@@ -52,7 +52,7 @@ pre
       text-transform: uppercase
       font-family: "Consolas", monospace
 
-  // overwrite content if a preprocessor is used 
+  // overwrite content if a preprocessor is used
   &[data-csspre]
     &:before
       content: attr(data-csspre)
@@ -60,14 +60,24 @@ pre
       background: linear-gradient(135deg, transparent 9px, @background 9px)
     code
       border-color: #6d6d6d
-      
-    
+
+.jsbin-button
+  position: absolute
+  top: 3px
+  right: 50px
+  width: $code-button-height
+  height: $code-button-height
+  @media screen and (min-width: 960px)
+    opacity: 0.85
+    &:hover
+      opacity: 1
+
 .codepen-button
   position: absolute
   top: 3px
   right: 5px
-  width: $codepen-button-width
-  height: $codepen-button-height
+  width: $code-button-width
+  height: $code-button-height
   @media screen and (min-width: 960px)
     opacity: 0.85
     &:hover

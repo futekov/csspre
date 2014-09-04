@@ -35,9 +35,10 @@ docpadConfig = {
         code: (name, lang="css", cols="12") ->
             prt = if lang == "stylus" then @partial("#{name}.styl") else @partial("#{name}.#{lang}")
             lng = if lang != "css" then "data-csspre='#{lang}'" else ""
+            lngName = "name='#{lang}'"
             id  = name + "-" + lang
             '<div class=\'col-' + cols + '\'>' +
-                '<pre data-type="css" ' + lng + ' id=\'' + id + '\'><code>' + prt + '</code></pre>' +
+                '<pre ' + lngName + ' data-type="css" ' + lng + ' id=\'' + id + '\'><code>' + prt + '</code></pre>' +
             '</div>'
 
     collections:
