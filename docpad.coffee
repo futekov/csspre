@@ -43,10 +43,10 @@ docpadConfig = {
 
     collections:
         pages: (database) ->
-            database.findAllLive({pageOrder: $exists: true}, [pageOrder:1,title:1])
+            database.findAllLive({pageOrder: $exists: true}, [pageOrder:1,title:1,standalone:true])
 
         posts: (database) ->
-            database.findAllLive({layout:'post'}, [date:-1])
+            database.findAllLive({layout:'post'}, [date:-1,standalone:true])
 
     plugins:
         rss:
@@ -63,6 +63,16 @@ docpadConfig = {
                     url: "https://api.github.com/repos/futekov/csspre"
                 githubContributors:
                     url: "https://api.github.com/repos/futekov/csspre/contributors"
+
+    events:
+        renderBefore: () ->
+            # Rewrite `posts/` to the root
+            this.docpad.getCollection('posts').forEach (page) ->
+                newOutPath = page.get('outPath').replace('/posts/', '/')
+                newUrl = page.get('url').replace('posts/', '')
+                page.set('outPath', newOutPath)
+                page.setUrl(newUrl)
+
 }
 
 # Export the DocPad Configuration
