@@ -63,16 +63,6 @@ docpadConfig = {
                     url: "https://api.github.com/repos/futekov/csspre"
                 githubContributors:
                     url: "https://api.github.com/repos/futekov/csspre/contributors"
-
-    events:
-        renderBefore: () ->
-            # Rewrite `posts/` to the root
-            this.docpad.getCollection('posts').forEach (page) ->
-                newOutPath = page.get('outPath').replace('/posts/', '/')
-                newUrl = page.get('url').replace('posts/', '')
-                page.set('outPath', newOutPath)
-                page.setUrl(newUrl)
-
 }
 
 # Export the DocPad Configuration
