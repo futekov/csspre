@@ -1,9 +1,0 @@
-@mixin transition($args...) {
-  -webkit-transition: $args;
-  -moz-transition: $args;
-  transition: $args;
-}
-
-.mixins-arguments {
-  @include transition(opacity 200ms);
-}

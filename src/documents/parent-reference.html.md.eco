@@ -17,11 +17,7 @@ It's called a parent reference - `&`, and it allows you to do some pretty cool s
 
 With the parent reference, you can easily attach a [pseudo class](https://developer.mozilla.org/en-US/docs/Web/CSS/Pseudo-classes) to the selector:
 
-<%- @code('parent-reference-append', 'less', 6) %>
-<%- @code('parent-reference-append', 'scss', 6) %>
-<%- @code('parent-reference-append', 'sass', 6) %>
-<%- @code('parent-reference-append', 'stylus', 6) %>
-<%- @code('parent-reference-append') %>
+<%- @code('parent-reference', 'append') %>
 
 You can also add [class](https://developer.mozilla.org/en-US/docs/Web/CSS/Class_selectors), [id](https://developer.mozilla.org/en-US/docs/Web/CSS/ID_selectors), and [attribute](https://developer.mozilla.org/en-US/docs/Web/CSS/Attribute_selectors) selectors in this way.
 
@@ -31,11 +27,7 @@ You can also add [class](https://developer.mozilla.org/en-US/docs/Web/CSS/Class_
 
 If you need to extend the name of a selector you can do it in the same way as above:
 
-<%- @code('parent-reference-extend-name', 'less', 6) %>
-<%- @code('parent-reference-extend-name', 'scss', 6) %>
-<%- @code('parent-reference-extend-name', 'sass', 6) %>
-<%- @code('parent-reference-extend-name', 'stylus', 6) %>
-<%- @code('parent-reference-extend-name') %>
+<%- @code('parent-reference', 'extend-name') %>
 
 This allows for BEM-like names in your CSS. You can read more about this technique from these articles:
 
@@ -50,11 +42,7 @@ We can also have a trailing ampersand - when we put it after...
 
 By having a trailing parent reference, you can add a parent selector:
 
-<%- @code('parent-reference-selector', 'less', 6) %>
-<%- @code('parent-reference-selector', 'scss', 6) %>
-<%- @code('parent-reference-selector', 'sass', 6) %>
-<%- @code('parent-reference-selector', 'stylus', 6) %>
-<%- @code('parent-reference-selector') %>
+<%- @code('parent-reference', 'selector') %>
 
 This can be used to target browsers if we use the classic ie targeting solution [as described by Paul Irish](http://www.paulirish.com/2008/conditional-stylesheets-vs-css-hacks-answer-neither/).
 
@@ -68,28 +56,19 @@ Appending selectors might work when you are appending a class, id, or attribute 
 
 Unfortunately, for now only Stylus allows prepending selectors:
 
-<%- @code('parent-reference-prepend', 'stylus', 6) %>
-<%- @code('parent-reference-prepend', 'css', 6) %>
+<%- @code('parent-reference', 'prepend') %>
 
 
 ## Multiple parent references
 
 Need something weirder with a repeating class in the selector for example? No problem, just use several ampersands and chain the appropriately:
 
-<%- @code('parent-reference-multiple', 'less', 6) %>
-<%- @code('parent-reference-multiple', 'scss', 6) %>
-<%- @code('parent-reference-multiple', 'sass', 6) %>
-<%- @code('parent-reference-multiple', 'stylus', 6) %>
-<%- @code('parent-reference-multiple') %>
+<%- @code('parent-reference', 'multiple') %>
 
 ## Combinatorial explosion
 
 The idea for combinatorial explosion [comes from Less](http://lesscss.org/features/#parent-selectors-feature-combinatorial-explosion) and it can be useful for covering many combinations of selectors. Simulating it in Sass and Stylus is also possible.
 
-<%- @code('parent-reference-explosion', 'less', 6) %>
-<%- @code('parent-reference-explosion', 'scss', 6) %>
-<%- @code('parent-reference-explosion', 'sass', 6) %>
-<%- @code('parent-reference-explosion', 'stylus', 6) %>
-<%- @code('parent-reference-explosion') %>
+<%- @code('parent-reference', 'explosion') %>
 
 This technique might be useful not only for adding space between elements that are direct siblings (the `+` selector), but also for covering direct descendants (the `>` selector).

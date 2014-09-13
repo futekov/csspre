@@ -1,7 +1,0 @@
-.selector {
-  foo: bar;
-}
-.selector.is-active,
-.selector:hover {
-  baz: qux;
-}

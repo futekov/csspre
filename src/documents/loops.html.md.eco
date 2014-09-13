@@ -13,12 +13,7 @@ Let's build something simple - a very basic grid system with four columns.
 
 We will put the columns class name and their number in variables and utilize them through [variable interpolation](/variables#interpolating-variables).
 
-<%- @code('loop-basic-1', 'less', 6) %>
-<%- @code('loop-basic-2', 'less', 6) %>
-<%- @code('loop-basic', 'scss', 6) %>
-<%- @code('loop-basic', 'sass', 6) %>
-<%- @code('loop-basic', 'stylus', 6) %>
-<%- @code('loop-basic', 'css', 6) %>
+<%- @code('loop', 'basic') %>
 
 You will notice that Less offers two ways to write a loop, the first way is standard with a [mixin](/mixins#mixin-basics) that is later called. The second one is a bit hacky and much uglier, but doesn't require calling the mixin later.
 
@@ -29,13 +24,6 @@ In all of the preprocessors you can have both inclusive ranges and exclusive one
 
 Often when you do a loop you want to iterate through something more than numbers, probably a list of colors or some other values. Here is an example of how you can create numbered selectors with values, extracted from a variable.
 
-<%- @code('loop-intermediate-1', 'less', 6) %>
-<%- @code('loop-intermediate-2', 'less', 6) %>
-<%- @code('loop-intermediate-1', 'scss', 6) %>
-<%- @code('loop-intermediate-2', 'scss', 6) %>
-<%- @code('loop-intermediate-1', 'sass', 6) %>
-<%- @code('loop-intermediate-2', 'sass', 6) %>
-<%- @code('loop-intermediate', 'stylus', 6) %>
-<%- @code('loop-intermediate', 'css', 6) %>
+<%- @code('loop', 'intermediate') %>
 
 In addition to an index-based iteration, Sass can also iterate through values directly. As Sass [does not yet provide](https://github.com/sass/sass/issues/996) an index variable when iterating values, we have to retrieve it manually.

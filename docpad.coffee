@@ -1,8 +1,8 @@
 # DocPad Configuration File
 # http://docpad.org/docs/config
 
-moment = require('moment')
-
+moment = require 'moment'
+YAML = require 'yamljs'
 # Define the DocPad Configuration
 
 docpadConfig = {
@@ -16,6 +16,8 @@ docpadConfig = {
             keywords: "css, preprocessors, preprocessor, less, sass, scss, stylus"
 
             url: "http://csspre.com"
+
+            yaml: (YAML.load "src/documents/code-snippets.yml")
 
         # FUNCTIONS
         getPreparedTitle: -> if @document.title then "#{@document.title} ◩ #{@site.title}" else @site.title
@@ -32,14 +34,24 @@ docpadConfig = {
         postDatetime: (date, format="YYYY-MM-DD") -> return moment(date).format(format)
         postDate: (date, format="MMMM DD, YYYY") -> return moment(date).format(format)
 
-        code: (name, lang="css", cols="12") ->
-            prt = if lang == "stylus" then @partial("#{name}.styl") else @partial("#{name}.#{lang}")
-            lng = if lang != "css" then "data-csspre='#{lang}'" else ""
-            lngName = "name='#{lang}'"
-            id  = name + "-" + lang
-            '<div class=\'col-' + cols + '\'>' +
-                '<pre ' + lngName + ' data-type="css" ' + lng + ' id=\'' + id + '\'><code>' + prt + '</code></pre>' +
-            '</div>'
+
+        code: (arg1, arg2) ->
+            section = @site.yaml[arg1]
+            feature = section[arg2]
+            snippets = 0
+            for prop of feature
+                ++snippets if feature.hasOwnProperty(prop)
+            snippets
+            columnWidth = 6
+            columnLastWidth = if snippets % 2 == 1 then 12 else columnWidth
+            '<div class="grid">' + (for snippet of feature
+                columnSize = if snippet != "css" then columnWidth else columnLastWidth
+                snippetClean = snippet.replace("-alt", "")
+                lng = if snippet != "css" then "data-csspre='#{snippetClean}'" else ""
+                '<div class=\'col-' + columnSize + '\'>' +
+                    '<pre name=\'' + snippetClean + '\' ' + lng + ' data-type="css" id=\'' + arg1 + '-' + arg2 + '-' + snippet + '\'><code>' + feature[snippet].code + '</code></pre>' +
+                '</div>'
+            ).join("") + '</div>'
 
     collections:
         pages: (database) ->

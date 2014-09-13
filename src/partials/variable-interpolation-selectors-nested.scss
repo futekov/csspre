@@ -1,8 +1,0 @@
-$active: "&.is-active, &:hover";
-
-.selector {
-  foo: bar;
-  #{$active} {
-    baz: qux;
-  }
-}

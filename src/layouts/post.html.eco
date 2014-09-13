@@ -10,7 +10,7 @@ layout: base
   <a href="https://plus.google.com/+AlexanderFutekov" rel="author" itemprop="author">Alexander Futekov</a>
 </div>
 
-<div class="post grid" itemprop="articleBody">
+<div class="post" itemprop="articleBody">
   <%- @content %>
 </div>
 

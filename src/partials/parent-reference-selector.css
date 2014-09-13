@@ -1,6 +1,0 @@
-.parent-selector {
-  foo: bar;
-}
-.ie7 .parent-selector {
-  baz: qux;
-}

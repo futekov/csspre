@@ -7,22 +7,14 @@ description: "How to use variables in different contexts, interpolation of varia
 
 You can interpolate a variable anywhere - in the property, value, and even the selector.
 
-<%- @code('variable-interpolation', 'less', 6) %>
-<%- @code('variable-interpolation', 'scss', 6) %>
-<%- @code('variable-interpolation', 'sass', 6) %>
-<%- @code('variable-interpolation', 'stylus', 6) %>
-<%- @code('variable-interpolation') %>
+<%- @code('variable-interpolation', 'basic') %>
 
 
 ## Selectors interpolation
 
 If you have a often-occuring selector pattern you can put it in a variable:
 
-<%- @code('variable-interpolation-selectors', 'less', 6) %>
-<%- @code('variable-interpolation-selectors', 'scss', 6) %>
-<%- @code('variable-interpolation-selectors', 'sass', 6) %>
-<%- @code('variable-interpolation-selectors', 'stylus', 6) %>
-<%- @code('variable-interpolation-selectors') %>
+<%- @code('variable-interpolation', 'selectors') %>
 
 Less needs escaping when you have both a dot (`.`) and a hyphen (`-`) in a variable [because of reasons](https://github.com/less/less.js/issues/1328).
 
@@ -31,9 +23,6 @@ Less needs escaping when you have both a dot (`.`) and a hyphen (`-`) in a varia
 
 If you often find yourself extending selectors with the same pseudo selectors and/or modifier classes, then you can again use a variable like in the example above, when nesting though this won't work in Less.
 
-<%- @code('variable-interpolation-selectors-nested', 'scss', 6) %>
-<%- @code('variable-interpolation-selectors-nested', 'sass', 6) %>
-<%- @code('variable-interpolation-selectors-nested', 'stylus', 6) %>
-<%- @code('variable-interpolation-selectors-nested', 'css', 6) %>
+<%- @code('variable-interpolation', 'selectors-nested') %>
 
 An alternative way of achieving this is using the [@content directive](/content-directive) which supports Less.
