@@ -1187,3 +1187,92 @@ Variable Interpolation:
         .selector:hover {
           baz: qux;
         }
+
+Color Extract:
+  rgb:
+    less:
+      code: |
+        .rgb-components {
+          red-component-rgb: red(rgb(81, 104, 148));
+          red-component-hsl: red(hsl(220, 29%, 45%));
+          red-component-hex: red(#516894);
+          green-component-rgb: green(rgb(81, 104, 148));
+          green-component-hsl: green(hsl(220, 29%, 45%));
+          green-component-hex: green(#516894);
+          blue-component-rgb: blue(rgb(81, 104, 148));
+          blue-component-hsl: blue(hsl(220, 29%, 45%));
+          blue-component-hex: blue(#516894);
+        }
+    scss:
+      code: |
+        .rgb-components {
+          red-component-rgb: red(rgb(81, 104, 148));
+          red-component-hsl: red(hsl(220, 29%, 45%));
+          red-component-hex: red(#516894);
+          green-component-rgb: green(rgb(81, 104, 148));
+          green-component-hsl: green(hsl(220, 29%, 45%));
+          green-component-hex: green(#516894);
+          blue-component-rgb: blue(rgb(81, 104, 148));
+          blue-component-hsl: blue(hsl(220, 29%, 45%));
+          blue-component-hex: blue(#516894);
+        }
+    sass:
+      code: |
+        .rgb-components
+          red-component-rgb: red(rgb(81, 104, 148))
+          red-component-hsl: red(hsl(220, 29%, 45%))
+          red-component-hex: red(#516894)
+          green-component-rgb: green(rgb(81, 104, 148))
+          green-component-hsl: green(hsl(220, 29%, 45%))
+          green-component-hex: green(#516894)
+          blue-component-rgb: blue(rgb(81, 104, 148))
+          blue-component-hsl: blue(hsl(220, 29%, 45%))
+          blue-component-hex: blue(#516894)
+    stylus:
+      code: |
+        .rgb-components
+          red-component-rgb: red(rgb(81, 104, 148))
+          red-component-hsl: red(hsl(220, 29%, 45%))
+          red-component-hex: red(#516894)
+          green-component-rgb: green(rgb(81, 104, 148))
+          green-component-hsl: green(hsl(220, 29%, 45%))
+          green-component-hex: green(#516894)
+          blue-component-rgb: blue(rgb(81, 104, 148))
+          blue-component-hsl: blue(hsl(220, 29%, 45%))
+          blue-component-hex: blue(#516894)
+    css:
+      code: |
+        .rgb-components {
+          red-component-rgb: 81;
+          red-component-hsl: 81;
+          red-component-hex: 81;
+          green-component-rgb: 104;
+          green-component-hsl: 104;
+          green-component-hex: 104;
+          blue-component-rgb: 148;
+          blue-component-hsl: 148;
+          blue-component-hex: 148;
+        }
+  hsl:
+    less: |
+    scss: |
+    sass: |
+    stylus: |
+  hsv:
+    less: |
+  alpha:
+    less: |
+    scss: |
+    sass: |
+    stylus: |
+  luma/luminosity:
+    less: |
+    stylus: |
+  luminance:
+    less: |
+  contrast:
+    stylus: |
+  dark:
+    stylus: |
+  light:
+    stylus: |
