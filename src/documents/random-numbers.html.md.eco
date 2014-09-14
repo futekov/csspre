@@ -12,7 +12,7 @@ Sometimes you just need a random number.
 
 Here's how to get a random integer between `1` and `100`:
 
-<%- @code('random-number', 'basic') %>
+<%- @code('Random Number', 'basic') %>
 
 Note that Sass' built-in random function can get an upper-limit parameter, so `random(100)` will give you a value from the range `1-100`.
 
@@ -28,7 +28,7 @@ Random numbers can also be useful if you need to invalidate the cache of a certa
 
 A simple example is adding a four-digit random number as a query parameter:
 
-<%- @code('random-number', 'cache') %>
+<%- @code('Random Number', 'cache') %>
 
 
 
@@ -40,6 +40,6 @@ One option is to set specific ranges for the R, G and/or B in a RGB color (for e
 
 However, it's much more useful to randomize only the Hue in HSL and preset the Lightness and Saturation to get colors that look related and are of the same lightness/darkness:
 
-<%- @code('random-number', 'color') %>
+<%- @code('Random Number', 'color') %>
 
 Using the same approach you can get a color that is always blue-ish just by setting the random hue value to be somewhere between `180` and `270`.

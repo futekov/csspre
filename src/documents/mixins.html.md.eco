@@ -11,7 +11,7 @@ description: "How to use mixins: with and without parameters; with defaults; wit
 
 Here is how to include a simple mixin, as you can see, the syntax is rather similar between the preprocessors.
 
-<%- @code('mixins', 'basic') %>
+<%- @code('Mixins', 'basic') %>
 
 
 ## Mixin parameters and parameter defaults
@@ -20,7 +20,7 @@ Mixins can receive one or multiple parameters.
 
 You can even set defaults for each of the parameters. When a parameter has a default value, you don't need to set one when calling the mixin - see how we can omit the `thickness` parameter.
 
-<%- @code('mixins', 'params') %>
+<%- @code('Mixins', 'params') %>
 
 
 
@@ -28,7 +28,7 @@ You can even set defaults for each of the parameters. When a parameter has a def
 
 If, for whatever reason, you want to set the parameters of a mixin in a particular order that is different that the one set in the mixin, you can do that by calling the mixin and explicitly state each of the parameters you're defining.
 
-<%- @code('mixins', 'params-named') %>
+<%- @code('Mixins', 'params-named') %>
 
 
 
@@ -36,4 +36,4 @@ If, for whatever reason, you want to set the parameters of a mixin in a particul
 
 If you want to have a mixin with a varying number of parameters, all CSS preprocessors allow you output all arguments like so:
 
-<%- @code('mixins', 'arguments') %>
+<%- @code('Mixins', 'arguments') %>

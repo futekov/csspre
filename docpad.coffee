@@ -34,6 +34,24 @@ docpadConfig = {
         postDatetime: (date, format="YYYY-MM-DD") -> return moment(date).format(format)
         postDate: (date, format="MMMM DD, YYYY") -> return moment(date).format(format)
 
+        table: ->
+            '<table class="table-content">' +
+                '<thead><tr><th></th><th>Less</th><th>Sass</th><th>Stylus</th></tr></thead><tbody>' +
+                (for section of @site.yaml
+                    '<tr><th colspan="4">' + section + '</th></tr>' + (for feature of @site.yaml[section]
+                        object = @site.yaml[section][feature]
+                        setCell = (arg) ->
+                            if arg == undefined
+                                '<td class="not-available"><svg height="32" viewBox="0 0 32 32" width="32" xmlns="http://www.w3.org/2000/svg" aria-labelledby="title" role="img">><title id="title">Not Available</title><path d="M4 8 L8 4 L16 12 L24 4 L28 8 L20 16 L28 24 L24 28 L16 20 L8 28 L4 24 L12 16 z"/></svg></td>'
+                            else
+                                '<td class="available"><svg height="32" viewBox="0 0 32 32" width="32" xmlns="http://www.w3.org/2000/svg" aria-labelledby="title" role="img">><title id="title">Available</title><path d="M1 14 L5 10 L13 18 L27 4 L31 8 L13 26 z"/></svg></td>'
+                        '<tr><td>' + feature + '</td>' +
+                        setCell(object.less) +
+                        setCell(object.sass) +
+                        setCell(object.stylus) + '</tr>'
+                ).join("")
+            ).join("") + '</tbody></table>'
+
 
         code: (arg1, arg2) ->
             section = @site.yaml[arg1]

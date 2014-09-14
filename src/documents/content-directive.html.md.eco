@@ -12,7 +12,7 @@ The @content directive is a way to pass a block of styles to a [mixin](/mixins),
 
 The @content directive allows you to use a common set of selectors everywhere you declare a mixin.
 
-<%- @code('content-directive', 'basic') %>
+<%- @code('Content Directive', 'basic') %>
 
 Notice that for Stylus, we need a `+` before calling the mixin every time when you're passing content to it (below it, indented).
 
@@ -21,13 +21,13 @@ Notice that for Stylus, we need a `+` before calling the mixin every time when y
 
 You can use the @content directive to simplify your responsive styles:
 
-<%- @code('content-directive', 'media') %>
+<%- @code('Content Directive', 'media') %>
 
 
 ## Placeholder pseudo element
 
 Another very useful case where the @content directive can help is when defining styles for placeholder text - you can put a @content directive in each vendor-specific selector (can also be used for keyframes which are still prefixed).
 
-<%- @code('content-directive', 'placeholder-text') %>
+<%- @code('Content Directive', 'placeholder-text') %>
 
 To learn more about placeholder text styling I recommend reading this [great article by Treehouse](http://blog.teamtreehouse.com/the-css3-placeholder-pseudo-element), it explains nicely what can and cannot be styled about the placeholder text.

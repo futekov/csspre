@@ -1,4 +1,4 @@
-mixins:
+Mixins:
   basic:
     less:
       code: |
@@ -177,7 +177,7 @@ mixins:
           height: 10px;
         }
 
-variables:
+Variables:
   basic:
     less:
       code: |
@@ -342,7 +342,7 @@ variables:
           baz: 200;
         }
 
-random-number:
+Random Number:
   basic:
     less:
       code: |
@@ -440,7 +440,7 @@ random-number:
           color: #4abf40;
         }
 
-parent-reference:
+Parent Reference:
   append:
     less:
       code: |
@@ -668,7 +668,7 @@ parent-reference:
           baz: qux;
         }
 
-loop:
+Loops:
   basic:
     less:
       code: |
@@ -812,7 +812,7 @@ loop:
           background: baz;
         }
 
-placeholder-selectors:
+Placeholder Selectors:
   basic:
     less:
       code: |
@@ -866,7 +866,7 @@ placeholder-selectors:
           foo: bar;
         }
 
-content-directive:
+Content Directive:
   basic:
     less:
       code: |
@@ -1076,7 +1076,7 @@ content-directive:
           text-transform: uppercase;
         }
 
-variable-interpolation:
+Variable Interpolation:
   basic:
     less:
       code: |

@@ -1,0 +1,10 @@
+---
+layout: base
+title: "Compare"
+pageOrder: 2
+description: "Ultimate comparison table for CSS Preprocessors"
+---
+
+Comparison of support for selected features.
+
+<%- @table() %>
