@@ -20,6 +20,17 @@ layout: base
 <h2>Interactive</h2>
 <p>This article is far from perfect, you can <a href="https://github.com/futekov/csspre/blob/master/src/documents<%- @document.url %>.html.md.eco" target="_blank">suggest improvements on GitHub</a> or leave a comment below.</p>
 
+<script src="/scripts/code-edit.js"></script>
+
+<script src="http://cdnjs.cloudflare.com/ajax/libs/codemirror/4.5.0/addon/runmode/runmode-standalone.min.js"></script>
+<script src="http://cdnjs.cloudflare.com/ajax/libs/codemirror/4.5.0/mode/css/css.min.js"></script>
+<script>
+  var myNodeList = document.querySelectorAll('pre[data-type="css"] > code');
+  [].forEach.call(myNodeList, function (item) {
+    CodeMirror.runMode(item.innerText, "text/x-scss", item);
+  });
+</script>
+
 <div id="disqus_thread"></div>
 <script type="text/javascript">
   var disqus_shortname = 'csspre';
@@ -30,5 +41,3 @@ layout: base
   })();
 </script>
 <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-
-<%- @getBlock("scripts").add("/scripts/code-edit.js").toHTML() %>
