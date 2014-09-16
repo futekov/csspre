@@ -34,8 +34,9 @@ docpadConfig = {
         postDatetime: (date, format="YYYY-MM-DD") -> return moment(date).format(format)
         postDate: (date, format="MMMM DD, YYYY") -> return moment(date).format(format)
 
-        table: ->
+        tableComparison: (title) ->
             '<table class="table-content">' +
+                '<caption>' + title + '</caption>' +
                 '<thead><tr><th></th><th>Less</th><th>Sass</th><th>Stylus</th></tr></thead><tbody>' +
                 (for section of @site.yaml
                     '<tr><th colspan="4">' + section + '</th></tr>' + (for feature of @site.yaml[section]

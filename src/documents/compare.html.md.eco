@@ -2,9 +2,7 @@
 layout: base
 title: "Compare"
 pageOrder: 2
-description: "Ultimate comparison table for CSS Preprocessors"
+description: "Ultimate comparison table for CSS Preprocessors, comparison of selected features of the popular CSS Preprocessors"
 ---
 
-Comparison of support for selected features.
-
-<%- @table() %>
+<%- @tableComparison('Comparison of support for selected features') %>
