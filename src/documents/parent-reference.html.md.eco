@@ -54,8 +54,6 @@ Another case where the parent selector can be useful is for parent element state
 
 Appending selectors might work when you are appending a class, id, or attribute selector, but what if we need to add a html element like `ol` to `.test`? With selector appending we will end up with `.testol` which is not what we want. For cases like this we need to prepend the selector.
 
-Unfortunately, for now only Stylus allows prepending selectors:
-
 <%- @code('Parent Reference', 'prepend') %>
 
 

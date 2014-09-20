@@ -355,11 +355,13 @@ Random Number:
           foo: @rnd;
         }
     scss:
+      version: 3.3.0
       code: |
         .random-integer {
           foo: random(100);
         }
     sass:
+      version: 3.3.0
       code: |
         .random-integer
           foo: random(100)
@@ -490,6 +492,7 @@ Parent Reference:
           }
         }
     scss:
+      version: 3.3.0
       code: |
         .extend-name {
           &-one {
@@ -500,6 +503,7 @@ Parent Reference:
           }
         }
     sass:
+      version: 3.3.0
       code: |
         .extend-name
           &-one
@@ -616,6 +620,22 @@ Parent Reference:
           baz: qux;
         }
   prepend:
+    scss:
+      version: 3.4.0
+      code: |
+        .selector-prepend {
+          foo: bar;
+          @at-root ol#{&} {
+            baz: qux
+          }
+        }
+    sass:
+      version: 3.4.0
+      code: |
+        .selector-prepend
+          foo: bar
+          @at-root ol#{&}
+            baz: qux
     stylus:
       code: |
         .selector-prepend

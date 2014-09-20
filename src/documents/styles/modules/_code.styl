@@ -53,6 +53,15 @@ pre
       content: attr(data-csspre)
       background: #6a6a6a
       background: linear-gradient(135deg, transparent 9px, @background 9px)
+    &[data-version]
+      &:after
+        content: attr(data-version)'+'
+        text-align: center
+        right: 100px
+        top: 0
+        position: absolute
+        color: #afafaf
+        padding: 7px 0
 
 $export-button
   position: absolute
@@ -91,15 +100,14 @@ $export-button
 .cm-variable-3,
 .cm-number
   color: #164
-.cm-operator
-  color: #000
 .cm-comment
   color: #236E25
 .cm-string
   color: #B32727
 .cm-meta,
-.cm-qualifier
-  color: #555
+.cm-qualifier,
+.cm-operator
+  color: #111
 .cm-builtin
   color: #37148A
 .cm-bracket

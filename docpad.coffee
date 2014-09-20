@@ -66,9 +66,14 @@ docpadConfig = {
             '<div class="grid">' + (for snippet of feature
                 columnSize = if snippet != "css" then columnWidth else columnLastWidth
                 snippetClean = snippet.replace("-alt", "")
-                lng = if snippet != "css" then "data-csspre='#{snippetClean}'" else ""
-                '<div class=\'col-' + columnSize + '\'>' +
-                    '<pre name=\'' + snippetClean + '\' ' + lng + ' data-type="css" id=\'' + arg1 + '-' + arg2 + '-' + snippet + '\'><code>' + feature[snippet].code + '</code></pre>' +
+                vrsn = ""
+                lng = ""
+                if snippet != "css"
+                    lng = "data-csspre='#{snippetClean}'"
+                    if feature[snippet].version
+                        vrsn = " data-version='#{feature[snippet].version}'"
+                '<div class="col-' + columnSize + '">' +
+                    '<pre name="' + snippetClean + '" ' + lng + vrsn + ' data-type="css" id="' + arg1 + '-' + arg2 + '-' + snippet + '"><code>' + feature[snippet].code + '</code></pre>' +
                 '</div>'
             ).join("") + '</div>'
 
