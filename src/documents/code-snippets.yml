@@ -1209,7 +1209,7 @@ Variable Interpolation:
         }
 
 Color Extract:
-  rgb:
+  red, green, blue from RGB:
     less:
       code: |
         .rgb-components {
@@ -1273,13 +1273,14 @@ Color Extract:
           blue-component-hsl: 148;
           blue-component-hex: 148;
         }
-  hsl:
+  hue, saturation, lightness from HSL:
     less: |
     scss: |
     sass: |
     stylus: |
-  hsv:
+  hue, saturation, value from HSV:
     less: |
+    sass: |
   alpha:
     less: |
     scss: |
@@ -1290,8 +1291,11 @@ Color Extract:
     stylus: |
   luminance:
     less: |
+    sass: |
   contrast:
     stylus: |
+
+Color Test:
   dark:
     stylus: |
   light:
