@@ -7,7 +7,7 @@ layout: base
     <%= @postDatetime(@document.date) %>
   </time>
   by
-  <a href="https://plus.google.com/+AlexanderFutekov" rel="author" itemprop="author">Alexander Futekov</a>
+  <a href="<%- @site.author %>" rel="author" itemprop="author">Alexander Futekov</a>
 </div>
 
 <div class="post" itemprop="articleBody">
@@ -18,7 +18,7 @@ layout: base
 <section class="site">
 
 <h2>Interactive</h2>
-<p>This article is far from perfect, you can <a href="https://github.com/futekov/csspre/blob/master/src/documents<%- @document.url %>.html.md.eco" target="_blank">suggest improvements on GitHub</a> or leave a comment below.</p>
+<p>This article is far from perfect, you can <a href="<%- @site.github %>/blob/master/src/documents<%- @document.url %>.html.md.eco" target="_blank">suggest improvements on GitHub</a> or leave a comment below.</p>
 
 <script src="/scripts/code-edit.js"></script>
 

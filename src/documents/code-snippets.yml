@@ -347,7 +347,7 @@ Random Number:
     less:
       code: |
         .make-random(@min, @max) { 
-          @rnd: floor(&#96;Math.random() &#42; @{max} + @{min}&#96;);
+          @rnd: floor(`Math.random() * @{max} + @{min}`);
         }
 
         .random-integer {
@@ -381,7 +381,7 @@ Random Number:
     less:
       code: |
         .make-random(@min, @max) { 
-          @rnd: floor(&#96;Math.random() &#42; @{max} + @{min}&#96;);
+          @rnd: floor(`Math.random() * @{max} + @{min}`);
         }
 
         .random-number-cache-invalidation {
@@ -413,7 +413,7 @@ Random Number:
     less:
       code: |
         .make-random(@min, @max) { 
-          @rnd: floor(&#96;Math.random() &#42; @{max} + @{min}&#96;);
+          @rnd: floor(`Math.random() * @{max} + @{min}`);
         }
 
         .random-number-color {
@@ -697,7 +697,7 @@ Loops:
 
         .generate-column(@i: 1) when (@i =< @column-count) {
           .@{column-name}-@{i} {
-            width: @i &#42; (100% / @column-count);
+            width: @i * (100% / @column-count);
           }
           .generate-column(@i + 1);
         }
@@ -711,7 +711,7 @@ Loops:
         .@{column-name} {
           .-(@i: 1) when (@i =< @column-count) {
             &-@{i} {
-              width: @i &#42; (100% / @column-count);
+              width: @i * (100% / @column-count);
             }.-(@i + 1);
           }.-;
         }
@@ -722,7 +722,7 @@ Loops:
 
         @for $i from 1 through $column-count {
           .#{$column-name}-#{$i} {
-            width: $i &#42; (100% / $column-count);
+            width: $i * (100% / $column-count);
           }
         }
     sass:
@@ -732,7 +732,7 @@ Loops:
 
         @for $i from 1 through $column-count
           .#{$column-name}-#{$i}
-            width: $i &#42; (100% / $column-count)
+            width: $i * (100% / $column-count)
     stylus:
       code: |
         $column-name = col
@@ -740,7 +740,7 @@ Loops:
 
         for $i in 1..$column-count
           .{$column-name}-{$i}
-            width: $i &#42; (100% / $column-count)
+            width: $i * (100% / $column-count)
     css:
       code: |
         .col-1 {

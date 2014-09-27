@@ -24,8 +24,8 @@ layout: base
   </div>
   <div class="col-3">
     <p>CSS PRE is a project that aims to collect as much information about the popular CSS Preprocessors as possible, in order to serve as a one-stop reference.</p>
-    <p>It is a collaborative project, <a href="https://github.com/futekov/csspre">edits on GitHub</a> are welcome.</p>
-    <p>Created by <a href="https://plus.google.com/103815255084056663758?rel=author">Alexander Futekov</a> and built with <a href="http://docpad.org/">DocPad</a>.</p>
+    <p>It is a collaborative project, <a href="<%- @site.github %>">edits on GitHub</a> are welcome.</p>
+    <p>Created by <a href="<%- @site.author %>">Alexander Futekov</a> and built with <a href="http://docpad.org/">DocPad</a>.</p>
     <div>Get notified:</div>
     <ul>
       <li>Subscribe to the <a href="http://csspre.com/rss.xml">RSS feed</a></li>
