@@ -42,7 +42,7 @@ We can also have a trailing ampersand - when we put it after...
 
 By having a trailing parent reference, you can add a parent selector:
 
-<%- @code('Parent Reference', 'selector') %>
+<%- @code('Parent Reference', 'parent') %>
 
 This can be used to target browsers if we use the classic ie targeting solution [as described by Paul Irish](http://www.paulirish.com/2008/conditional-stylesheets-vs-css-hacks-answer-neither/).
 

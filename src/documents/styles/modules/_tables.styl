@@ -27,16 +27,42 @@ th
 td
   border-width: 0 1px 1px 0
   &.available
-    fill: $purple
+    fill: #447B3D
+    position: relative
+    color: darken(@fill, 60%)
+    background: lighten(@fill, 90%)
+  &.partial
+    fill: #DF9C0C
+    position: relative
+    color: darken(@fill, 60%)
+    background: lighten(@fill, 90%)
   &.not-available
-    fill: #b8b8b8
+    fill: #A21F1F
+    background: lighten(@fill, 90%)
 
 .table-content
+  -transparent-bg()
   position: relative
   margin-top: 2em
   table-layout: fixed
   border-color: #444
-  background: $transparent-bg
+
+  .required-version
+    position: absolute
+    top: 0
+    left: 0
+    font-size: 14px
+    border-width: 0 1px 1px 0
+    border-style: solid
+    border-color: @border-color
+    padding: 0 5px
+
+  .note
+    display: block
+    font-size: 12px
+
+  .narrow
+    width: 19%
 
   @media only screen and (max-width: 800px)
     font-size: 14px
@@ -46,10 +72,18 @@ td
 
   td
     padding: 5px
+    &:first-child
+      text-align: left
+    strong
+      display: block
+      text-transform: capitalize
+    p
+      font-size: 0.9em
+      margin-bottom: 0
 
   td,
   th
-    border-color #444
+    border-color: @border-color
     text-align: center
     &.disabled
       background-color: @border-color
@@ -75,6 +109,7 @@ td
     display: block
     font-size: 1.1em
     text-decoration: none
+    text-align: center
     background-color: $light-complementary-color
     color: #000
     &:hover,

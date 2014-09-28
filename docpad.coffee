@@ -36,21 +36,31 @@ docpadConfig = {
 
     # Functions
     tableComparison: (title) ->
-      tableOpen = '<table class="table-content"><caption>' + title + '</caption><thead><tr><th></th><th>Less</th><th>Sass</th><th>Stylus</th></tr></thead><tbody>'
+      tableOpen = '<table class="table-content"><caption>' + title + '</caption><thead><tr><th></th><th class="narrow">Less</th><th class="narrow">Sass</th><th class="narrow">Stylus</th></tr></thead><tbody>'
       tableClose = '</tbody></table>'
       setCell = (arg) ->
+        cellClass = "not-available"
         if arg is `undefined`
-          '<td class="not-available"><svg height="32" viewBox="0 0 32 32" width="32" xmlns="http://www.w3.org/2000/svg" aria-labelledby="title" role="img">><title id="title">Not Available</title><path d="M4 8 L8 4 L16 12 L24 4 L28 8 L20 16 L28 24 L24 28 L16 20 L8 28 L4 24 L12 16 z"/></svg></td>'
+          '<td class="' + cellClass + '"><svg height="32" viewBox="0 0 32 32" width="32" xmlns="http://www.w3.org/2000/svg" aria-labelledby="title" role="img">><title id="title">Not Available</title><path d="M4 8 L8 4 L16 12 L24 4 L28 8 L20 16 L28 24 L24 28 L16 20 L8 28 L4 24 L12 16 z"/></svg></td>'
         else
-          '<td class="available"><svg height="32" viewBox="0 0 32 32" width="32" xmlns="http://www.w3.org/2000/svg" aria-labelledby="title" role="img">><title id="title">Available</title><path d="M1 14 L5 10 L13 18 L27 4 L31 8 L13 26 z"/></svg></td>'
+          vrsn = ""
+          note = ""
+          cellClass = "available"
+          if arg.version isnt `undefined` then vrsn = '<span class="required-version">' + arg.version + '+</span>'
+          if arg.issues isnt `undefined` then note = '<span class="note">' + arg.issues + '</span>'
+          if arg.issues isnt `undefined` then cellClass = "partial"
+          '<td class="' + cellClass + '">' + vrsn + '<svg height="32" viewBox="0 0 32 32" width="32" xmlns="http://www.w3.org/2000/svg" aria-labelledby="title" role="img">><title id="title">Available</title><path d="M1 14 L5 10 L13 18 L27 4 L31 8 L13 26 z"/></svg>' + note + '</td>'
 
       featureGroup = []
       for section of DATA
         featureSingle = []
         for feature of DATA[section]
           currentFeature = DATA[section][feature]
-          featureSingle.push "<tr><td>" + feature + "</td>" + setCell(currentFeature.less) + setCell(currentFeature.sass) + setCell(currentFeature.stylus) + "</tr>"
+          longDecription = ""
+          if currentFeature.description isnt `undefined` then longDecription = "<p>" + currentFeature.description + "</p>"
+          featureSingle.push "<tr><td><strong>" + feature + "</strong>" + longDecription + "</td>" + setCell(currentFeature.less) + setCell(currentFeature.scss) + setCell(currentFeature.stylus) + "</tr>"
         featureGroup.push '<tr><th colspan="4">' + section + '</th></tr>' + featureSingle.join("")
+
       tableOpen + featureGroup.join("") + tableClose
 
     code: (arg1, arg2) ->
@@ -59,26 +69,28 @@ docpadConfig = {
       columnWidth = 6
       snippetCount = 0
       for prop of feature
-        ++snippetCount
+        if prop isnt "description"
+          ++snippetCount
       columnLastWidth = (if snippetCount % 2 is 1 then 12 else columnWidth)
       for snippetName of feature
-        vrsn = ""
-        lng = ""
-        currentSnippet = feature[snippetName]
-        columnSize = (if snippetName is "css" then columnLastWidth else columnWidth)
-        snippetNameClean = snippetName.replace("-alt", "")
-        id = "id='" + arg1 + "-" + arg2 + "-" + snippetName + "'"
-        if snippetName isnt "css"
-          lng = "data-csspre='" + snippetNameClean + "'" or ""
-          vrsn = " data-version='" + currentSnippet.version + "'" or ""  if currentSnippet.version
-        sanitizedCode = currentSnippet.code.replace(/\#/g, "&#35;").replace(/\*/g, "&#42;").replace(/\`/g, "&#96;")
-        snippets.push(
-          '<div class="col-' + columnSize + '">' +
-            '<pre name="' + snippetNameClean + '" ' + lng + vrsn + ' data-type="css" ' + id + '><code>' +
-            sanitizedCode +
-            '</code></pre>' +
-          '</div>'
-        )
+        if snippetName isnt "description"
+          vrsn = ""
+          lng = ""
+          currentSnippet = feature[snippetName]
+          columnSize = (if snippetName is "css" then columnLastWidth else columnWidth)
+          snippetNameClean = snippetName.replace("-alt", "")
+          id = "id='" + arg1 + "-" + arg2 + "-" + snippetName + "'"
+          if snippetName isnt "css"
+            lng = "data-csspre='" + snippetNameClean + "'" or ""
+            vrsn = " data-version='" + currentSnippet.version + "'" or "" if currentSnippet.version
+          sanitizedCode = currentSnippet.code.replace(/\*/g, "&#42;").replace(/\`/g, "&#96;")
+          snippets.push(
+            '<div class="col-' + columnSize + '">' +
+              '<pre name="' + snippetNameClean + '" ' + lng + vrsn + ' data-type="css" ' + id + '><code>' +
+              sanitizedCode +
+              '</code></pre>' +
+            '</div>'
+          )
       '<div class="grid">' + snippets.join("") + '</div>'
 
   collections:
