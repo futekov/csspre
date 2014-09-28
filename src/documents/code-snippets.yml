@@ -466,6 +466,114 @@ Mixins:
           transition: opacity 200ms;
         }
 
+Conditionals:
+  basic:
+    description: "If statement within a declaration"
+    less:
+      issues:
+        - weird syntax
+      code: |
+        .if-condition {
+          foo: bar;
+          & when (1 = 1) {
+            baz: qux;
+          }
+        }
+    scss:
+      code: |
+        .if-condition {
+          foo: bar;
+          @if 1 == 1 {
+            baz: qux;
+          }
+        }
+    sass:
+      code: |
+        .if-condition
+          foo: bar
+          @if 1 == 1
+            baz: qux
+    stylus:
+      code: |
+        .if-condition
+          foo: bar
+          if 1 == 1
+            baz: qux
+    css:
+      code: |
+        .if-condition {
+          foo: bar;
+          baz: qux;
+        }
+  ternary:
+    description: "Ternary operator `x > 0 ? true : false`"
+    scss:
+      issues:
+        - unconventional syntax
+      code: |
+        .if-ternary {
+          one-equals-one: if(1 == 1, true, false);
+        }
+    sass:
+      issues:
+        - unconventional syntax
+      code: |
+        .if-ternary
+          one-equals-one: if(1 == 1, true, false)
+    stylus:
+      code: |
+        .if-ternary
+          one-equals-one: 1 == 1 ? true : false
+    css:
+      code: |
+        .if-ternary {
+          one-equals-one: true;
+        }
+  property:
+    description: "Interpolate `if` statements inside property names"
+    scss:
+      code: |
+        .if-within-property {
+          #{if(1 == 1, "property", "false")}: bar;
+        }
+    sass:
+      code: |
+        .if-within-property
+          #{if(1 == 1, "property", "false")}: bar
+    stylus:
+      code: |
+        .if-within-property
+          {1 == 1 ? "property" : "false"}: bar
+    css:
+      code: |
+        .if-within-property {
+          property: bar;
+        }
+  selector:
+    description: "Interpolate `if` statements inside selectors"
+    scss:
+      code: |
+        .if-within-selector--#{if(1 == 1, "true", "false")} {
+          foo: bar;
+        }
+    sass:
+      code: |
+        .if-within-selector--#{if(1 == 1, "true", "false")}
+          foo: bar
+    stylus:
+      issues:
+        - requires a variable
+      code: |
+        $if-result = 1 == 1 ? "true" : "false"
+
+        .if-within-selector--{$if-result}
+          foo: bar
+    css:
+      code: |
+        .if-within-selector--true {
+          foo: bar;
+        }
+
 Random Number:
   basic:
     description: "Generate a random number with upper and lower limits"

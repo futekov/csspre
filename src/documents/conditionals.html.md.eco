@@ -1,0 +1,39 @@
+---
+layout: "post"
+title: "Conditionals"
+date: 2014-09-28
+description: "Conditional statements, if/else conditions, logical operators, ternary operators, places that you can use conditionals"
+---
+
+If/else conditions are incredibly useful when you want a part of your code to depend on something else. This gives maximum flexibility to write the type of logic that meets your needs.
+
+
+## Conditionals inside declarations
+
+Supoort for `if` statements within a declaration. Less uses a slightly unconventional syntax, but works as expected.
+
+<%- @code('Conditionals', 'basic') %>
+
+
+
+## Ternary operators
+
+Ternary operators allow for a single-line if/else test in the format of `x > 0 ? true : false`.
+
+<%- @code('Conditionals', 'ternary') %>
+
+
+
+## Interpolate conditionals inside properties
+
+Ability to interpolate `if` statements inside property names.
+
+<%- @code('Conditionals', 'property') %>
+
+
+
+## Interpolate conditionals inside selectors
+
+Ability to interpolate `if` statements inside selectors - there probably aren't a lot of use cases for using tests inside a selector but one never knows.
+
+<%- @code('Conditionals', 'selector') %>
