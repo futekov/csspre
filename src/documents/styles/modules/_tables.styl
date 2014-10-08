@@ -26,37 +26,38 @@ th
 
 td
   border-width: 0 1px 1px 0
+  position: relative
+  background-clip: padding-box
   &.available
     fill: #447B3D
-    position: relative
     color: darken(@fill, 60%)
     background-color: lighten(@fill, 90%)
-    background-clip: padding-box
+    .required-version
+      background-color: desaturate(darken(@background-color, 10%), 20%)
   &.partial
     fill: #DF9C0C
-    position: relative
     color: darken(@fill, 60%)
     background-color: lighten(@fill, 90%)
-    background-clip: padding-box
+    .required-version
+      background-color: desaturate(darken(@background-color, 10%), 20%)
   &.not-available
     fill: #A21F1F
-    background: lighten(@fill, 90%)
+    background-color: lighten(@fill, 90%)
+    .required-version
+      background-color: desaturate(darken(@background-color, 10%), 20%)
 
 .table-content
   -transparent-bg()
   position: relative
   margin-top: 2em
   table-layout: fixed
-  border-color: #444
+  border-color: #888
 
   .required-version
     position: absolute
     top: 0
     left: 0
     font-size: 14px
-    border-width: 0 1px 1px 0
-    border-style: solid
-    border-color: @border-color
     padding: 0 5px
 
   .note
@@ -70,7 +71,7 @@ td
     font-size: 14px
 
   th
-    background-color: #ccc
+    background-color: #bbb
 
   td
     padding: 5px
@@ -93,7 +94,7 @@ td
   tbody
     th
       text-align: left
-      background: #dfdfdf
+      background: #d5d5d5
 
   caption
     color: #fff

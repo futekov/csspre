@@ -3,7 +3,7 @@
 
 moment = require("moment")
 yaml = require("yamljs")
-DATA = yaml.load("src/documents/code-snippets.yml")
+DATA = yaml.load("data.yml")
 # Define the DocPad Configuration
 
 docpadConfig = {

@@ -1,0 +1,1514 @@
+Variables:
+  basic:
+    description: "Ability to declare variables and use them later"
+    less:
+      code: |
+        @text-size: 10px;
+        @font: Arial, Helvetica, sans-serif;
+        @prim-color: #1bc2ff;
+
+        .foo {
+          color: @prim-color;
+          font: 400 @text-size @font;
+        }
+    scss:
+      code: |
+        $text-size: 10px;
+        $font: Arial, Helvetica, sans-serif;
+        $prim-color: #1bc2ff;
+
+        .foo {
+          color: $prim-color;
+          font: 400 $text-size $font;
+        }
+    sass:
+      code: |
+        $text-size: 10px
+        $font: Arial, Helvetica, sans-serif
+        $prim-color: #1bc2ff
+
+        .foo
+          color: $prim-color
+          font: 400 $text-size $font
+    stylus:
+      code: |
+        $text-size = 10px
+        $font = Arial, Helvetica, sans-serif
+        $prim-color = #1bc2ff
+
+        .foo
+          color: $prim-color
+          font: 400 $text-size $font
+    css:
+      code: |
+        .foo {
+          color: #1bc2ff;
+          font: 400 10px Arial, Helvetica, sans-serif;
+        }
+  default:
+    description: "Default variables are overwritten by regular ones, no matter when they are declared"
+    scss:
+      code: |
+        $var1: lorem !default;
+
+        $var2: bar;
+        $var2: default-text !default;
+
+        .test {
+          foo: $var1 $var2;
+        }
+    sass:
+      code: |
+        $var1: lorem !default
+
+        $var2: bar
+        $var2: default-text !default
+
+        .test
+          foo: $var1 $var2
+    stylus:
+      code: |
+        $var1 ?= lorem
+
+        $var2 = bar
+        $var2 ?= default-text
+
+
+        .test
+          foo: $var1 $var2
+    css:
+      code: |
+        .test {
+          foo: lorem bar;
+        }
+  lazy:
+    description: "Variables are lazy loaded and do not have to be declared before being used"
+    less:
+      code: |
+        .test {
+          foo: @var;
+        }
+
+        @var: bar;
+    css:
+      code: |
+        .test {
+          foo: bar;
+        }
+  lookup:
+    description: "Use the value of a previously declared property elsewhere"
+    stylus:
+      code: |
+        .test
+          foo: 200
+          bar: (@foo/2)
+          .child
+            baz: @foo
+    css:
+      code: |
+        .test {
+          foo: 200;
+          bar: 100;
+        }
+        .test .child {
+          baz: 200;
+        }
+  scoped:
+    description: "Restrict the scope of variables"
+    less:
+      code: |
+        .test {
+          @var: 200;
+          foo: @var;
+          bar: @var/2;
+          .child {
+            baz: @var;
+          }
+        }
+    scss:
+      code: |
+        .test {
+          $var: 200;
+          foo: $var;
+          bar: $var / 2;
+          .child {
+            baz: $var;
+          }
+        }
+    sass:
+      code: |
+        .test
+          $var: 200
+          foo: $var
+          bar: $var/2
+          .child
+            baz: $var
+    stylus:
+      code: |
+        .test
+          $var = 200
+          foo: $var
+          bar: ($var/2)
+          .child
+            baz: $var
+    stylus-alt:
+      code: |
+        .test
+          foo: $var = 200
+          bar: ($var/2)
+          .child
+            baz: $var
+    css:
+      code: |
+        .test {
+          foo: 200;
+          bar: 100;
+        }
+        .test .child {
+          baz: 200;
+        }
+
+Variable Interpolation:
+  basic:
+    description: "Use variables as parts of selectors, properties, or values"
+    less:
+      code: |
+        @var: color;
+
+        .class-@{var} {
+          @{var}: #7b3d66;
+          background-@{var}: #7b3d66;
+          content: @var;
+        }
+    scss:
+      code: |
+        $var: color;
+
+        .class-#{$var} {
+          #{$var}: #7b3d66;
+          background-#{$var}: #7b3d66;
+          content: $var;
+        }
+    sass:
+      code: |
+        $var: color
+
+        .class-#{$var}
+          #{$var}: #7b3d66
+          background-#{$var}: #7b3d66
+          content: $var
+    stylus:
+      code: |
+        $var = color
+
+        .class-{$var}
+          {$var}: #7b3d66
+          background-{$var}: #7b3d66
+          content: $var
+    css:
+      code: |
+        .class-color {
+          color: #7b3d66;
+          background-color: #7b3d66;
+          content: color;
+        }
+  selectors:
+    description: "Place a set of selectors into a variable and reuse it"
+    less:
+      code: |
+        @headings: h1, .h1, h2, .h2, h3, .h3;
+
+        @{headings} {
+          font-family: "Great Custom Font", sans-serif;
+        }
+    scss:
+      code: |
+        $headings: "h1, .h1, h2, .h2, h3, .h3";
+
+        #{$headings} {
+          font-family: "Great Custom Font", sans-serif;
+        }
+    sass:
+      code: |
+        $headings: "h1, .h1, h2, .h2, h3, .h3"
+
+        #{$headings}
+          font-family: "Great Custom Font", sans-serif
+    stylus:
+      code: |
+        $headings = h1, .h1, h2, .h2, h3, .h3
+
+        {$headings}
+          font-family: "Great Custom Font", sans-serif
+    css:
+      code: |
+        h1, .h1, h2, .h2, h3, .h3 {
+          font-family: "Great Custom Font", sans-serif;
+        }
+  selectors-nested:
+    description: "Nest a set of selectors with parent reference below another selector"
+    scss:
+      code: |
+        $active: "&.is-active, &:hover";
+
+        .selector {
+          foo: bar;
+          #{$active} {
+            baz: qux;
+          }
+        }
+    sass:
+      code: |
+        $active: "&.is-active, &:hover"
+
+        .selector
+          foo: bar
+          #{$active}
+            baz: qux
+    stylus:
+      code: |
+        $active = "&.is-active, &:hover"
+
+        .selector
+          foo: bar
+          {$active}
+            baz: qux
+    css:
+      code: |
+        .selector {
+          foo: bar;
+        }
+        .selector.is-active,
+        .selector:hover {
+          baz: qux;
+        }
+
+Mixins:
+  basic:
+    description: "Support inclusion of mixins"
+    less:
+      code: |
+        .mixin() {
+          foo: bar;
+        }
+
+        .include-mixin {
+          .mixin;
+          baz: qux;
+        }
+    scss:
+      code: |
+        @mixin mixin {
+          foo: bar;
+        }
+
+        .include-mixin {
+          @include mixin;
+          baz: qux;
+        }
+    sass:
+      code: |
+        =mixin
+          foo: bar
+
+        .include-mixin 
+          +mixin
+          baz: qux
+    stylus:
+      code: |
+        mixin()
+          foo: bar
+
+        .include-mixin 
+          mixin()
+          baz: qux
+    css:
+      code: |
+        .include-mixin {
+          foo: bar;
+          baz: qux;
+        }
+  params:
+    description: "Mixins that can receive parameters passed to them"
+    less:
+      code: |
+        .bordered(@color; @thickness: 1px) {
+          border: @thickness solid @color;
+        }
+
+        .mixins-params {
+          .bordered(#cbf40d);
+          .bordered(#d04fbc, 3px);
+        }
+    scss:
+      code: |
+        @mixin bordered($color, $thickness: 1px) {
+          border: $thickness solid $color;
+        }
+
+        .mixins-params {
+          @include bordered(#cbf40d);
+          @include bordered(#d04fbc, 3px);
+        }
+    sass:
+      code: |
+        =bordered($color, $thickness: 1px)
+          border: $thickness solid $color
+
+        .mixins-params
+          +bordered(#cbf40d)
+          +bordered(#d04fbc, 3px)
+    stylus:
+      code: |
+        bordered($color, $thickness = 1px)
+          border: $thickness solid $color
+
+        .mixins-params
+          bordered(#cbf40d)
+          bordered(#d04fbc, 3px)
+    css:
+      code: |
+        .mixins-params {
+          border: 1px solid #cbf40d;
+          border: 3px solid #d04fbc;
+        }
+  params-named:
+    description: "Mixins that have named placeholders for each parameter passed to them, allows to pass parameters in any order"
+    less:
+      code: |
+        .size(@w, @h) {
+          width: @w;
+          height: @h;
+        }
+
+        .mixins-named-params {
+          .size(@h: 10px, @w: 25px);
+        }
+    scss:
+      code: |
+        @mixin size($w, $h) {
+          width: $w;
+          height: $h;
+        }
+
+        .mixins-named-params {
+          @include size($h: 10px, $w: 25px);
+        }
+    sass:
+      code: |
+        =size($w, $h)
+          width: $w
+          height: $h
+
+        .mixins-named-params
+          +size($h: 10px, $w: 25px)
+    stylus:
+      code: |
+        size($w, $h)
+          width: $w
+          height: $h
+
+        .mixins-named-params
+          size($h: 10px, $w: 25px)
+    css:
+      code: |
+        .mixins-named-params {
+          width: 25px;
+          height: 10px;
+        }
+  arguments:
+    description: "Mixins with an unknown number of arguments passed to them"
+    less:
+      code: |
+        .transition(...) {
+          -webkit-transition: @arguments;
+          -moz-transition: @arguments;
+          transition: @arguments;
+        }
+
+        .mixins-arguments {
+          .transition(opacity 200ms);
+        }
+    scss:
+      code: |
+        @mixin transition($args...) {
+          -webkit-transition: $args;
+          -moz-transition: $args;
+          transition: $args;
+        }
+
+        .mixins-arguments {
+          @include transition(opacity 200ms);
+        }
+    sass:
+      code: |
+        =transition($args...)
+          -webkit-transition: $args
+          -moz-transition: $args
+          transition: $args
+
+        .mixins-arguments
+          +transition(opacity 200ms)
+    stylus:
+      code: |
+        transition($args)
+          -webkit-transition: $args
+          -moz-transition: $args
+          transition: $args
+
+        .mixins-arguments
+          transition(opacity 200ms)
+    css:
+      code: |
+        .mixins-arguments {
+          -webkit-transition: opacity 200ms;
+          -moz-transition: opacity 200ms;
+          transition: opacity 200ms;
+        }
+
+Conditionals:
+  basic:
+    description: "If statement within a declaration"
+    less:
+      issues:
+        - unconventional syntax
+      code: |
+        .if-condition {
+          foo: bar;
+          & when (1 = 1) {
+            baz: qux;
+          }
+        }
+    scss:
+      code: |
+        .if-condition {
+          foo: bar;
+          @if 1 == 1 {
+            baz: qux;
+          }
+        }
+    sass:
+      code: |
+        .if-condition
+          foo: bar
+          @if 1 == 1
+            baz: qux
+    stylus:
+      code: |
+        .if-condition
+          foo: bar
+          if 1 == 1
+            baz: qux
+    css:
+      code: |
+        .if-condition {
+          foo: bar;
+          baz: qux;
+        }
+  ternary:
+    description: "Ternary operator `x > 0 ? true : false`"
+    scss:
+      issues:
+        - unconventional syntax
+      code: |
+        .if-ternary {
+          one-equals-one: if(1 == 1, true, false);
+        }
+    sass:
+      issues:
+        - unconventional syntax
+      code: |
+        .if-ternary
+          one-equals-one: if(1 == 1, true, false)
+    stylus:
+      code: |
+        .if-ternary
+          one-equals-one: 1 == 1 ? true : false
+    css:
+      code: |
+        .if-ternary {
+          one-equals-one: true;
+        }
+  property:
+    description: "Interpolate `if` statements inside property names"
+    scss:
+      code: |
+        .if-within-property {
+          #{if(1 == 1, "property", "false")}: bar;
+        }
+    sass:
+      code: |
+        .if-within-property
+          #{if(1 == 1, "property", "false")}: bar
+    stylus:
+      code: |
+        .if-within-property
+          {1 == 1 ? "property" : "false"}: bar
+    css:
+      code: |
+        .if-within-property {
+          property: bar;
+        }
+  selector:
+    description: "Interpolate `if` statements inside selectors"
+    scss:
+      code: |
+        .if-within-selector--#{if(1 == 1, "true", "false")} {
+          foo: bar;
+        }
+    sass:
+      code: |
+        .if-within-selector--#{if(1 == 1, "true", "false")}
+          foo: bar
+    stylus:
+      issues:
+        - requires additional variable
+      code: |
+        $if-result = 1 == 1 ? "true" : "false"
+
+        .if-within-selector--{$if-result}
+          foo: bar
+    css:
+      code: |
+        .if-within-selector--true {
+          foo: bar;
+        }
+
+Random Number:
+  basic:
+    description: "Generate a random number with upper and lower limits"
+    less:
+      issues:
+        - requires custom function
+      code: |
+        .make-random(@min, @max) { 
+          @rnd: floor(`Math.random() * @{max} + @{min}`);
+        }
+
+        .random-integer {
+          .make-random(1, 100);
+          foo: @rnd;
+        }
+    scss:
+      version: 3.3.0
+      code: |
+        .random-integer {
+          foo: random(100);
+        }
+    sass:
+      version: 3.3.0
+      code: |
+        .random-integer
+          foo: random(100)
+    stylus:
+      issues:
+        - requires custom function
+      code: |
+        random(min, max)
+          return floor( math(0, "random") * max + min )
+
+        .random-integer
+          foo: random(1, 100)
+    css:
+      code: |
+        .random-integer {
+          foo: 56;
+        }
+  cache:
+    description: "Append the random number to a resource as a query string to invalidate the cache"
+    less:
+      issues:
+        - requires custom function
+      code: |
+        .make-random(@min, @max) { 
+          @rnd: floor(`Math.random() * @{max} + @{min}`);
+        }
+
+        .random-number-cache-invalidation {
+          .make-random(1000, 9999);
+          background-image: src("x.jpg?v=@{rnd}");
+        }
+    scss:
+      version: 3.3.0
+      code: |
+        .random-number-cache-invalidation {
+          background-image: src("x.jpg?v=#{random(9000) + 999}");
+        }
+    sass:
+      version: 3.3.0
+      code: |
+        .random-number-cache-invalidation
+          background-image: src("x.jpg?v=#{random(9000)+999}")
+    stylus:
+      issues:
+        - requires custom function
+      code: |
+        random(min, max)
+          return floor( math(0, "random") * max + min )
+
+        .random-number-cache-invalidation
+          background-image: src("x.jpg?v=" + random(1000, 9999))
+    css:
+      code: |
+        .random-number-cache-invalidation {
+          background-image: src("x.jpg?v=5656");
+        }
+  color:
+    description: "Generate different colors with a random Hue or other color components"
+    less:
+      issues:
+        - requires custom function
+      code: |
+        .make-random(@min, @max) { 
+          @rnd: floor(`Math.random() * @{max} + @{min}`);
+        }
+
+        .random-number-color {
+          .make-random(0, 360);
+          color: hsl(@rnd, 50%, 50%);
+        }
+    scss:
+      version: 3.3.0
+      code: |
+        .random-number-color {
+          color: hsl(random(361) - 1, 50%, 50%);
+        }
+    sass:
+      version: 3.3.0
+      code: |
+        .random-number-color
+          color: hsl(random(361)-1, 50%, 50%)
+    stylus:
+      issues:
+        - requires custom function
+      code: |
+        random(min, max)
+          return floor( math(0, "random") * max + min )
+
+        .random-number-color
+          color: hsl(random(0, 360), 50%, 50%)
+    css:
+      code: |
+        .random-number-color {
+          color: #4abf40;
+        }
+
+Parent Reference:
+  append:
+    description: "Append selector to the parent when nesting `&:hover`, `&.active`"
+    less:
+      code: |
+        .selector-append {
+          foo: bar;
+          &:hover {
+            baz: qux;
+          }
+        }
+    scss:
+      code: |
+        .selector-append {
+          foo: bar;
+          &:hover {
+            baz: qux;
+          }
+        }
+    sass:
+      code: |
+        .selector-append
+          foo: bar
+          &:hover
+            baz: qux
+    stylus:
+      code: |
+        .selector-append
+          foo: bar
+          &:hover
+            baz: qux
+    css:
+      code: |
+        .selector-append {
+          foo: bar;
+        }
+        .selector-append:hover {
+          baz: qux;
+        }
+  extend-name:
+    description: "Extend the name of the parent selector `&--modifier-class`"
+    less:
+      code: |
+        .extend-name {
+          &-one {
+            foo: bar;
+          }
+          &two {
+            baz: qux
+          }
+        }
+    scss:
+      version: 3.3.0
+      code: |
+        .extend-name {
+          &-one {
+            foo: bar;
+          }
+          &two {
+            baz: qux;
+          }
+        }
+    sass:
+      version: 3.3.0
+      code: |
+        .extend-name
+          &-one
+            foo: bar
+          &two
+            baz: qux
+    stylus:
+      code: |
+        .extend-name
+          &-one
+            foo: bar
+          &two
+            baz: qux
+    css:
+      code: |
+        .extend-name-one {
+          foo: bar;
+        }
+        .extend-nametwo {
+          baz: qux;
+        }
+  parent:
+    description: "Allows to set a parent of the current nested selector `.ie7 &`"
+    less:
+      code: |
+        .parent-selector {
+          foo: bar;
+          .ie7 & {
+            baz: qux;
+          }
+        }
+    scss:
+      code: |
+        .parent-selector {
+          foo: bar;
+          .ie7 & {
+            baz: qux;
+          }
+        }
+    sass:
+      code: |
+        .parent-selector
+          foo: bar
+          .ie7 &
+            baz: qux
+    stylus:
+      code: |
+        .parent-selector
+          foo: bar
+          .ie7 &
+            baz: qux
+    css:
+      code: |
+        .parent-selector {
+          foo: bar;
+        }
+        .ie7 .parent-selector {
+          baz: qux;
+        }
+  prepend:
+    description: "Prepend a selector, a nested `ol&` below `.test` returns `ol.test`"
+    less:
+      code: |
+        .selector-prepend {
+          foo: bar;
+          ol& {
+            baz: qux
+          }
+        }
+    scss:
+      issues: 
+        - requires the `@at-root` directive
+      version: 3.4.0
+      code: |
+        .selector-prepend {
+          foo: bar;
+          @at-root ol#{&} {
+            baz: qux
+          }
+        }
+    sass:
+      issues: 
+        - requires the `@at-root` directive
+      version: 3.4.0
+      code: |
+        .selector-prepend
+          foo: bar
+          @at-root ol#{&}
+            baz: qux
+    stylus:
+      code: |
+        .selector-prepend
+          foo: bar
+          ol&
+            baz: qux
+    css:
+      code: |
+        .selector-prepend {
+          foo: bar;
+        }
+        ol.selector-prepend {
+          baz: qux;
+        }
+  multiple:
+    description: "Ability to more than one parent reference in a selector `& + &`"
+    less:
+      code: |
+        .multi-reference {
+          foo: bar;
+          & + & {
+            baz: qux;
+          }
+        }
+    scss:
+      code: |
+        .multi-reference {
+          foo: bar;
+          & + & {
+            baz: qux;
+          }
+        }
+    sass:
+      code: |
+        .multi-reference
+          foo: bar
+          & + &
+            baz: qux
+    stylus:
+      code: |
+        .multi-reference
+          foo: bar
+          & + &
+            baz: qux
+    css:
+      code: |
+        .multi-reference {
+          foo: bar;
+        }
+        .multi-reference + .multi-reference {
+          baz: qux;
+        }
+  explosion:
+    description: "Generate all possible permutations of selectors from a list"
+    less:
+      code: |
+        p, ul, ol {
+          foo: bar;
+          & + & {
+            baz: qux;
+          }
+        }
+    scss:
+      issues:
+        - requires additional variable
+      code: |
+        $selectors: "p, ul, ol";
+
+        #{$selectors} {
+          foo: bar;
+          & + {
+            #{$selectors} {
+              baz: qux;
+            }
+          }
+        }
+    sass:
+      issues:
+        - requires additional variable
+      code: |
+        $selectors: "p, ul, ol"
+
+        #{$selectors}
+          foo: bar
+          & +
+            #{$selectors}
+              baz: qux
+    stylus:
+      issues:
+        - requires additional variable
+      code: |
+        $selectors = "p, ul, ol"
+
+        {$selectors}
+          foo: bar
+          & +
+            {$selectors}
+              baz: qux
+    css:
+      code: |
+        p,
+        ul,
+        ol {
+          foo: bar;
+        }
+        p + p,
+        p + ul,
+        p + ol,
+        ul + p,
+        ul + ul,
+        ul + ol,
+        ol + p,
+        ol + ul,
+        ol + ol {
+          baz: qux;
+        }
+
+Placeholder Selectors:
+  basic:
+    description: "Reusable components that are outputted only if used somewhere, also known as silent classes"
+    less:
+      code: |
+        .placeholder-1() {
+          foo: bar;
+        }
+
+        .placeholder-2() {
+          baz: qux;
+        }
+
+        .include-placeholder-1 {
+          .placeholder-1();
+        }
+    scss:
+      code: |
+        %placeholder-1 {
+          foo: bar;
+        }
+
+        %placeholder-2 {
+          baz: qux;
+        }
+
+        .include-placeholder-1 {
+          @extend %placeholder-1;
+        }
+    sass:
+      code: |
+        %placeholder-1
+          foo: bar
+
+        %placeholder-2
+          baz: qux
+
+        .include-placeholder-1
+          @extend %placeholder-1
+    stylus:
+      code: |
+        $placeholder-1
+          foo: bar
+
+        $placeholder-2
+          baz: qux
+
+        .include-placeholder-1
+          @extend $placeholder-1
+    css:
+      code: |
+        .include-placeholder-1 {
+          foo: bar;
+        }
+
+Content Directive:
+  basic:
+    description: "Mixins accept style declarations inside it, useful if reusing selectors"
+    less:
+      code: |
+        .active(@content) {
+          &.is-active,
+          &:hover {
+            @content();
+          }
+        }
+
+        .content-directive {
+          foo: bar;
+          .active({
+            baz: qux
+          });
+        }
+    scss:
+      code: |
+        @mixin active {
+          &.is-active,
+          &:hover {
+            @content;
+          }
+        }
+
+        .content-directive {
+          foo: bar;
+          @include active {
+            baz: qux;
+          }
+        }
+    sass:
+      code: |
+        =active()
+          &.is-active,
+          &:hover
+            @content
+
+        .content-directive
+          foo: bar
+          +active()
+            baz: qux
+    stylus:
+      code: |
+        active()
+          &.is-active,
+          &:hover
+            {block}
+
+        .content-directive
+          foo: bar
+          +active()
+            baz: qux
+    css:
+      code: |
+        .content-directive {
+          foo: bar;
+        }
+        .content-directive.is-active,
+        .content-directive:hover {
+          baz: qux;
+        }
+  media:
+    description: "Mixins accept both style declarations and parameters, useful for simpler media queries"
+    less:
+      code: |
+        .media-max(@num, @content) {
+          @media only screen and (max-width: @num) {
+            @content();
+          }
+        }
+
+        .media-test {
+          width: 400px;
+          .media-max(980px, {
+            max-width: 100%;
+          });
+        }
+    scss:
+      code: |
+        @mixin media-max($num) {
+          @media only screen and (max-width: $num) {
+            @content;
+          }
+        }
+
+        .media-test {
+          width: 400px;
+          @include media-max(980px) {
+            max-width: 100%;
+          }
+        }
+    sass:
+      code: |
+        =media-max($num)
+          @media only screen and (max-width: $num)
+            @content
+
+        .media-test
+          width: 400px
+          +media-max(980px)
+            max-width: 100%
+    stylus:
+      code: |
+        media-max($num)
+          @media only screen and (max-width: $num)
+            {block}
+
+        .media-test
+          width: 400px
+          +media-max(980px)
+            max-width: 100%
+    css:
+      code: |
+        .media-test {
+          width: 400px;
+        }
+        @media only screen and (max-width: 980px) {
+          .media-test {
+            max-width: 100%;
+          }
+        }
+  placeholder-text:
+    description: "Ability to reuse the content block in several selectors, useful for placeholder-text mixin"
+    less:
+      code: |
+        .placeholder-text(@content) {
+          &::-webkit-input-placeholder {
+            @content();
+          }
+          &::-moz-placeholder {
+            @content();
+          }
+          &:-ms-input-placeholder {
+            @content();
+          }
+        }
+
+        .text-input {
+          .placeholder-text({
+            color: #acacac;
+            text-transform: uppercase;
+          });
+        }
+    scss:
+      code: |
+        @mixin placeholder-text {
+          &::-webkit-input-placeholder {
+            @content;
+          }
+          &::-moz-placeholder {
+            @content;
+          }
+          &:-ms-input-placeholder {
+            @content;
+          }
+        }
+
+        .text-input {
+          @include placeholder-text {
+            color: #acacac;
+            text-transform: uppercase;
+          }
+        }
+    sass:
+      code: |
+        =placeholder-text()
+          &::-webkit-input-placeholder
+            @content
+
+          &::-moz-placeholder
+            @content
+
+          &:-ms-input-placeholder
+            @content
+
+        .text-input
+          +placeholder-text()
+            color: #acacac
+            text-transform: uppercase
+    stylus:
+      code: |
+        placeholder-text()
+          &::-webkit-input-placeholder
+            {block}
+
+          &::-moz-placeholder
+            {block}
+
+          &:-ms-input-placeholder
+            {block}
+
+        .text-input
+          +placeholder-text()
+            color: #acacac
+            text-transform: uppercase
+    css:
+      code: |
+        .text-input::-webkit-input-placeholder {
+          color: #acacac;
+          text-transform: uppercase;
+        }
+        .text-input::-moz-placeholder {
+          color: #acacac;
+          text-transform: uppercase;
+        }
+        .text-input:-ms-input-placeholder {
+          color: #acacac;
+          text-transform: uppercase;
+        }
+
+Loops:
+  basic:
+    description: "Loops that can increment values"
+    less:
+      issues:
+        - need to call the function
+      code: |
+        @column-name: col;
+        @column-count: 4;
+
+        .generate-column(@i: 1) when (@i =< @column-count) {
+          .@{column-name}-@{i} {
+            width: @i * (100% / @column-count);
+          }
+          .generate-column(@i + 1);
+        }
+
+        .generate-column();
+    less-alt:
+      issues:
+        - looks very hacky
+      code: |
+        @column-name: col;
+        @column-count: 4;
+
+        .@{column-name} {
+          .-(@i: 1) when (@i =< @column-count) {
+            &-@{i} {
+              width: @i * (100% / @column-count);
+            }.-(@i + 1);
+          }.-;
+        }
+    scss:
+      code: |
+        $column-name: col;
+        $column-count: 4;
+
+        @for $i from 1 through $column-count {
+          .#{$column-name}-#{$i} {
+            width: $i * (100% / $column-count);
+          }
+        }
+    sass:
+      code: |
+        $column-name: col
+        $column-count: 4
+
+        @for $i from 1 through $column-count
+          .#{$column-name}-#{$i}
+            width: $i * (100% / $column-count)
+    stylus:
+      code: |
+        $column-name = col
+        $column-count = 4
+
+        for $i in 1..$column-count
+          .{$column-name}-{$i}
+            width: $i * (100% / $column-count)
+    css:
+      code: |
+        .col-1 {
+          width: 25%;
+        }
+        .col-2 {
+          width: 50%;
+        }
+        .col-3 {
+          width: 75%;
+        }
+        .col-4 {
+          width: 100%;
+        }
+  intermediate:
+    description: "Loops that iterate though items in a list"
+    less:
+      issues:
+        - need to call the function
+      code: |
+        @colors: foo, bar, baz;
+
+        .color-mixin(@i: 1) when (@i =< length(@colors)) {
+          &.color-@{i} {
+            background: extract(@colors, @i);
+          }
+          .color-mixin(@i + 1);
+        };
+        .color-mixin();
+    less-alt:
+      code: |
+        @colors: foo, bar, baz;
+
+        .color {
+          .-(@i: 1) when (@i =< length(@colors)) {
+            &-@{i} {
+              background: extract(@colors, @i);
+            }
+            .-((@i + 1));
+          } .-;
+        }
+    scss:
+      code: |
+        $colors: foo, bar, baz;
+
+        @for $i from 1 through length($colors) {
+          .color-#{$i} {
+            background: #{nth($colors, $i)};
+          }
+        }
+    scss-alt:
+      code: |
+        $colors: foo, bar, baz;
+
+        @each $color in $colors {
+          $i: index($colors, $color);
+          .color-#{$i} {
+            background: $color;
+          }
+        }
+    sass:
+      code: |
+        $colors: foo, bar, baz
+
+        @for $i from 1 through length($colors)
+          .color-#{$i}
+            background: #{nth($colors, $i)}
+    sass-alt:
+      code: |
+        $colors: foo, bar, baz
+
+        @each $color in $colors
+          $i: index($colors, $color)
+          .color-#{$i}
+            background: $color
+    stylus:
+      code: |
+        $colors = foo, bar, baz
+
+        for $color, $i in $colors
+          .color-{$i + 1}
+            background: $color
+    css:
+      code: |
+        .color-1 {
+          background: foo;
+        }
+        .color-2 {
+          background: bar;
+        }
+        .color-3 {
+          background: baz;
+        }
+
+Sourcemaps:
+  basic:
+    description: "Generate a source map file that defines a mapping between CSS declarations and the corresponding line of the source file"
+    less:
+      version: 1.5.0
+    scss:
+      version: 3.3.0
+    sass:
+      version: 3.3.0
+    stylus:
+      version: 0.48.0
+
+Color Extract:
+  RGB:
+    description: "Extract the Red, Green, or Blue components from a color"
+    less:
+      code: |
+        .rgb-components {
+          red-component-rgb: red(rgb(81, 104, 148));
+          red-component-hsl: red(hsl(220, 29%, 45%));
+          red-component-hex: red(#516894);
+          green-component-rgb: green(rgb(81, 104, 148));
+          green-component-hsl: green(hsl(220, 29%, 45%));
+          green-component-hex: green(#516894);
+          blue-component-rgb: blue(rgb(81, 104, 148));
+          blue-component-hsl: blue(hsl(220, 29%, 45%));
+          blue-component-hex: blue(#516894);
+        }
+    scss:
+      code: |
+        .rgb-components {
+          red-component-rgb: red(rgb(81, 104, 148));
+          red-component-hsl: red(hsl(220, 29%, 45%));
+          red-component-hex: red(#516894);
+          green-component-rgb: green(rgb(81, 104, 148));
+          green-component-hsl: green(hsl(220, 29%, 45%));
+          green-component-hex: green(#516894);
+          blue-component-rgb: blue(rgb(81, 104, 148));
+          blue-component-hsl: blue(hsl(220, 29%, 45%));
+          blue-component-hex: blue(#516894);
+        }
+    sass:
+      code: |
+        .rgb-components
+          red-component-rgb: red(rgb(81, 104, 148))
+          red-component-hsl: red(hsl(220, 29%, 45%))
+          red-component-hex: red(#516894)
+          green-component-rgb: green(rgb(81, 104, 148))
+          green-component-hsl: green(hsl(220, 29%, 45%))
+          green-component-hex: green(#516894)
+          blue-component-rgb: blue(rgb(81, 104, 148))
+          blue-component-hsl: blue(hsl(220, 29%, 45%))
+          blue-component-hex: blue(#516894)
+    stylus:
+      code: |
+        .rgb-components
+          red-component-rgb: red(rgb(81, 104, 148))
+          red-component-hsl: red(hsl(220, 29%, 45%))
+          red-component-hex: red(#516894)
+          green-component-rgb: green(rgb(81, 104, 148))
+          green-component-hsl: green(hsl(220, 29%, 45%))
+          green-component-hex: green(#516894)
+          blue-component-rgb: blue(rgb(81, 104, 148))
+          blue-component-hsl: blue(hsl(220, 29%, 45%))
+          blue-component-hex: blue(#516894)
+    css:
+      code: |
+        .rgb-components {
+          red-component-rgb: 81;
+          red-component-hsl: 81;
+          red-component-hex: 81;
+          green-component-rgb: 104;
+          green-component-hsl: 104;
+          green-component-hex: 104;
+          blue-component-rgb: 148;
+          blue-component-hsl: 148;
+          blue-component-hex: 148;
+        }
+  HSL:
+    description: "Extract the Hue, Saturation, or Lightness components from a color"
+    less:
+      code:
+    scss:
+      code:
+    sass:
+      code:
+    stylus:
+      code:
+  HSV:
+    description: "Extract the Hue, Saturation, or Value/Brightness components from a color"
+    less:
+      code:
+    sass:
+      code:
+  alpha:
+    description: "Extract the value of the alpha channel from a color"
+    less:
+      code:
+    scss:
+      code:
+    sass:
+      code:
+    stylus:
+      code:
+  luma/luminosity:
+    less:
+      code:
+    stylus:
+      version: 0.47.0
+      code:
+  luminance:
+    less:
+      code:
+    sass:
+      code:
+  contrast:
+    stylus:
+      version: 0.47.0
+      code:
+
+Color Test:
+  dark:
+    description: Returns true if the color is dark
+    stylus:
+      code:
+  light:
+    description: Returns true if the color is light
+    stylus:
+      code:
