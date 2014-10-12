@@ -22,12 +22,12 @@ layout: base
 
 <script src="/scripts/code-edit.js"></script>
 
-<script src="//cdnjs.cloudflare.com/ajax/libs/codemirror/4.6.0/addon/runmode/runmode-standalone.min.js"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/codemirror/4.6.0/mode/css/css.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/codemirror/4.5.0/addon/runmode/runmode-standalone.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/codemirror/4.5.0/mode/css/css.min.js"></script>
 <script>
   var myNodeList = document.querySelectorAll('pre[data-type="css"] > code');
   [].forEach.call(myNodeList, function (item) {
-    var codeString = item.innerText || item.textContent;
+    var codeString = item.textContent;
     CodeMirror.runMode(codeString, "text/x-scss", item);
   });
 </script>
