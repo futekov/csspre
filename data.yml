@@ -82,7 +82,7 @@ Variables:
           foo: lorem bar;
         }
   lazy:
-    description: "Variables are lazy loaded and do not have to be declared before being used"
+    description: "Variable Hoisting, variables can be declared after being used"
     less:
       code: |
         .test {
@@ -1476,7 +1476,11 @@ Color Extract:
     less:
       code:
     sass:
-      code:
+      issues:
+        - requires custom function
+    stylus:
+      issues:
+        - requires custom function
   alpha:
     description: "Extract the value of the alpha channel from a color"
     less:
@@ -1496,8 +1500,6 @@ Color Extract:
   luminance:
     less:
       code:
-    sass:
-      code:
   contrast:
     stylus:
       version: 0.47.0
@@ -1505,10 +1507,28 @@ Color Extract:
 
 Color Test:
   dark:
-    description: Returns true if the color is dark
+    description: "Returns true if the color is dark"
+    less:
+      issues:
+        - requires custom function
+    scss:
+      issues:
+        - requires custom function
+    sass:
+      issues:
+        - requires custom function
     stylus:
       code:
   light:
-    description: Returns true if the color is light
+    description: "Returns true if the color is light"
+    less:
+      issues:
+        - requires custom function
+    scss:
+      issues:
+        - requires custom function
+    sass:
+      issues:
+        - requires custom function
     stylus:
       code:
