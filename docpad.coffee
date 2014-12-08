@@ -36,11 +36,12 @@ docpadConfig = {
 
     # Functions
     tableComparison: (title) ->
+      cellIcons = '<svg style="display:none"><defs><path id="available" d="M4 8 L8 4 L16 12 L24 4 L28 8 L20 16 L28 24 L24 28 L16 20 L8 28 L4 24 L12 16 z"/><path id="unavailable" d="M1 14 L5 10 L13 18 L27 4 L31 8 L13 26 z"/></defs></svg>'
       tableOpen = '<table class="table-content"><caption>' + title + '</caption><thead><tr><th></th><th class="narrow">Less</th><th class="narrow">Sass</th><th class="narrow">Stylus</th></tr></thead><tbody>'
       tableClose = '</tbody></table>'
       setCell = (arg) ->
         if !arg
-          '<td class="not-available"><svg height="32" viewBox="0 0 32 32" width="32" xmlns="http://www.w3.org/2000/svg" aria-labelledby="title" role="img">><title id="title">Not Available</title><path d="M4 8 L8 4 L16 12 L24 4 L28 8 L20 16 L28 24 L24 28 L16 20 L8 28 L4 24 L12 16 z"/></svg></td>'
+          '<td class="not-available"><svg width="32" height="32" viewBox="0 0 32 32" role="img"><use xlink:href="#available"/></svg></td>'
         else
           vrsn = ""
           note = ""
@@ -48,7 +49,7 @@ docpadConfig = {
           if arg.version then vrsn = '<span class="required-version">' + arg.version + '+</span>'
           if arg.issues then note = '<span class="note">' + arg.issues + '</span>'
           if arg.issues then cellClass = "partial"
-          '<td class="' + cellClass + '">' + vrsn + '<svg height="32" viewBox="0 0 32 32" width="32" xmlns="http://www.w3.org/2000/svg" aria-labelledby="title" role="img">><title id="title">Available</title><path d="M1 14 L5 10 L13 18 L27 4 L31 8 L13 26 z"/></svg>' + note + '</td>'
+          '<td class="' + cellClass + '">' + vrsn + '<svg width="32" height="32" viewBox="0 0 32 32" role="img"><use xlink:href="#unavailable"/></svg>' + note + '</td>'
 
       featureGroup = []
       for section of DATA
@@ -60,7 +61,7 @@ docpadConfig = {
           featureSingle.push "<tr><td><strong>" + feature + "</strong>" + longDecription + "</td>" + setCell(currentFeature.less) + setCell(currentFeature.scss) + setCell(currentFeature.stylus) + "</tr>"
         featureGroup.push '<tr><th colspan="4">' + section + '</th></tr>' + featureSingle.join("")
 
-      tableOpen + featureGroup.join("") + tableClose
+      cellIcons + tableOpen + featureGroup.join("") + tableClose
 
     code: (arg1, arg2) ->
       feature = DATA[arg1][arg2]
