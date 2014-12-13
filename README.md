@@ -8,7 +8,7 @@
   ```bash
   git clone git@github.com:futekov/csspre.git
   cd csspre
-  npm install -g docpad@6.69
+  npm install -g docpad@6.69.1
   npm install
   docpad run
   ```
