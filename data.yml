@@ -212,6 +212,39 @@ Variable Interpolation:
           background-color: #7b3d66;
           content: color;
         }
+  calc:
+    description: "Use variables as inside `calc()` values"
+    less:
+      code: |
+        @var: 5px;
+
+        div {
+          height: ~"calc(7em + @{var})";
+        }
+    scss:
+      code: |
+        $var: 5px;
+
+        div {
+          height: calc(7em + #{$var});
+        }
+    sass:
+      code: |
+        $var: 5px
+
+        div
+          height: calc(7em + #{$var})
+    stylus:
+      code: |
+        $var = 5px
+
+        div
+          height: "calc(7em + %s)" % $var
+    css:
+      code: |
+        div {
+          height: calc(7em + 5px);
+        }
   selectors:
     description: "Place a set of selectors into a variable and reuse it"
     less:

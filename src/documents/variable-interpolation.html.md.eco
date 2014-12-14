@@ -10,6 +10,13 @@ You can interpolate a variable anywhere - in the property, value, and even the s
 <%- @code('Variable Interpolation', 'basic') %>
 
 
+## Interpolation in `calc()`
+
+Some preprocessors require more special treatment when using variables inside `calc()`:
+
+<%- @code('Variable Interpolation', 'calc') %>
+
+
 ## Selectors interpolation
 
 If you have a often-occuring selector pattern you can put it in a variable:
