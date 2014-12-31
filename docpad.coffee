@@ -102,13 +102,14 @@ docpadConfig = {
 
   plugins:
     rss:
-      collection: "posts"
+      default:
+        collection: "posts"
     stylus:
       stylusLibraries:
         nib: false
       stylusOptions:
         compress: true
-        'include css': true
+        "include css": true
     feedr:
       feeds:
         githubRepo:
