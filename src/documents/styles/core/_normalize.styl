@@ -26,6 +26,21 @@ textarea
   color: #fff
   text-shadow: none
 
+:target
+  -webkit-animation: yellow-fade 4s 1
+  animation: yellow-fade 4s 1
+
+@-webkit-keyframes yellow-fade
+  0%
+    background-color: rgba(251, 255, 42, 0.6)
+  100%
+    background-color: rgba(0,0,0,0)
+@keyframes yellow-fade
+  0%
+    background-color: rgba(251, 255, 42, 0.6)
+  100%
+    background-color: rgba(0,0,0,0)
+
 img,
 svg
   vertical-align: middle

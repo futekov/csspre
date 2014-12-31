@@ -4,21 +4,21 @@
   margin: 10px 0 0
   font-size: 18px
   z-index: 1
+  @media only screen and (max-width: 700px)
+    font-size: 14px
 
   a
     display: inline-block
-    color: #ccc
-    padding: (3 + $nav-border-size) 3% 2px
-    margin: 0 -4px
-    border-style: solid
-    border-width: 0 0 $nav-border-size
-    border-color: transparent
+    color: #fff
+    padding: 8.5px 3%
+    margin: 0 -0.2em
 
     &:hover
-      color: #eee
+      color: $purple
+      background-color: #bbb
 
     &:focus,
     &.active,
     &:active
-      color: #eee
-      border-color: @color
+      color: $purple
+      background-color: #fff
