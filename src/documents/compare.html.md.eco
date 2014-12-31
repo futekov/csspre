@@ -2,7 +2,9 @@
 layout: base
 title: "Compare"
 pageOrder: 2
-description: "Ultimate comparison table for CSS Preprocessors, comparison of selected features of the popular CSS Preprocessors"
+description: "Comprehensive comparison table for CSS Preprocessors, comparison of selected features of the popular CSS Preprocessors"
 ---
 
 <%- @tableComparison('Comparison of support for selected features') %>
+
+If you are considering migrating to another preprocessor this [roundup of conversion tools](/convert) might help you.
