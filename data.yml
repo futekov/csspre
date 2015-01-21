@@ -1416,6 +1416,79 @@ Loops:
           background: baz;
         }
 
+Image Helpers:
+  image dimensions:
+    description: "Ability to get the width/height of a given image"
+    less:
+      version: 2.2.0
+      code: |
+        .image {
+          bg-size: image-size("img.png");
+          bg-width: image-width("img.png");
+          bg-height: image-height("img.png");
+        }
+    scss:
+      issues:
+        - requires Compass
+      code: |
+        .image {
+          bg-size: image-width("img.png") image-height("img.png");
+          bg-width: image-width("img.png");
+          bg-height: image-height("img.png");
+        }
+    sass:
+      issues:
+        - requires Compass
+      code: |
+        .image
+          bg-size: image-width("img.png") image-height("img.png")
+          bg-width: image-width("img.png")
+          bg-height: image-height("img.png")
+    stylus:
+      code: |
+        .image
+          bg-size: image-size("img.png")
+          bg-width: image-size("img.png")[0]
+          bg-height: image-size("img.png")[1]
+    css:
+      code: |
+        .image {
+          bg-size: 20px 10px;
+          bg-width: 20px;
+          bg-height: 10px;
+        }
+  image inline:
+    description: "Encode a given image to base64"
+    less:
+      version: 1.4.0
+      code: |
+        .image {
+          background-image: data-uri("pixel.png");
+        }
+    scss:
+      issues:
+        - requires Compass
+      code: |
+        .image {
+          background-image: inline-image("pixel.png");
+        }
+    sass:
+      issues:
+        - requires Compass
+      code: |
+        .image
+          background-image: inline-image("pixel.png")
+    stylus:
+      issues:
+        - requires function definition
+      code: |
+        .image
+          background-image: inline-image("pixel.png")
+    css:
+      code: |
+        .image
+          background-image: url("data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7")
+
 Sourcemaps:
   basic:
     description: "Generate a source map file that defines a mapping between CSS declarations and the corresponding line of the source file"
