@@ -8,3 +8,5 @@ description: "Comprehensive comparison table for CSS Preprocessors, comparison o
 <%- @tableComparison('Comparison of support for selected features') %>
 
 If you are considering migrating to another preprocessor this [roundup of conversion tools](/convert) might help you.
+
+Sass fans - don't forget that Ruby Sass and Node Sass [slightly differ in terms of features](http://sass-compatibility.github.io/).
