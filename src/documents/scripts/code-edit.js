@@ -1,10 +1,3 @@
-function pascalizeId(e) {
-  return e
-          .getAttribute("id")
-          .replace(" ", "")
-          .replace(/-([a-z])/g, function (g) { return g[1].toUpperCase(); })
-}
-
 function getClosest(el, tag) {
   do {
     if (el.nodeName === tag.toUpperCase()) {
@@ -23,18 +16,18 @@ function getContainerElement() {
     var containerElement = node.nodeType == 1 ? node : node.parentNode;
     var container = getClosest(containerElement, "pre") || null;
     if (sel.toString().trim().length > 0 && container != null) {
-      ga('send', 'event', 'snippet', 'selection', '' + pascalizeId(container) + '');
+      ga('send', 'event', 'snippet', 'selection', '' + container.getAttribute("id") + '');
     }
   }
 }
 
 
 // find all code snippets for preprocessors on the page and iterate through them
-var codeSnippets = document.querySelectorAll("[data-csspre]");
+var codeSnippets = document.querySelectorAll("[data-csspre]:not([data-local])");
 for(var i = 0; i < codeSnippets.length; i++){
   // set all variables that CodePen needs
   var el          = codeSnippets[i]
-    , snippetID   = pascalizeId(el)
+    , snippetID   = el.getAttribute("id")
     , cssPre      = el.getAttribute("data-csspre")
     , cssCode     = el.getElementsByTagName("code")[0].innerHTML
     , codeData = {

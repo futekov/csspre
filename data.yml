@@ -1417,9 +1417,10 @@ Loops:
         }
 
 Image Helpers:
-  image dimensions:
+  dimensions:
     description: "Ability to get the width/height of a given image"
     less:
+      local: true
       version: 2.2.0
       code: |
         .image {
@@ -1428,6 +1429,7 @@ Image Helpers:
           bg-height: image-height("img.png");
         }
     scss:
+      local: true
       issues:
         - requires Compass
       code: |
@@ -1437,6 +1439,7 @@ Image Helpers:
           bg-height: image-height("img.png");
         }
     sass:
+      local: true
       issues:
         - requires Compass
       code: |
@@ -1445,6 +1448,7 @@ Image Helpers:
           bg-width: image-width("img.png")
           bg-height: image-height("img.png")
     stylus:
+      local: true
       code: |
         .image
           bg-size: image-size("img.png")
@@ -1457,15 +1461,17 @@ Image Helpers:
           bg-width: 20px;
           bg-height: 10px;
         }
-  image inline:
+  inline:
     description: "Encode a given image to base64"
     less:
+      local: true
       version: 1.4.0
       code: |
         .image {
           background-image: data-uri("pixel.png");
         }
     scss:
+      local: true
       issues:
         - requires Compass
       code: |
@@ -1473,12 +1479,14 @@ Image Helpers:
           background-image: inline-image("pixel.png");
         }
     sass:
+      local: true
       issues:
         - requires Compass
       code: |
         .image
           background-image: inline-image("pixel.png")
     stylus:
+      local: true
       issues:
         - requires function definition
       code: |
@@ -1486,8 +1494,9 @@ Image Helpers:
           background-image: inline-image("pixel.png")
     css:
       code: |
-        .image
+        .image {
           background-image: url("data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7")
+        }
 
 Sourcemaps:
   basic:

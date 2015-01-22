@@ -12,7 +12,7 @@ If/else conditions are incredibly useful when you want a part of your code to de
 
 If you need the exact dimensions of an image all preprocessors have a way to do that instead of you.
 
-<%- @code('Image Helpers', 'image dimensions') %>
+<%- @code('Image Helpers', 'dimensions') %>
 
 
 
@@ -22,4 +22,4 @@ Encoding images to base64 and inlining them in your stylesheets reduces the numb
 
 Note that for Stylus you need to use [the url function](http://learnboost.github.io/stylus/docs/functions.url.html#data-uri-image-inlining), the positive side is that you can use any name for the function - `inline-image` is just an example.
 
-<%- @code('Image Helpers', 'image inline') %>
+<%- @code('Image Helpers', 'inline') %>

@@ -76,17 +76,22 @@ docpadConfig = {
         if snippetName isnt "description"
           vrsn = ""
           lng = ""
+          local = ""
           currentSnippet = feature[snippetName]
           columnSize = (if snippetName is "css" then columnLastWidth else columnWidth)
           snippetNameClean = snippetName.replace("-alt", "")
-          id = "id='" + arg1 + "-" + arg2 + "-" + snippetName + "'"
+          id = arg1 + "-" + arg2 + "-" + snippetName
+          sanitizedId = id.replace(" ", "-").replace /-(.)/g, (g) ->
+            g[1].toUpperCase()
+          if currentSnippet.local is true
+            local = " data-local"
           if snippetName isnt "css"
             lng = "data-csspre='" + snippetNameClean + "'" or ""
             vrsn = " data-version='" + currentSnippet.version + "'" or "" if currentSnippet.version
           sanitizedCode = currentSnippet.code.replace(/\*/g, "&#42;").replace(/\`/g, "&#96;")
           snippets.push(
             '<div class="col-' + columnSize + '">' +
-              '<pre name="' + snippetNameClean + '" ' + lng + vrsn + ' data-type="css" ' + id + '><code>' +
+              '<pre name="' + snippetNameClean + '" id="' + sanitizedId + '" ' + lng + vrsn + ' data-type="css" ' + local + '><code>' +
               sanitizedCode +
               '</code></pre>' +
             '</div>'
