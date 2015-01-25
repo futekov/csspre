@@ -1070,6 +1070,7 @@ Content Directive:
           });
         }
     scss:
+      version: 3.2.0
       code: |
         @mixin active {
           &.is-active,
@@ -1085,6 +1086,7 @@ Content Directive:
           }
         }
     sass:
+      version: 3.2.0
       code: |
         =active()
           &.is-active,
@@ -1096,6 +1098,7 @@ Content Directive:
           +active()
             baz: qux
     stylus:
+      version: 0.41.0
       code: |
         active()
           &.is-active,
@@ -1132,6 +1135,7 @@ Content Directive:
           });
         }
     scss:
+      version: 3.2.0
       code: |
         @mixin media-max($num) {
           @media only screen and (max-width: $num) {
@@ -1146,6 +1150,7 @@ Content Directive:
           }
         }
     sass:
+      version: 3.2.0
       code: |
         =media-max($num)
           @media only screen and (max-width: $num)
@@ -1156,6 +1161,7 @@ Content Directive:
           +media-max(980px)
             max-width: 100%
     stylus:
+      version: 0.41.0
       code: |
         media-max($num)
           @media only screen and (max-width: $num)
@@ -1198,6 +1204,7 @@ Content Directive:
           });
         }
     scss:
+      version: 3.2.0
       code: |
         @mixin placeholder-text {
           &::-webkit-input-placeholder {
@@ -1218,6 +1225,7 @@ Content Directive:
           }
         }
     sass:
+      version: 3.2.0
       code: |
         =placeholder-text()
           &::-webkit-input-placeholder
@@ -1234,6 +1242,7 @@ Content Directive:
             color: #acacac
             text-transform: uppercase
     stylus:
+      version: 0.41.0
       code: |
         placeholder-text()
           &::-webkit-input-placeholder
