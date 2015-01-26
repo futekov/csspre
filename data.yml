@@ -995,6 +995,63 @@ Parent Reference:
         ol + ol {
           baz: qux;
         }
+  root:
+    description: "Root directive/reference removes parent selectors for everything below it"
+    scss:
+      version: 3.3.0
+      code: |
+        .text {
+          $anim-name: bounce;
+          margin-top: 0;
+          &:hover {
+            animation: $anim-name 0.8s infinite ease-in alternate;
+          }
+          @at-root {
+            @keyframes #{$anim-name} {
+              50% {
+                margin-top: -.5em;
+              }
+            }
+          }
+        }
+    sass:
+      version: 3.3.0
+      code: |
+        .text
+          $anim-name: bounce
+          margin-top: 0
+          &:hover
+            animation: $anim-name .8s infinite ease-in alternate
+          @at-root
+            @keyframes #{$anim-name}
+              50%
+                margin-top: -.5em
+    stylus:
+      version: 0.42.0
+      code: |
+        .text
+          $anim-name = bounce
+          margin-top: 0
+          &:hover
+            animation: $anim-name .8s infinite ease-in alternate
+          /
+            vendors = official
+            @keyframes $anim-name
+              50%
+                margin-top: -.5em
+    css:
+      code: |
+        .text {
+          margin-top: 0;
+        }
+        .text:hover {
+          animation: bounce 0.8s infinite ease-in alternate;
+        }
+        @keyframes bounce {
+          50% {
+            margin-top: -0.5em;
+          }
+        }
 
 Placeholder Selectors:
   basic:

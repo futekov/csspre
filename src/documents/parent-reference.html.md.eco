@@ -36,6 +36,7 @@ This allows for BEM-like names in your CSS. You can read more about this techniq
 * [Sass BEM-Selector Support and Trailing Ampersand](http://jonsuh.com/blog/sass-bem-selector-and-trailing-ampersand/)
 
 
+
 ## Parent selector
 
 We can also have a trailing ampersand - when we put it after...
@@ -57,11 +58,14 @@ Appending selectors might work when you are appending a class, id, or attribute 
 <%- @code('Parent Reference', 'prepend') %>
 
 
+
 ## Multiple parent references
 
 Need something weirder with a repeating class in the selector for example? No problem, just use several ampersands and chain the appropriately:
 
 <%- @code('Parent Reference', 'multiple') %>
+
+
 
 ## Combinatorial explosion
 
@@ -70,3 +74,13 @@ The idea for combinatorial explosion [comes from Less](http://lesscss.org/featur
 <%- @code('Parent Reference', 'explosion') %>
 
 This technique might be useful not only for adding space between elements that are direct siblings (the `+` selector), but also for covering direct descendants (the `>` selector).
+
+
+
+## Root directive
+
+The root directive/reference will move anything below it to the root level - therefore it will not inherit the selector it's nested under.
+
+One use case inspired by the [excellent Stu Robson](http://www.alwaystwisted.com/articles/2014-03-08-using-sass-33s-at-root-for-piece-of-mind) is positioning an animation declaration only where it's used. If we also put the animation name in a variable we end up with code that is orderly and less prone to errors.
+
+<%- @code('Parent Reference', 'root') %>
