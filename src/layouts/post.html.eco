@@ -2,6 +2,9 @@
 layout: base
 ---
 
+<input type="checkbox" id="sass-syntax" />
+<label for="sass-syntax" id="sass-syntax-badge" title="Toggle between the two syntaxes of Sass">SCSS Sass</label>
+
 <div class="meta">
   <time datetime="<%= @postDatetime(@document.date) %>" itemprop="datePublished">
     <%= @postDatetime(@document.date) %>

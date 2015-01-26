@@ -68,10 +68,13 @@ docpadConfig = {
       snippets = []
       columnWidth = 6
       snippetCount = 0
+      scssCount = 0
       for prop of feature
         if prop isnt "description"
           ++snippetCount
-      columnLastWidth = (if snippetCount % 2 is 1 then 12 else columnWidth)
+        if prop.substring(0, 4) is "scss"
+          ++scssCount
+      columnLastWidth = (if (snippetCount - scssCount) % 2 is 1 then 12 else columnWidth)
       for snippetName of feature
         if snippetName isnt "description"
           vrsn = ""
@@ -90,7 +93,7 @@ docpadConfig = {
             vrsn = " data-version='" + currentSnippet.version + "'" or "" if currentSnippet.version
           sanitizedCode = currentSnippet.code.replace(/\*/g, "&#42;").replace(/\`/g, "&#96;")
           snippets.push(
-            '<div class="col-' + columnSize + '">' +
+            '<div class="col-' + columnSize + ' ' + snippetNameClean + '">' +
               '<pre name="' + snippetNameClean + '" id="' + sanitizedId + '" ' + lng + vrsn + ' data-type="css" ' + local + '><code>' +
               sanitizedCode +
               '</code></pre>' +

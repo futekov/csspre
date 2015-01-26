@@ -7,17 +7,14 @@ html
 header
   background: $purple
   text-align: center
-  margin-bottom: -64px
 
 .site
   background: #f6f7f8
   -transparent-bg(0.36)
   max-width: $site-width
-  margin: 20px auto
-  padding: 50px 3.6% 1%
+  margin: 0 auto 20px
+  padding: 6px 3.6% 1%
   position: relative
-  @media only screen and (max-width: 700px)
-    margin-top: 26px
 
 .site-title
   margin: 0
@@ -25,10 +22,12 @@ header
   font-family: 'Iceland', sans-serif
   line-height: 1.1
   color: #eee
-  @media screen and (max-width: 800px)
-    font-size: 49px
-  @media screen and (max-width: 450px)
-    font-size: 32px
+  @media screen and (max-width: 900px)
+    font-size: 52px
+  @media screen and (max-width: 660px)
+    font-size: 30px
+    text-align: left
+    text-indent: 5px
 
 .site-title a
   color: #eee
