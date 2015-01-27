@@ -504,7 +504,7 @@ Conditionals:
     description: "If statement within a declaration"
     less:
       issues:
-        - unconventional syntax
+        - unusual syntax
       code: |
         .if-condition {
           foo: bar;
@@ -542,14 +542,14 @@ Conditionals:
     description: "Ternary operator `x > 0 ? true : false`"
     scss:
       issues:
-        - unconventional syntax
+        - unusual syntax
       code: |
         .if-ternary {
           one-equals-one: if(1 == 1, true, false);
         }
     sass:
       issues:
-        - unconventional syntax
+        - unusual syntax
       code: |
         .if-ternary
           one-equals-one: if(1 == 1, true, false)

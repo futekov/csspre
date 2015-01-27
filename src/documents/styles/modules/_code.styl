@@ -39,6 +39,7 @@ pre
       display: block
       color: #fff
       background: $purple
+      background: -webkit-linear-gradient(315deg, transparent 9px, $purple 9px)
       background: linear-gradient(135deg, transparent 9px, $purple 9px)
       font-weight: 700
       padding: 7px 0
@@ -51,6 +52,7 @@ pre
     &:before
       content: attr(data-csspre)
       background: #6a6a6a
+      background: -webkit-linear-gradient(315deg, transparent 9px, @background 9px)
       background: linear-gradient(135deg, transparent 9px, @background 9px)
     &[data-version]
       &:after
