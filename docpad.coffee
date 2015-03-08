@@ -109,6 +109,9 @@ docpadConfig = {
       database.findAllLive({layout:'post'}, [date:-1,standalone:true])
 
   plugins:
+    ghpages:
+      deployRemote: "target"
+      deployBranch: "master"
     rss:
       default:
         collection: "posts"

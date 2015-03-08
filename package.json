@@ -7,11 +7,12 @@
     "npm": "1.3"
   },
   "dependencies": {
-    "docpad": "^6.69.2",
+    "docpad": "^6.73.5",
     "docpad-plugin-cleanurls": "~2.7.0",
     "docpad-plugin-coffeescript": "~2.4.0",
     "docpad-plugin-eco": "~2.1.0",
     "docpad-plugin-feedr": "~2.10.0",
+    "docpad-plugin-ghpages": "~2.4.4",
     "docpad-plugin-marked": "~2.2.1",
     "docpad-plugin-partials": "~2.9.1",
     "docpad-plugin-rss": "~2.1.4",
