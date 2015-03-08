@@ -111,7 +111,7 @@ docpadConfig = {
   plugins:
     ghpages:
       deployRemote: "target"
-      deployBranch: "master"
+      deployBranch: "gh-pages"
     rss:
       default:
         collection: "posts"
