@@ -2,7 +2,7 @@
 layout: "post"
 title: "Conditionals"
 date: 2014-09-28
-description: "Conditional statements, if/else conditions, logical operators, ternary operators, places that you can use conditionals"
+description: "Conditional statements, <code>if</code> and <code>else</code> conditions, ternary operators, places that you can use conditionals"
 ---
 
 If/else conditions are incredibly useful when you want a part of your code to depend on something else. This gives maximum flexibility to write the type of logic that meets your needs.
