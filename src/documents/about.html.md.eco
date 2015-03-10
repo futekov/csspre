@@ -7,7 +7,7 @@ description: "Read more about this site, learn why CSS Preprocessors are awesome
 
 CSS PRE is your one-stop reference for the three most popular CSS Preprocessors - <a href="http://lesscss.org/" target="_blank">Less</a>, <a href="http://sass-lang.com/" target="_blank">Sass</a>, and <a href="http://learnboost.github.io/stylus/" target="_blank">Stylus</a>.
 
-[Contribute on GitHub](<%= @feedr.feeds.githubRepo.html_url %>) to make the site better (currently we have <%= @feedr.feeds.githubRepo.watchers %> stargazers). 
+[Contribute on GitHub](<%- @site.github %>) to make the site better. 
 
 ## Syntax and Features
 
@@ -25,7 +25,4 @@ This site is closely tied to CodePen, as a result all code is written to be comp
 
 [The great people at CodePen](http://codepen.io/about/), thanks to them all code snippets can be launched in a new tab and played around with.
 
-And our contributors at GitHub:
-
-<% for user in @feedr.feeds.githubContributors: %>
-<% continue if user.is_user %>* [<%=user.login%>](<%=user.html_url%>)<% end %>
+And our [contributors](<%- @site.github %>/graphs/contributors) at GitHub.
