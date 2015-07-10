@@ -21,11 +21,15 @@ Compiling preprocessor code to CSS can be done with [GUI programs](#gui), [onlin
   </thead>
   <tbody>
     <tr>
-      <th rowspan="3">Windows, Mac, and Linux</th>
+      <th rowspan="4">Windows, Mac, and Linux</th>
       <td colspan="3"><a href="https://prepros.io/" target="_blank">Prepros (trial or $)</a></td>
     </tr>
     <tr>
       <td colspan="2"><a href="http://koala-app.com/" target="_blank">Koala (free)</a></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td colspan="2"><a href="https://netbeans.org/" target="_blank">Netbeans (free)</a></td>
       <td></td>
     </tr>
     <tr>
