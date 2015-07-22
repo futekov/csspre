@@ -33,16 +33,14 @@ for(var i = 0; i < codeSnippets.length; i++){
     , codeData = {
         title              : ""
       , description        : ""
+      , editors            : "010"
       , html               : "<style>head,head style:first-of-type{display:block;white-space:pre;font:1.2em monospace;}</style>"
       , html_pre_processor : "none"
       , css                : cssCode
       , css_pre_processor  : cssPre
       , css_starter        : "neither"
-      , css_prefix_free    : false
+      , css_prefix         : "neither"
       , js                 : ""
-      , js_pre_processor   : "none"
-      , js_modernizr       : false
-      , js_library         : ""
       , html_classes       : ""
       , css_external       : ""
       , js_external        : ""
