@@ -21,8 +21,8 @@ Compiling preprocessor code to CSS can be done with [GUI programs](#gui), [onlin
   </thead>
   <tbody>
     <tr>
-      <th rowspan="4">Windows, Mac, and Linux</th>
-      <td colspan="3"><a href="https://prepros.io/" target="_blank">Prepros (trial or $)</a></td>
+      <th rowspan="4">Windows, Mac &amp; Linux</th>
+      <td colspan="3"><a href="https://prepros.io/" target="_blank">Prepros (trial or $29)</a></td>
     </tr>
     <tr>
       <td colspan="2"><a href="http://koala-app.com/" target="_blank">Koala (free)</a></td>
@@ -34,34 +34,41 @@ Compiling preprocessor code to CSS can be done with [GUI programs](#gui), [onlin
     </tr>
     <tr>
       <td></td>
-      <td><a href="http://compass.kkbox.com/" target="_blank">Compass.app ($)</a></td>
+      <td><a href="http://compass.kkbox.com/" target="_blank">Compass.app ($10)</a></td>
       <td></td>
     </tr>
     <tr>
-      <th rowspan="3">Windows, and Mac</th>
-      <td colspan="3"><a href="http://mixture.io/" target="_blank">Mixture (free)</a></td>
-    </tr>
-    <tr>
-      <td colspan="3"><a href="http://livereload.com/" target="_blank">LiveReload (free or $)</a></td>
-    </tr>
-    <tr>
+      <th>Windows &amp; Mac</th>
       <td><a href="http://crunchapp.net/" target="_blank">Crunch (free)</a></td>
       <td><a href="http://mhs.github.io/scout-app/" target="_blank">Scout (free)</a></td>
       <td></td>
     </tr>
     <tr>
-      <th>Windows only</th>
+      <th rowspan="3">Windows</th>
+    </tr>
+    <tr>
+      <td colspan="3"><a href="http://livereload.com/" target="_blank">LiveReload (free)</a></td>
+    </tr>
+    <tr>
       <td><a href="http://winless.org/" target="_blank">WinLESS (free)</a></td>
       <td></td>
       <td></td>
     </tr>
     <tr>
-      <th rowspan="2">Mac only</th>
-      <td colspan="3"><a href="http://incident57.com/codekit/index.html" target="_blank">Codekit (trial or $)</a></td>
+      <th rowspan="4">Mac</th>
+      <td colspan="3"><a href="http://incident57.com/codekit/index.html" target="_blank">Codekit (trial or $32)</a></td>
+    </tr>
+    <tr>
+      <td colspan="3"><a href="http://livereload.com/" target="_blank">LiveReload ($10)</a></td>
     </tr>
     <tr>
       <td></td>
-      <td><a href="http://hammerformac.com/" target="_blank">Hammer (trial or $)</a></td>
+      <td><a href="http://hammerformac.com/" target="_blank">Hammer (trial or $24)</a></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td></td>
+      <td><a href="http://sassquatch.thoughtbot.com/" target="_blank">Sassquatch (trial or $10)</a></td>
       <td></td>
     </tr>
   </tbody>
