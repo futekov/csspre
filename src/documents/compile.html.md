@@ -114,7 +114,7 @@ Compiling preprocessor code to CSS can be done with [GUI programs](#gui), [onlin
     <tr>
       <td><a href="http://winless.org/online-less-compiler" target="_blank">Online Less Compiler</a></td>
       <td colspan="2"><a href="http://sasstocss.appspot.com/" target="_blank">Sass to CSS</a></td>
-      <td></td>
+      <td><a href="http://stylcompile.herokuapp.com/" target="_blank">StylCompile</a></td>
     </tr>
     <tr>
       <td><a href="http://less2css.org/" target="_blank">less2css.org</a></td>
