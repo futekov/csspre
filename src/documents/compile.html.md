@@ -109,7 +109,7 @@ Compiling preprocessor code to CSS can be done with [GUI programs](#gui), [onlin
     <tr>
       <td><a href="http://lesstester.com/" target="_blank">LessTester</a></td>
       <td colspan="2"><a href="http://sassmeister.com/" target="_blank">SassMeister</a></td>
-      <td><a href="http://learnboost.github.io/stylus/try.html" target="_blank">Try Stylus</a></td>
+      <td><a href="http://stylus-lang.com/try.html" target="_blank">Try Stylus</a></td>
     </tr>
     <tr>
       <td><a href="http://winless.org/online-less-compiler" target="_blank">Online Less Compiler</a></td>
@@ -157,7 +157,7 @@ Compiling preprocessor code to CSS can be done with [GUI programs](#gui), [onlin
 
 <h2 id="cli">Command-line preprocessor compilers</h2>
 
-All preprocessors allow for CLI compilation, see the how-to for [Less](http://lesscss.org/#command-line-with-rhino), [Sass](http://sass-lang.com/documentation/file.SASS_REFERENCE.html#using_sass), and [Stylus](http://learnboost.github.io/stylus/docs/executable.html#compiling-files-example).
+All preprocessors allow for CLI compilation, see the how-to for [Less](http://lesscss.org/#command-line-with-rhino), [Sass](http://sass-lang.com/documentation/file.SASS_REFERENCE.html#using_sass), and [Stylus](http://stylus-lang.com/docs/executable.html#compiling-files-example).
 
 <h2 id="grunt">Grunt compilation</h2>
 
