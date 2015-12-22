@@ -51,12 +51,12 @@ for(var i = 0; i < codeSnippets.length; i++){
 
   // build the buttons that will open new tabs in either CodePen.io or jsbin.com with our snippet loaded
   var formCodePen =
-    '<form action="http://codepen.io/pen/define?editors=' + codeData.editors + '" method="POST" target="_blank" name=\'' + snippetID + '\'>' +
+    '<form action="https://codepen.io/pen/define?editors=' + codeData.editors + '" method="POST" target="_blank" name=\'' + snippetID + '\'>' +
       '<input type="hidden" name="data" value=\'' + codepenData + '\'>' +
       '<input type="image" src="/images/codepen.svg" class="codepen-button" title="Edit this snippet on CodePen" onclick="ga(\'send\', \'event\', \'snippet\', \'click-cdpn\', \'' + snippetID + '\')">' +
     '</form>';
   var formJsBin =
-    '<form action="http://jsbin.com/?css,output" method="POST" target="_blank" name=\'' + snippetID + '\'>' +
+    '<form action="https://jsbin.com/?css,output" method="POST" target="_blank" name=\'' + snippetID + '\'>' +
       '<input type="hidden" name=\'' + cssPre + '\' value=\'' + jsbinData + '\'>' +
       '<input type="image" src="/images/jsbin.svg" class="jsbin-button" title="Edit this snippet on JS Bin" onclick="ga(\'send\', \'event\', \'snippet\', \'click-jsbin\', \'' + snippetID + '\')">' +
     '</form>';

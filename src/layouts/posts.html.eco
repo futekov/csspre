@@ -28,7 +28,7 @@ layout: base
     <p>Created by <a href="<%- @site.author %>">Alexander Futekov</a> and built with <a href="http://docpad.org/">DocPad</a>.</p>
     <div>Get notified:</div>
     <ul>
-      <li>Subscribe to the <a href="http://csspre.com/rss.xml">RSS feed</a></li>
+      <li>Subscribe to the <a href="https://csspre.com/rss.xml">RSS feed</a></li>
       <li><a href="https://twitter.com/csspre">Follow @csspre</a> at Twitter</li>
     </ul>
   </div>

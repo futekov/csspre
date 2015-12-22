@@ -6,12 +6,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="description" content="<%= @getPreparedDescription() %>" />
     <meta name="keywords" content="<%= @getPreparedKeywords() %>" />
-    <link rel="alternate" type="application/rss+xml" title="CSS Preprocessors" href="http://csspre.com/rss.xml" />
+    <link rel="alternate" type="application/rss+xml" title="CSS Preprocessors" href="https://csspre.com/rss.xml" />
+
+    <script type="text/javascript">
+      var host = "csspre.com";
+      if ((host == window.location.host) && (window.location.protocol != "https:"))
+        window.location.protocol = "https";
+    </script>
 
     <title><%= @getPreparedTitle() %></title>
 
     <%- @getBlock("styles").add(["/styles/styles.css"]).toHTML() %>
-    <link href='http://fonts.googleapis.com/css?family=Iceland' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Iceland' rel='stylesheet' type='text/css'>
 
     <script>
       (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
