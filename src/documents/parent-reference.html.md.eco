@@ -27,7 +27,7 @@ You can also add [class](https://developer.mozilla.org/en-US/docs/Web/CSS/Class_
 
 If you need to extend the name of a selector you can do it in the same way as above:
 
-<%- @code('Parent Reference', 'extend-name') %>
+<%- @code('Parent Reference', 'extend name') %>
 
 This allows for BEM-like names in your CSS. You can read more about this technique from these articles:
 

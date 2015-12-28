@@ -278,7 +278,7 @@ Variable Interpolation:
         h1, .h1, h2, .h2, h3, .h3 {
           font-family: "Great Custom Font", sans-serif;
         }
-  selectors-nested:
+  selectors nested:
     description: "Nest a set of selectors with parent reference below another selector"
     scss:
       code: |
@@ -607,6 +607,148 @@ Conditionals:
           foo: bar;
         }
 
+Rounding Numbers:
+  round floor ceil:
+    description: "Use of Round, Floor, and Ceil functions to convert a decimal to an integer"
+    less:
+      code: |
+        .round-number {
+          fn-round: round(1.618em);
+          fn-floor: floor(1.618em);
+          fn-ceil: ceil(1.618em);
+        }
+    scss:
+      code: |
+        .round-number {
+          fn-round: round(1.618em);
+          fn-floor: floor(1.618em);
+          fn-ceil: ceil(1.618em);
+        }
+    sass:
+      code: |
+        .round-number
+          fn-round: round(1.618em)
+          fn-floor: floor(1.618em)
+          fn-ceil: ceil(1.618em)
+    stylus:
+      code: |
+        .round-number
+          fn-round: round(1.618em)
+          fn-floor: floor(1.618em)
+          fn-ceil: ceil(1.618em)
+    css:
+      code: |
+        .round-number {
+          fn-round: 2em;
+          fn-floor: 1em;
+          fn-ceil: 2em;
+        }
+  custom precision:
+    description: "Customize the precision for a particular decimal number"
+    less:
+      code: |
+        .precision-round {
+          @number: 3.14159265359px;
+          border-radius: round(@number, 1);
+          border-radius: round(@number, 2);
+          border-radius: round(@number, 3);
+          border-radius: round(@number, 4);
+        }
+    scss:
+      issues:
+        - requires custom function
+      code: |
+        @function pow($x, $n) {
+          $ret: 1;
+
+          @if $n >= 0 {
+            @for $i from 1 through $n {
+              $ret: $ret * $x;
+            }
+          } @else {
+            @for $i from $n to 0 {
+              $ret: $ret / $x;
+            }
+          }
+          @return $ret;
+        }
+
+        @function precision-round($float, $digits) {
+          $sass-precision: 5;
+
+          @if $digits > $sass-precision {
+            @warn "Sass sets default precision to #{$sass-precision} digits, and there is no way to change that for now."
+            + "The returned number will have #{$sass-precision} digits, even if you asked for `#{$digits}`."
+            + "See github.com/sass/sass/issues/1122 for further informations.";
+          }
+
+          $pow: pow(10, $digits);
+
+          @return round($float * $pow) / $pow;
+        }
+
+        .precision-round {
+          $number: 3.14159265359px;
+          border-radius: precision-round($number, 1);
+          border-radius: precision-round($number, 2);
+          border-radius: precision-round($number, 3);
+          border-radius: precision-round($number, 4);
+        }
+    sass:
+      issues:
+        - requires custom function
+      code: |
+        @function pow($x, $n)
+          $ret: 1
+
+          @if $n >= 0
+            @for $i from 1 through $n
+              $ret: $ret * $x
+          @else
+            @for $i from $n to 0
+              $ret: $ret / $x
+
+          @return $ret
+
+        @function precision-round($float, $digits)
+          $sass-precision: 5
+
+          @if $digits > $sass-precision
+            @warn "Sass sets default precision to #{$sass-precision} digits, and there is no way to change that for now." + "The returned number will have #{$sass-precision} digits, even if you asked for `#{$digits}`." + "See github.com/sass/sass/issues/1122 for further informations."
+
+          $pow: pow(10, $digits)
+
+          @return round($float * $pow) / $pow
+
+        .precision-round
+          $number: 3.14159265359px
+          border-radius: precision-round($number, 1)
+          border-radius: precision-round($number, 2)
+          border-radius: precision-round($number, 3)
+          border-radius: precision-round($number, 4)
+    stylus:
+      code: |
+        .precision-round
+          $number = 3.14159265359px
+          border-radius: round($number, 1)
+          border-radius: round($number, 2)
+          border-radius: round($number, 3)
+          border-radius: round($number, 4)
+    css:
+      code: |
+        .precision-round {
+          border-radius: 3.1px;
+          border-radius: 3.14px;
+          border-radius: 3.142px;
+          border-radius: 3.1416px;
+        }
+  custom global precision:
+    description: "Customize the global precision for calculations resulting in decimal numbers"
+    scss:
+      code: |
+    sass:
+      code: |
+
 Random Number:
   basic:
     description: "Generate a random number with upper and lower limits"
@@ -765,7 +907,7 @@ Parent Reference:
         .selector-append:hover {
           baz: qux;
         }
-  extend-name:
+  extend name:
     description: "Extend the name of the parent selector `&--modifier-class`"
     less:
       code: |
@@ -1238,7 +1380,7 @@ Content Directive:
             max-width: 100%;
           }
         }
-  placeholder-text:
+  placeholder text:
     description: "Ability to reuse the content block in several selectors, useful for placeholder-text mixin"
     less:
       code: |

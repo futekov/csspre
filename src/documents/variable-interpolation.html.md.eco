@@ -30,6 +30,6 @@ Less needs escaping when you have both a dot (`.`) and a hyphen (`-`) in a varia
 
 If you often find yourself extending selectors with the same pseudo selectors and/or modifier classes, then you can again use a variable like in the example above, when nesting though this won't work in Less.
 
-<%- @code('Variable Interpolation', 'selectors-nested') %>
+<%- @code('Variable Interpolation', 'selectors nested') %>
 
 An alternative way of achieving this is using the [@content directive](/content-directive) which supports Less.

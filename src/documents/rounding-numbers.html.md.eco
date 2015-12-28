@@ -1,0 +1,58 @@
+---
+layout: "post"
+title: "Rounding Numbers"
+date: 2015-12-28
+description: "How to <code>round</code> decimal numbers with custom precision, set decimal places, using <code>ceil</code> and <code>floor</code> functions"
+---
+
+
+Having precise numbers is crucial when working with percentage-based grid because [browsers round numbers differently](http://cruft.io/posts/percentage-calculations-in-ie/). If you encounter sizing issues in your grid that might be due to the low number of decimal places in the output CSS.
+
+
+
+## Round, ceil, and floor functions
+
+The round/ceil/floor functions round a number (with or without units) to the closest/upper/lower integer.
+
+<%- @code('Rounding Numbers', 'round floor ceil') %>
+
+
+
+## Custom case by case precision
+
+Some preprocessors accept a second argument to the round function family to specify precision, Sass however, requires a custom function to achieve the same functionality (Sass snippet adapted from [Hugo Giraugel's](https://css-tricks.com/snippets/sass/fix-number-n-digits/)).
+
+<%- @code('Rounding Numbers', 'custom precision') %>
+
+
+
+## Global precision after math operations
+
+For non-integer numbers the different preprocessors put different number of digits after the decimal point (e.g. `0.33333` for Sass vs `0.333333333333333` for Stylus).
+Only Sass allows a custom global precision value to be set.
+
+<table class="table-content">
+  <caption>Global Precision</caption>
+  <thead>
+    <tr>
+      <th></th>
+      <th>Less</th>
+      <th>SCSS/Sass</th>
+      <th>Stylus</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>Rounding precision (decimal places)</th>
+      <td>`8` (1 / 3 = 0.33333333)</td>
+      <td>`5` (1 / 3 = 0.33333)</td>
+      <td>`15` (1 / 3 = 0.333333333333333)</td>
+    </tr>
+    <tr>
+      <th>Ability to set custom global precision</th>
+      <td>No</td>
+      <td>Yes, with the `precision` option</td>
+      <td>No</td>
+    </tr>
+  </tbody>
+</table>
