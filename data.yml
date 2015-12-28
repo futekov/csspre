@@ -1638,8 +1638,9 @@ Image Helpers:
         }
     scss:
       local: true
-      issues:
-        - requires Compass
+      addon:
+        name: "Compass"
+        url: "http://compass-style.org/"
       code: |
         .image {
           bg-size: image-width("img.png") image-height("img.png");
@@ -1648,8 +1649,9 @@ Image Helpers:
         }
     sass:
       local: true
-      issues:
-        - requires Compass
+      addon:
+        name: "Compass"
+        url: "http://compass-style.org/"
       code: |
         .image
           bg-size: image-width("img.png") image-height("img.png")
@@ -1680,16 +1682,18 @@ Image Helpers:
         }
     scss:
       local: true
-      issues:
-        - requires Compass
+      addon:
+        name: "Compass"
+        url: "http://compass-style.org/"
       code: |
         .image {
           background-image: inline-image("pixel.png");
         }
     sass:
       local: true
-      issues:
-        - requires Compass
+      addon:
+        name: "Compass"
+        url: "http://compass-style.org/"
       code: |
         .image
           background-image: inline-image("pixel.png")

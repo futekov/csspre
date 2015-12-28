@@ -54,10 +54,14 @@ docpadConfig = {
           return '<td class="not-available"><svg width="32" height="32" viewBox="0 0 32 32" role="img"><use xlink:href="#available"/></svg></td>';
         } else {
           vrsn = "";
+          addn = "";
           note = "";
           cellClass = "available";
           if (arg.version) {
             vrsn = '<span class="required-version">' + arg.version + '+</span>';
+          }
+          if (arg.addon) {
+            addn = "<a href='" + arg.addon.url + "' target='_blank' class='addon' title='This code requires an addon to work'>" + arg.addon.name + "</a>" || "";
           }
           if (arg.issues) {
             note = '<span class="note">' + arg.issues + '</span>';
@@ -65,7 +69,7 @@ docpadConfig = {
           if (arg.issues) {
             cellClass = "partial";
           }
-          return '<td class="' + cellClass + '">' + vrsn + '<svg width="32" height="32" viewBox="0 0 32 32" role="img"><use xlink:href="#unavailable"/></svg>' + note + '</td>';
+          return '<td class="' + cellClass + '">' + vrsn + '<svg width="32" height="32" viewBox="0 0 32 32" role="img"><use xlink:href="#unavailable"/></svg>' + note + addn + '</td>';
         }
       };
       featureGroup = [];
@@ -102,6 +106,7 @@ docpadConfig = {
       for (snippetName in feature) {
         if (snippetName !== "description") {
           vrsn = "";
+          addn = "";
           lng = "";
           local = "";
           currentSnippet = feature[snippetName];
@@ -119,9 +124,18 @@ docpadConfig = {
             if (currentSnippet.version) {
               vrsn = " data-version='" + currentSnippet.version + "'" || "";
             }
+            if (currentSnippet.addon) {
+              addn = "<a href='" + currentSnippet.addon.url + "' target='_blank' class='addon' title='This code requires an addon to work'>" + currentSnippet.addon.name + "</a>" || "";
+            }
           }
           sanitizedCode = currentSnippet.code.replace(/\*/g, "&#42;").replace(/\`/g, "&#96;");
-          snippets.push('<div class="col-' + columnSize + ' ' + snippetNameClean + '">' + '<pre name="' + snippetNameClean + '" id="' + sanitizedId + '" ' + lng + vrsn + ' data-type="css" ' + local + '><code>' + sanitizedCode + '</code></pre>' + '</div>');
+          snippets.push(
+            '<div class="col-' + columnSize + ' ' + snippetNameClean + '">'
+            + '<pre name="' + snippetNameClean + '" id="' + sanitizedId + '" ' + lng + vrsn + ' data-type="css" ' + local + '>'
+              + '<code>' + sanitizedCode + '</code>'
+              + addn
+            + '</pre>'
+          + '</div>');
         }
       }
       return '<div class="grid">' + snippets.join("") + '</div>';
