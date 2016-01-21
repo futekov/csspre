@@ -146,6 +146,12 @@ Compiling preprocessor code to CSS can be done with [GUI programs](#gui), [onlin
       <td></td>
       <td></td>
     </tr>
+    <tr>
+      <td><a href="http://beautifytools.com/less-compiler.php" target="_blank">BeautifyTools</a></td>
+      <td><a href="http://beautifytools.com/scss-compiler.php" target="_blank">BeautifyTools</a></td>
+      <td><a href="http://beautifytools.com/sass-compiler.php" target="_blank">BeautifyTools</a></td>
+      <td><a href="http://beautifytools.com/stylus-compiler.php" target="_blank">BeautifyTools</a></td>
+    </tr>
   </tbody>
 </table>
 
