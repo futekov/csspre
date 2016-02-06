@@ -67,12 +67,13 @@ pre
 
 .addon
   float: right
-  color: #4885b9 !important
   background-color: rgba(177, 209, 236, 0.5)
   padding: 0 10px
   margin-top: -24px
   position: relative
   line-height: 24px
+  white-space: normal
+  font-size: 0.9em
 
   &:before
     content: ""
@@ -93,6 +94,11 @@ pre
     height: 24px
     left: -8px
     top: 0
+
+  a
+    color: #4885b9
+    &:hover
+      color: darken(@color, 25%)
 
   td &
     position: absolute

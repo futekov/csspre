@@ -77,7 +77,9 @@ td
   td
     padding: 5px 8px
     @media only screen and (max-width: 800px)
-      padding: 4px 2px
+      padding: 4px 1px
+      font-size: 0.85em
+      overflow: scroll
     &:first-child
       text-align: left
     strong
@@ -112,15 +114,21 @@ td
     text-transform: uppercase
     font-family: "Consolas", monospace
 
+.table-links
+  th,
+  td
+    padding: 0
+  th
+    text-indent: 8px
   a:first-child
     display: block
-    font-size: 1.1em
     text-decoration: none
     text-align: center
-    background-color: $light-complementary-color
-    color: #000
+    background-color: rgba(123, 61, 102, 0.1)
+    margin: 0
     &:hover,
     &:focus
-      background-color: darken($light-complementary-color, 15%)
+      background-color: rgba(123, 61, 102, 0.2)
+      color: darken($purple, 20%)
     @media only screen and (max-width: 800px)
       font-size: 0.9em

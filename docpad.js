@@ -4,12 +4,28 @@ moment = require("moment");
 yaml = require("yamljs");
 DATA = yaml.load("data.yml");
 
+
+function addons(e) {
+  if (e) {
+    addonArray = [];
+    addnCount = e.length == 1 ? "an addon" : e.length + " addons";
+    for(var i in e) {
+      var name = e[i].name;
+      var url = e[i].url;
+      addonArray.push(
+        " <a href='" + url + "' target='_blank'>" + name + "</a>"
+      )
+    }
+    addn = "<div class='addon' title='This code requires " + addnCount + " to work'>" + addonArray + "</div>";
+  }
+}
+
 docpadConfig = {
   templateData: {
     site: {
       title: "CSS PREprocessors",
       description: "CSS Preprocessors - preprocessor comparisons and reference guide, play around with all code snippets, explore tools for conversion from/to CSS",
-      keywords: "css, preprocessors, preprocessor, less, sass, scss, stylus",
+      keywords: "css, preprocessors, preprocessor, less, sass, scss, stylus, postcss",
       url: "http://csspre.com",
       github: "https://github.com/futekov/csspre",
       author: "https://plus.google.com/+AlexanderFutekov"
@@ -46,7 +62,7 @@ docpadConfig = {
     tableComparison: function(title) {
       var cellIcons, currentFeature, feature, featureGroup, featureSingle, longDecription, section, setCell, tableClose, tableOpen;
       cellIcons = '<svg style="display:none"><defs><path id="available" d="M4 8 L8 4 L16 12 L24 4 L28 8 L20 16 L28 24 L24 28 L16 20 L8 28 L4 24 L12 16 z"/><path id="unavailable" d="M1 14 L5 10 L13 18 L27 4 L31 8 L13 26 z"/></defs></svg>';
-      tableOpen = '<table class="table-content"><caption>' + title + '</caption><thead><tr><th></th><th class="narrow">Less</th><th class="narrow">Sass</th><th class="narrow">Stylus</th></tr></thead><tbody>';
+      tableOpen = '<table class="table-content"><caption>' + title + '</caption><thead><tr><th></th><th class="narrow">Less</th><th class="narrow">Sass</th><th class="narrow">Stylus</th><th class="narrow">PostCSS</th></tr></thead><tbody>';
       tableClose = '</tbody></table>';
       setCell = function(arg) {
         var cellClass, note, vrsn;
@@ -60,9 +76,7 @@ docpadConfig = {
           if (arg.version) {
             vrsn = '<span class="required-version">' + arg.version + '+</span>';
           }
-          if (arg.addon) {
-            addn = "<a href='" + arg.addon.url + "' target='_blank' class='addon' title='This code requires an addon to work'>" + arg.addon.name + "</a>" || "";
-          }
+          addons(arg.addons);
           if (arg.issues) {
             note = '<span class="note">' + arg.issues + '</span>';
           }
@@ -81,9 +95,9 @@ docpadConfig = {
           if (currentFeature.description) {
             longDecription = "<p>" + currentFeature.description + "</p>";
           }
-          featureSingle.push("<tr><td><strong>" + feature + "</strong>" + longDecription + "</td>" + setCell(currentFeature.less) + setCell(currentFeature.scss) + setCell(currentFeature.stylus) + "</tr>");
+          featureSingle.push("<tr><td><strong>" + feature + "</strong>" + longDecription + "</td>" + setCell(currentFeature.less) + setCell(currentFeature.scss) + setCell(currentFeature.stylus) + setCell(currentFeature.postcss) + "</tr>");
         }
-        featureGroup.push('<tr><th colspan="4">' + section + '</th></tr>' + featureSingle.join(""));
+        featureGroup.push('<tr><th colspan="5">' + section + '</th></tr>' + featureSingle.join(""));
       }
       return cellIcons + tableOpen + featureGroup.join("") + tableClose;
     },
@@ -112,7 +126,7 @@ docpadConfig = {
           currentSnippet = feature[snippetName];
           columnSize = (snippetName === "css" ? columnLastWidth : columnWidth);
           snippetNameClean = snippetName.replace("-alt", "");
-          id = arg1 + "-" + arg2 + "-" + snippetName;
+          id = arg1 + "-" + arg2.replace(" ", "-") + "-" + snippetName;
           sanitizedId = id.replace(" ", "-").replace(/-(.)/g, function(g) {
             return g[1].toUpperCase();
           });
@@ -124,9 +138,7 @@ docpadConfig = {
             if (currentSnippet.version) {
               vrsn = " data-version='" + currentSnippet.version + "'" || "";
             }
-            if (currentSnippet.addon) {
-              addn = "<a href='" + currentSnippet.addon.url + "' target='_blank' class='addon' title='This code requires an addon to work'>" + currentSnippet.addon.name + "</a>" || "";
-            }
+            addons(currentSnippet.addons);
           }
           sanitizedCode = currentSnippet.code.replace(/\*/g, "&#42;").replace(/\`/g, "&#96;");
           snippets.push(

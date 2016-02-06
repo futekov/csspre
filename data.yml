@@ -7,7 +7,7 @@ Variables:
         @font: Arial, Helvetica, sans-serif;
         @prim-color: #1bc2ff;
 
-        .foo {
+        body {
           color: @prim-color;
           font: 400 @text-size @font;
         }
@@ -17,7 +17,7 @@ Variables:
         $font: Arial, Helvetica, sans-serif;
         $prim-color: #1bc2ff;
 
-        .foo {
+        body {
           color: $prim-color;
           font: 400 $text-size $font;
         }
@@ -27,7 +27,7 @@ Variables:
         $font: Arial, Helvetica, sans-serif
         $prim-color: #1bc2ff
 
-        .foo
+        body
           color: $prim-color
           font: 400 $text-size $font
     stylus:
@@ -36,12 +36,25 @@ Variables:
         $font = Arial, Helvetica, sans-serif
         $prim-color = #1bc2ff
 
-        .foo
+        body
           color: $prim-color
           font: 400 $text-size $font
+    postcss:
+      addons:
+        - name: simple-vars
+          url: https://github.com/postcss/postcss-simple-vars
+      code: |
+        $text-size: 10px;
+        $font: Arial, Helvetica, sans-serif;
+        $prim-color: #1bc2ff;
+
+        body {
+          color: $prim-color;
+          font: 400 $text-size $font;
+        }
     css:
       code: |
-        .foo {
+        body {
           color: #1bc2ff;
           font: 400 10px Arial, Helvetica, sans-serif;
         }
@@ -54,7 +67,7 @@ Variables:
         $var2: bar;
         $var2: default-text !default;
 
-        .test {
+        .default-variables {
           foo: $var1 $var2;
         }
     sass:
@@ -64,7 +77,7 @@ Variables:
         $var2: bar
         $var2: default-text !default
 
-        .test
+        .default-variables
           foo: $var1 $var2
     stylus:
       code: |
@@ -74,98 +87,125 @@ Variables:
         $var2 ?= default-text
 
 
-        .test
+        .default-variables
           foo: $var1 $var2
     css:
       code: |
-        .test {
+        .default-variables {
           foo: lorem bar;
         }
   lazy:
     description: "Variable Hoisting, variables can be declared after being used"
     less:
       code: |
-        .test {
+        .vars-at-bottom-work {
           foo: @var;
         }
 
         @var: bar;
     css:
       code: |
-        .test {
+        .vars-at-bottom-work {
           foo: bar;
         }
   lookup:
     description: "Use the value of a previously declared property elsewhere"
     stylus:
       code: |
-        .test
-          foo: 200
-          bar: (@foo/2)
-          .child
-            baz: @foo
+        .property-lookup
+          height: 200
+          margin-top: (@height/2)
+    postcss:
+      local: true
+      addons:
+        - name: property-lookup
+          url: https://github.com/simonsmith/postcss-property-lookup
+        - name: mathjs
+          url: https://github.com/dtrussia/postcss-mathjs
+      code: |
+        .property-lookup {
+          height: 200;
+          margin-top: resolve(@height / 2);
+        }
     css:
       code: |
-        .test {
-          foo: 200;
-          bar: 100;
-        }
-        .test .child {
-          baz: 200;
+        .property-lookup {
+          height: 200;
+          margin-top: 100;
         }
   scoped:
     description: "Restrict the scope of variables"
     less:
       code: |
-        .test {
+        @var: 100;
+        .has-local-var {
           @var: 200;
           foo: @var;
-          bar: @var/2;
-          .child {
-            baz: @var;
-          }
+          bar: @var;
+        }
+        .takes-global-var {
+          foo: @var;
         }
     scss:
       code: |
-        .test {
+        $var: 100;
+        .has-local-var {
           $var: 200;
           foo: $var;
-          bar: $var / 2;
-          .child {
-            baz: $var;
-          }
+          bar: $var;
+        }
+        .takes-global-var {
+          foo: $var;
         }
     sass:
       code: |
-        .test
+        $var: 100
+        .has-local-var
           $var: 200
           foo: $var
-          bar: $var/2
-          .child
-            baz: $var
+          bar: $var
+        .takes-global-var
+          foo: $var
     stylus:
       code: |
-        .test
+        $var = 100
+        .has-local-var
           $var = 200
           foo: $var
-          bar: ($var/2)
-          .child
-            baz: $var
+          bar: $var
+        .takes-global-var
+          foo: $var
     stylus-alt:
       code: |
-        .test
+        $var = 100
+        .has-local-var
           foo: $var = 200
-          bar: ($var/2)
-          .child
-            baz: $var
+          bar: $var
+        .takes-global-var
+          foo: $var
+    postcss:
+      local: true
+      addons:
+        - name: nested-vars
+          url: https://github.com/jedmao/postcss-nested-vars
+      code: |
+        $var: 100;
+        .has-local-var {
+          $var: 200;
+          foo: $var;
+          bar: $var;
+        }
+        .takes-global-var {
+          foo: $var;
+        }
     css:
       code: |
-        .test {
+        .has-local-var {
           foo: 200;
-          bar: 100;
+          bar: 200;
         }
-        .test .child {
-          baz: 200;
+        .takes-global-var {
+          baz: 100;
         }
 
 Variable Interpolation:
@@ -205,6 +245,18 @@ Variable Interpolation:
           {$var}: #7b3d66
           background-{$var}: #7b3d66
           content: $var
+    postcss:
+      addons:
+        - name: simple-vars
+          url: https://github.com/postcss/postcss-simple-vars
+      code: |
+        $var: color;
+
+        .class-$var {
+          $(var): #7b3d66;
+          background-$(var): #7b3d66;
+          content: $var;
+        }
     css:
       code: |
         .class-color {
@@ -240,6 +292,16 @@ Variable Interpolation:
 
         div
           height: "calc(7em + %s)" % $var
+    postcss:
+      addons:
+        - name: simple-vars
+          url: https://github.com/postcss/postcss-simple-vars
+      code: |
+        $var: 5px;
+
+        div {
+          height: calc(7em + $var);
+        }
     css:
       code: |
         div {
@@ -273,6 +335,16 @@ Variable Interpolation:
 
         {$headings}
           font-family: "Great Custom Font", sans-serif
+    postcss:
+      addons:
+        - name: simple-vars
+          url: https://github.com/postcss/postcss-simple-vars
+      code: |
+        $headings: h1, .h1, h2, .h2, h3, .h3;
+
+        $headings {
+          font-family: "Great Custom Font", sans-serif;
+        }
     css:
       code: |
         h1, .h1, h2, .h2, h3, .h3 {
@@ -321,40 +393,54 @@ Mixins:
     description: "Support inclusion of mixins"
     less:
       code: |
-        .mixin() {
+        .simple-mixin() {
           foo: bar;
         }
 
         .include-mixin {
-          .mixin;
+          .simple-mixin;
           baz: qux;
         }
     scss:
       code: |
-        @mixin mixin {
+        @mixin simple-mixin {
           foo: bar;
         }
 
         .include-mixin {
-          @include mixin;
+          @include simple-mixin;
           baz: qux;
         }
     sass:
       code: |
-        =mixin
+        =simple-mixin
           foo: bar
 
         .include-mixin 
-          +mixin
+          +simple-mixin
           baz: qux
     stylus:
       code: |
-        mixin()
+        simple-mixin()
           foo: bar
 
         .include-mixin 
-          mixin()
+          simple-mixin()
           baz: qux
+    postcss:
+      local: true
+      addons:
+        - name: mixins
+          url: https://github.com/postcss/postcss-mixins
+      code: |
+        @define-mixin simple-mixin {
+          foo: bar;
+        }
+
+        .include-mixin {
+          @mixin simple-mixin;
+          baz: qux;
+        }
     css:
       code: |
         .include-mixin {
@@ -391,6 +477,20 @@ Mixins:
         .mixins-params
           +bordered(#cbf40d)
           +bordered(#d04fbc, 3px)
+    postcss:
+      local: true
+      addons:
+        - name: mixins
+          url: https://github.com/postcss/postcss-mixins
+      code: |
+        @define-mixin bordered $color, $thickness: 1px {
+          border: $(thickness) solid $(color);
+        }
+
+        .mixins-params {
+          @mixin bordered #cbf40d;
+          @mixin bordered #d04fbc, 3px;
+        }
     stylus:
       code: |
         bordered($color, $thickness = 1px)
@@ -491,6 +591,21 @@ Mixins:
 
         .mixins-arguments
           transition(opacity 200ms)
+    postcss:
+      local: true
+      addons:
+        - name: mixins
+          url: https://github.com/postcss/postcss-mixins
+      code: |
+        @define-mixin transition $args {
+          -webkit-transition: $args;
+          -moz-transition: $args;
+          transition: $args;
+        }
+
+        .mixins-arguments {
+          @mixin transition opacity 200ms;
+        }
     css:
       code: |
         .mixins-arguments {
@@ -532,6 +647,17 @@ Conditionals:
           foo: bar
           if 1 == 1
             baz: qux
+    postcss:
+      addons:
+        - name: conditionals
+          url: https://github.com/andyjansson/postcss-conditionals
+      code: |
+        .if-condition {
+          foo: bar;
+          @if 1 == 1 {
+            baz: qux;
+          }
+        }
     css:
       code: |
         .if-condition {
@@ -636,6 +762,17 @@ Rounding Numbers:
           fn-round: round(1.618em)
           fn-floor: floor(1.618em)
           fn-ceil: ceil(1.618em)
+    postcss:
+      local: true
+      addons:
+        - name: mathjs
+          url: https://github.com/dtrussia/postcss-mathjs
+      code: |
+        .round-number {
+          fn-round: resolve(round(1.618))em;
+          fn-floor: resolve(floor(1.618))em;
+          fn-ceil: resolve(ceil(1.618))em;
+        }
     css:
       code: |
         .round-number {
@@ -734,6 +871,21 @@ Rounding Numbers:
           border-radius: round($number, 2)
           border-radius: round($number, 3)
           border-radius: round($number, 4)
+    postcss:
+      local: true
+      addons:
+        - name: mathjs
+          url: https://github.com/dtrussia/postcss-mathjs
+        - name: simple-vars
+          url: https://github.com/postcss/postcss-simple-vars
+      code: |
+        .precision-round {
+          $number: 3.14159265359;
+          border-radius: resolve(round($number, 1))px;
+          border-radius: resolve(round($number, 2))px;
+          border-radius: resolve(round($number, 3))px;
+          border-radius: resolve(round($number, 4))px;
+        }
     css:
       code: |
         .precision-round {
@@ -784,6 +936,15 @@ Random Number:
 
         .random-integer
           foo: random(1, 100)
+    postcss:
+      local: true
+      addons:
+        - name: mathjs
+          url: https://github.com/dtrussia/postcss-mathjs
+      code: |
+        .random-integer {
+          foo: resolve(floor(random() * 100 + 1));
+        }
     css:
       code: |
         .random-integer {
@@ -823,6 +984,15 @@ Random Number:
 
         .random-number-cache-invalidation
           background-image: src("x.jpg?v=" + random(1000, 9999))
+    postcss:
+      local: true
+      addons:
+        - name: mathjs
+          url: https://github.com/dtrussia/postcss-mathjs
+      code: |
+        .random-number-cache-invalidation {
+          background-image: src(x.jpg?v=resolve(floor(random() * 9999 + 1000)));
+        }
     css:
       code: |
         .random-number-cache-invalidation {
@@ -859,9 +1029,15 @@ Random Number:
       code: |
         random(min, max)
           return floor( math(0, "random") * max + min )
-
-        .random-number-color
-          color: hsl(random(0, 360), 50%, 50%)
+    postcss:
+      local: true
+      addons:
+        - name: mathjs
+          url: https://github.com/dtrussia/postcss-mathjs
+      code: |
+        .random-number-color {
+          color: hsl(resolve(floor(random() * 360 + 0)), 50%, 50%);
+        }
     css:
       code: |
         .random-number-color {
@@ -899,6 +1075,17 @@ Parent Reference:
           foo: bar
           &:hover
             baz: qux
+    postcss:
+      addons:
+        - name: nested
+          url: https://github.com/postcss/postcss-nested
+      code: |
+        .selector-append {
+          foo: bar;
+          &:hover {
+            baz: qux;
+          }
+        }
     css:
       code: |
         .selector-append {
@@ -945,6 +1132,19 @@ Parent Reference:
             foo: bar
           &two
             baz: qux
+    postcss:
+      addons:
+        - name: nested
+          url: https://github.com/postcss/postcss-nested
+      code: |
+        .extend-name {
+          &-one {
+            foo: bar;
+          }
+          &two {
+            baz: qux;
+          }
+        }
     css:
       code: |
         .extend-name-one {
@@ -983,6 +1183,17 @@ Parent Reference:
           foo: bar
           .ie7 &
             baz: qux
+    postcss:
+      addons:
+        - name: nested
+          url: https://github.com/postcss/postcss-nested
+      code: |
+        .parent-selector {
+          foo: bar;
+          .ie7 & {
+            baz: qux;
+          }
+        }
     css:
       code: |
         .parent-selector {
@@ -1027,6 +1238,17 @@ Parent Reference:
           foo: bar
           ol&
             baz: qux
+    postcss:
+      addons:
+        - name: nested
+          url: https://github.com/postcss/postcss-nested
+      code: |
+        .selector-prepend {
+          foo: bar;
+          ol& {
+            baz: qux
+          }
+        }
     css:
       code: |
         .selector-prepend {
@@ -1065,6 +1287,17 @@ Parent Reference:
           foo: bar
           & + &
             baz: qux
+    postcss:
+      addons:
+        - name: nested
+          url: https://github.com/postcss/postcss-nested
+      code: |
+        .multi-reference {
+          foo: bar;
+          & + & {
+            baz: qux;
+          }
+        }
     css:
       code: |
         .multi-reference {
@@ -1181,6 +1414,28 @@ Parent Reference:
             @keyframes $anim-name
               50%
                 margin-top: -.5em
+    postcss:
+      local: true
+      addons:
+        - name: simple-vars
+          url: https://github.com/postcss/postcss-simple-vars
+        - name: atroot
+          url: https://github.com/OEvgeny/postcss-atroot
+      code: |
+        .text {
+          $anim-name: bounce;
+          margin-top: 0;
+          &:hover {
+            animation: $anim-name 0.8s infinite ease-in alternate;
+          }
+          @at-root {
+            @keyframes $anim-name {
+              50% {
+                margin-top: -.5em;
+              }
+            }
+          }
+        }
     css:
       code: |
         .text {
@@ -1244,6 +1499,23 @@ Placeholder Selectors:
 
         .include-placeholder-1
           @extend $placeholder-1
+    postcss:
+      local: true
+      addons:
+        - name: extend
+          url: https://github.com/travco/postcss-extend
+      code: |
+        %placeholder-1 {
+          foo: bar;
+        }
+
+        %placeholder-2 {
+          baz: qux;
+        }
+
+        .include-placeholder-1 {
+          @extend %placeholder-1;
+        }
     css:
       code: |
         .include-placeholder-1 {
@@ -1308,6 +1580,27 @@ Content Directive:
           foo: bar
           +active()
             baz: qux
+    postcss:
+      local: true
+      addons:
+        - name: mixins
+          url: https://github.com/postcss/postcss-mixins
+        - name: nested
+          url: https://github.com/postcss/postcss-nested
+      code: |
+        @define-mixin active {
+          &.is-active,
+          &:hover {
+            @mixin-content;
+          }
+        }
+
+        .content-directive {
+          foo: bar;
+          @mixin active {
+            baz: qux;
+          }
+        }
     css:
       code: |
         .content-directive {
@@ -1370,6 +1663,23 @@ Content Directive:
           width: 400px
           +media-max(980px)
             max-width: 100%
+    postcss:
+      local: true
+      addons:
+        - name: mixins
+          url: https://github.com/postcss/postcss-mixins
+      code: |
+        @define-mixin media-max $num {
+          @media only screen and (max-width: $num) {
+            @mixin-content;
+          }
+        }
+        .media-test {
+          width: 400px;
+          @mixin media-max 980px {
+            max-width: 100%;
+          }
+        }
     css:
       code: |
         .media-test {
@@ -1457,6 +1767,30 @@ Content Directive:
           +placeholder-text()
             color: #acacac
             text-transform: uppercase
+    postcss:
+      local: true
+      addons:
+        - name: mixins
+          url: https://github.com/postcss/postcss-mixins
+      code: |
+        @define-mixin placeholder-text {
+          &::-webkit-input-placeholder {
+            @mixin-content;
+          }
+          &::-moz-placeholder {
+            @mixin-content;
+          }
+          &:-ms-input-placeholder {
+            @mixin-content;
+          }
+        }
+
+        .text-input {
+          @mixin placeholder-text {
+            color: #acacac;
+            text-transform: uppercase;
+          }
+        }
     css:
       code: |
         .text-input::-webkit-input-placeholder {
@@ -1479,12 +1813,9 @@ Loops:
       issues:
         - need to call the function
       code: |
-        @column-name: col;
-        @column-count: 4;
-
-        .generate-column(@i: 1) when (@i =< @column-count) {
-          .@{column-name}-@{i} {
-            width: @i * (100% / @column-count);
+        .generate-column(@i: 1) when (@i =< 4) {
+          .col-@{i} {
+            width: @i * (100% / 4);
           }
           .generate-column(@i + 1);
         }
@@ -1494,42 +1825,43 @@ Loops:
       issues:
         - looks very hacky
       code: |
-        @column-name: col;
-        @column-count: 4;
-
-        .@{column-name} {
-          .-(@i: 1) when (@i =< @column-count) {
+        .col {
+          .-(@i: 1) when (@i =< 4) {
             &-@{i} {
-              width: @i * (100% / @column-count);
+              width: @i * (100% / 4);
             }.-(@i + 1);
           }.-;
         }
     scss:
       code: |
-        $column-name: col;
-        $column-count: 4;
-
-        @for $i from 1 through $column-count {
-          .#{$column-name}-#{$i} {
-            width: $i * (100% / $column-count);
+        @for $i from 1 through 4 {
+          .col-#{$i} {
+            width: $i * (100% / 4);
           }
         }
     sass:
       code: |
-        $column-name: col
-        $column-count: 4
-
-        @for $i from 1 through $column-count
-          .#{$column-name}-#{$i}
-            width: $i * (100% / $column-count)
+        @for $i from 1 through 4
+          .col-#{$i}
+            width: $i * (100% / 4)
     stylus:
       code: |
-        $column-name = col
-        $column-count = 4
-
-        for $i in 1..$column-count
-          .{$column-name}-{$i}
-            width: $i * (100% / $column-count)
+        for $i in 1..4
+          .col-{$i}
+            width: $i * (100% / 4)
+    postcss:
+      local: true
+      addons:
+        - name: for
+          url: https://github.com/antyakushev/postcss-for
+        - name: mathjs
+          url: https://github.com/dtrussia/postcss-mathjs
+      code: |
+        @for $i from 1 to 4 {
+          .col-$(i) {
+            width: resolve($(i) * resolve(100 / 4))%;
+          }
+        }
     css:
       code: |
         .col-1 {
@@ -1550,78 +1882,78 @@ Loops:
       issues:
         - need to call the function
       code: |
-        @colors: foo, bar, baz;
+        @colors: #012345, #6789ab, #abcdef;
 
-        .color-mixin(@i: 1) when (@i =< length(@colors)) {
-          &.color-@{i} {
-            background: extract(@colors, @i);
+        .color-mixin(@colors; @n) when (@n > 0) {
+          .color-mixin(@colors; (@n - 1));
+          @i: @n - 1;
+          .color-@{i} {
+            background-color: extract(@colors, @n);
           }
-          .color-mixin(@i + 1);
-        };
-        .color-mixin();
-    less-alt:
-      code: |
-        @colors: foo, bar, baz;
-
-        .color {
-          .-(@i: 1) when (@i =< length(@colors)) {
-            &-@{i} {
-              background: extract(@colors, @i);
-            }
-            .-((@i + 1));
-          } .-;
         }
+        .color-mixin(@colors; length(@colors));
     scss:
       code: |
-        $colors: foo, bar, baz;
+        $colors: #012345, #6789ab, #abcdef;
 
         @for $i from 1 through length($colors) {
-          .color-#{$i} {
+          .color-#{$i - 1} {
             background: #{nth($colors, $i)};
           }
         }
     scss-alt:
       code: |
-        $colors: foo, bar, baz;
+        $colors: #012345, #6789ab, #abcdef;
 
         @each $color in $colors {
           $i: index($colors, $color);
-          .color-#{$i} {
+          .color-#{$i - 1} {
             background: $color;
           }
         }
     sass:
       code: |
-        $colors: foo, bar, baz
+        $colors: #012345, #6789ab, #abcdef
 
         @for $i from 1 through length($colors)
-          .color-#{$i}
+          .color-#{$i - 1}
             background: #{nth($colors, $i)}
     sass-alt:
       code: |
-        $colors: foo, bar, baz
+        $colors: #012345, #6789ab, #abcdef
 
         @each $color in $colors
           $i: index($colors, $color)
-          .color-#{$i}
+          .color-#{$i - 1}
             background: $color
     stylus:
       code: |
-        $colors = foo, bar, baz
+        $colors = #012345, #6789ab, #abcdef
 
         for $color, $i in $colors
-          .color-{$i + 1}
+          .color-{$i}
             background: $color
+    postcss:
+      addons:
+        - name: each
+          url: https://github.com/outpunk/postcss-each
+      code: |
+        $colors = #012345, #6789ab, #abcdef;
+        @each $color, $i in ($colors) {
+          .color-$(i) {
+            background: $(color);
+          }
+        }
     css:
       code: |
+        .color-0 {
+          background: #012345;
+        }
         .color-1 {
-          background: foo;
+          background: #6789ab;
         }
         .color-2 {
-          background: bar;
-        }
-        .color-3 {
-          background: baz;
+          background: #abcdef;
         }
 
 Image Helpers:
@@ -1638,9 +1970,9 @@ Image Helpers:
         }
     scss:
       local: true
-      addon:
-        name: "Compass"
-        url: "http://compass-style.org/"
+      addons:
+        - name: compass
+          url: http://compass-style.org/
       code: |
         .image {
           bg-size: image-width("img.png") image-height("img.png");
@@ -1649,9 +1981,9 @@ Image Helpers:
         }
     sass:
       local: true
-      addon:
-        name: "Compass"
-        url: "http://compass-style.org/"
+      addons:
+        - name: compass
+          url: http://compass-style.org/
       code: |
         .image
           bg-size: image-width("img.png") image-height("img.png")
@@ -1664,6 +1996,17 @@ Image Helpers:
           bg-size: image-size("img.png")
           bg-width: image-size("img.png")[0]
           bg-height: image-size("img.png")[1]
+    postcss:
+      local: true
+      addons:
+        - name: assets
+          url: https://github.com/assetsjs/postcss-assets
+      code: |
+        .image {
+          width: width("img.png");
+          height: height("img.png");
+          background-size: size("img.png");
+        }
     css:
       code: |
         .image {
@@ -1682,18 +2025,18 @@ Image Helpers:
         }
     scss:
       local: true
-      addon:
-        name: "Compass"
-        url: "http://compass-style.org/"
+      addons:
+        - name: compass
+          url: http://compass-style.org/
       code: |
         .image {
           background-image: inline-image("pixel.png");
         }
     sass:
       local: true
-      addon:
-        name: "Compass"
-        url: "http://compass-style.org/"
+      addons:
+        - name: compass
+          url: http://compass-style.org/
       code: |
         .image
           background-image: inline-image("pixel.png")
@@ -1704,6 +2047,15 @@ Image Helpers:
       code: |
         .image
           background-image: inline-image("pixel.png")
+    postcss:
+      local: true
+      addons:
+        - name: assets
+          url: https://github.com/assetsjs/postcss-assets
+      code: |
+        .image {
+          background-image: inline("pixel.png");
+        }
     css:
       code: |
         .image {
@@ -1719,6 +2071,8 @@ Sourcemaps:
       version: 3.3.0
     sass:
       version: 3.3.0
+    postcss:
+      code: |
     stylus:
       version: 0.48.0
 
