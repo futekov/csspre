@@ -27,6 +27,7 @@ You can use the @content directive to simplify your responsive styles:
 ## Placeholder pseudo element
 
 Another very useful case where the @content directive can help is when defining styles for placeholder text - you can put a @content directive in each vendor-specific selector (can also be used for keyframes which are still prefixed).
+An alternative to the code snippets below would be to just use [Autoprefixer](https://github.com/postcss/autoprefixer).
 
 <%- @code('Content Directive', 'placeholder text') %>
 
