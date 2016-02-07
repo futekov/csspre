@@ -64,10 +64,26 @@ for(var i = 0; i < codeSnippets.length; i++){
       , css_external       : ""
       , js_external        : ""
       }
+    , jsFiddleData = {
+        panel_html         :  "0"
+      , html               :  "<style>head {display:block} head style:first-of-type{display:block;white-space:pre;font:1.2emmonospace}</style>"
+      , panel_js           :  "0"
+      , js                 :  ""
+      , panel_css          :  "1"
+      , css                :  cssCode
+      , title              :  ""
+      , description        :  ""
+      , resources          :  ""
+      , dtd                :  "html 5"
+      , wrap               :  "l"
+      }
     , codepenSanitizedData = JSON.stringify(codePenData).replace(/"/g, "&quot;").replace(/'/g, "&apos;")
     , jsbinSanitizedData = cssCode.replace(/%/g, "%25")
     ;
-
+  var jsFiddleSanitizedData = "";
+  for (var item in jsFiddleData) {
+    jsFiddleSanitizedData += "  <input type='hidden' name='" + item + "' value='" + jsFiddleData[item] + "'> \n";
+  }
   // build the buttons that will open new tabs in either CodePen.io or jsbin.com with our snippet loaded
   var formCodePen =
     '<form action="https://codepen.io/pen/define?editors=' + codePenData.editors + '" method="POST" target="_blank" name=\'' + snippetID + '\'>' +
@@ -79,8 +95,14 @@ for(var i = 0; i < codeSnippets.length; i++){
       '<input type="hidden" name=\'' + cssPre + '\' value=\'' + jsbinSanitizedData + '\'>' +
       '<input type="image" src="/images/jsbin.svg" class="jsbin-button" title="Edit this snippet on JS Bin" onclick="ga(\'send\', \'event\', \'snippet\', \'click-jsbin\', \'' + snippetID + '\')">' +
     '</form>';
+  var formJsFiddle =
+    '<form method="post" action="http://jsfiddle.net/api/post/library/pure/" target="check">' +
+      '<input type="image" src="/images/jsfiddle.svg" class="jsfiddle-button" title="Edit this snippet on JSFiddle" onclick="ga(\'send\', \'event\', \'snippet\', \'click-jsfiddle\', \'' + snippetID + '\')">' +
+      jsFiddleSanitizedData +
+    '</form>';
+
   // append the forms
-  el.innerHTML = el.innerHTML + (cssPre == "postcss" ? "" : formJsBin) + formCodePen;
+  el.innerHTML = el.innerHTML + (cssPre == "postcss" ? "" : formJsBin) + (cssPre == "scss" ? formJsFiddle : "") + formCodePen;
 };
 
 window.addEventListener("mouseup", getContainerElement);
