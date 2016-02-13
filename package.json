@@ -17,7 +17,7 @@
     "docpad-plugin-sitemap": "~2.2.0",
     "docpad-plugin-stylus": "~2.11.0",
     "moment": "^2.11.2",
-    "safeps": "^6.0.2",
+    "safeps": "^2.2.13",
     "yamljs": "^0.2.4"
   }
 }
