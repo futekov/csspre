@@ -3,7 +3,7 @@ var moment, yaml, DATA, docpadConfig;
 moment = require("moment");
 yaml = require("yamljs");
 DATA = yaml.load("data.yml");
-
+fs = require("fs");
 
 function addons(e) {
   if (e) {
@@ -20,6 +20,10 @@ function addons(e) {
   }
 }
 
+(function() {
+  fs.readFile("./out/styles/styles.css", "utf8", function (err, data) {GLOBAL.cssContent = data;});
+})();
+
 docpadConfig = {
   templateData: {
     site: {
@@ -29,6 +33,9 @@ docpadConfig = {
       url: "http://csspre.com",
       github: "https://github.com/futekov/csspre",
       author: "https://plus.google.com/+AlexanderFutekov"
+    },
+    cssX: function() {
+      return GLOBAL.cssContent;
     },
     getPreparedTitle: function() {
       if (this.document.title) {
@@ -169,8 +176,9 @@ docpadConfig = {
       return database.findAllLive({
         layout: 'post'
       }, {
-          date: -1,
-          standalone: true
+        date: -1,
+        title: -1,
+        standalone: true
       });
     }
   },
