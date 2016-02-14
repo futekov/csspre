@@ -9,7 +9,7 @@ Commenting your CSS is important, it is even more important for preprocessors, w
 
 It is therefore important to know well the types of comments that are allowed in the different preprocessors.
 
-Additionally, if you decide to use a living style guide you can build one with comments in your preprocessor files. Some good tools to achieve this are [Kalei Style Guide](http://kaleistyleguide.com/), [StyleDocco](http://jacobrask.github.io/styledocco/), and [Knyle Style Sheets](http://hughsk.io/kss-node/).
+Additionally, if you decide to use a living style guide you can build one with comments in your preprocessor files. Some good tools to achieve this are [Kalei Style Guide](http://kaleistyleguide.com/), [StyleDocco](http://jacobrask.github.io/styledocco/), and [Knyle Style Sheets](https://github.com/kss-node/kss-node).
 
 
 
