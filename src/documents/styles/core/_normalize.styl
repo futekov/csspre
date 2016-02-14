@@ -84,8 +84,6 @@ button,
 input,
 select,
 textarea
-  -webkit-box-sizing: border-box
-  -moz-box-sizing:    border-box
   box-sizing:         border-box
   font-size: 100%
   margin: 0
@@ -110,63 +108,3 @@ button::-moz-focus-inner,
 input::-moz-focus-inner
   border: 0
   padding: 0
-
-
-@media print
-  *
-    background: transparent !important
-    color: #000 !important
-    box-shadow: none !important
-    text-shadow: none !important
-
-  a,
-  a:visited
-    text-decoration: underline
-
-  a[href]:after
-    content: " (" attr(href) ")"
-
-  abbr[title]:after
-    content: " (" attr(title) ")"
-
-  pre,
-  blockquote
-    border: 1px solid #999
-    page-break-inside: avoid
-
-  thead
-    display: table-header-group
-
-  tr,
-  img
-    page-break-inside: avoid
-
-  img
-    max-width: 100% !important
-    -ms-interpolation-mode: bicubic
-    border: 0
-
-  @page
-    margin: 0.5cm
-
-  p,
-  h2,
-  h3
-    orphans: 3
-    widows: 3
-
-  h2,
-  h3
-    page-break-after: avoid
-  
-
-/* Does the same thing as <meta name="viewport" content="width=device-width">,
- * but in the future W3C standard way. -ms- prefix is required for IE10+ to
- * render responsive styling in Windows 8 "snapped" views IE10+ does not honor
- * the meta tag. See http://core.trac.wordpress.org/ticket/25888.
- */
-@-ms-viewport
-  width: device-width
-
-@viewport
-  width: device-width
