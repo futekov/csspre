@@ -1,15 +1,15 @@
 html
   font-size: 1em
   line-height: 1.4
+  -webkit-text-size-adjust: 100%
+  -ms-text-size-adjust: 100%
 
 body
   margin: 0
 
 body,
 button,
-input,
-select,
-textarea
+input
   color: #111
   font-family: sans-serif
   font-size: 16px
@@ -34,25 +34,17 @@ textarea
   0%
     background-color: rgba(251, 255, 42, 0.6)
   100%
-    background-color: rgba(0,0,0,0)
+    background-color: rgba(0, 0, 0, 0)
 @keyframes yellow-fade
   0%
     background-color: rgba(251, 255, 42, 0.6)
   100%
-    background-color: rgba(0,0,0,0)
+    background-color: rgba(0, 0, 0, 0)
 
-img,
 svg
   vertical-align: middle
 
-article,
-aside,
-details,
-figcaption,
-figure,
-footer,
 header,
-hgroup,
 nav,
 section
   display: block
@@ -60,14 +52,7 @@ section
 time
   display: inline-block
 
-html
-  -webkit-text-size-adjust: 100%
-  -ms-text-size-adjust:   100%
-
-embed,
-iframe,
-object,
-video
+iframe
   margin-bottom: 24px
   max-width: 100%
 
@@ -75,34 +60,27 @@ input
   border: 1px solid rgba(0, 0, 0, 0.1)
   color: #2b2b2b
   padding: 8px 10px 7px
+  background-image: -webkit-linear-gradient(hsla(0,0%,100%,0), hsla(0,0%,100%,0)) /* Removing the inner shadow, rounded corners on iOS inputs */
 
   &:focus
     border: 1px solid rgba(0, 0, 0, 0.3)
     outline: 0
 
+  &[type="image"]
+    padding: 0
+    border: 0
+    &:focus
+      border: 0
+
 button,
-input,
-select,
-textarea
-  box-sizing:         border-box
+input
+  box-sizing: border-box
   font-size: 100%
   margin: 0
   max-width: 100%
   vertical-align: baseline
-
-button,
-input
   line-height: normal
 
-input,
-textarea
-  background-image: -webkit-linear-gradient(hsla(0,0%,100%,0), hsla(0,0%,100%,0)) /* Removing the inner shadow, rounded corners on iOS inputs */
-
-input[type="image"]
-  padding: 0
-  border: 0
-  &:focus
-    border: 0
 
 button::-moz-focus-inner,
 input::-moz-focus-inner

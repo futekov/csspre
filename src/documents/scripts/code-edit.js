@@ -96,7 +96,7 @@ for(var i = 0; i < codeSnippets.length; i++){
       '<input type="image" src="/images/jsbin.svg" class="jsbin-button" title="Edit this snippet on JS Bin" onclick="ga(\'send\', \'event\', \'snippet\', \'click-jsbin\', \'' + snippetID + '\')">' +
     '</form>';
   var formJsFiddle =
-    '<form method="post" action="http://jsfiddle.net/api/post/library/pure/" target="check">' +
+    '<form method="post" action="https://jsfiddle.net/api/post/library/pure/" target="check">' +
       '<input type="image" src="/images/jsfiddle.svg" class="jsfiddle-button" title="Edit this snippet on JSFiddle" onclick="ga(\'send\', \'event\', \'snippet\', \'click-jsfiddle\', \'' + snippetID + '\')">' +
       jsFiddleSanitizedData +
     '</form>';
