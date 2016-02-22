@@ -14,7 +14,7 @@ Having precise numbers is crucial when working with percentage-based grid becaus
 
 The round/ceil/floor functions round a number (with or without units) to the closest/upper/lower integer.
 
-<%- @code('Rounding Numbers', 'round floor ceil') %>
+<%- @code('Rounding Numbers', 'round functions') %>
 
 
 

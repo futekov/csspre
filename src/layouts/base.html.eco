@@ -11,6 +11,15 @@
     <title><%= @getPreparedTitle() %></title>
 
     <style type="text/css"><%- @cssX() %></style>
+
+    <script>
+      window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+      ga("create", "UA-50631028-1", "csspre.com");
+      ga("require", "displayfeatures");
+      ga("send", "pageview");
+    </script>
+    <script async src="//www.google-analytics.com/analytics.js"></script>
+
   </head>
   <body>
     <header>
@@ -36,14 +45,6 @@
     <% end %>
       <%- @content %>
     </section>
-
-    <script>
-      window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
-      ga("create", "UA-50631028-1", "csspre.com");
-      ga("require", "displayfeatures");
-      ga("send", "pageview");
-    </script>
-    <script async src="//www.google-analytics.com/analytics.js"></script>
 
     <script type="text/javascript">
       (function() {

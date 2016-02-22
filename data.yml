@@ -734,7 +734,7 @@ Conditionals:
         }
 
 Rounding Numbers:
-  round floor ceil:
+  round functions:
     description: "Use of Round, Floor, and Ceil functions to convert a decimal to an integer"
     less:
       code: |
