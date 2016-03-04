@@ -78,6 +78,7 @@ for(var i = 0; i < codeSnippets.length; i++){
       , wrap               :  "l"
       }
     , codepenSanitizedData = JSON.stringify(codePenData).replace(/"/g, "&quot;").replace(/'/g, "&apos;")
+    , stylusSanitizedData = encodeURI(cssCode).replace(/&amp;/g, "%26").replace(/\$/g, "%24").replace(/\=/g, "%3D").replace(/\*/g, "\%2A").replace(/\?/g, "\%3F")
     , jsbinSanitizedData = cssCode.replace(/%/g, "%25")
     ;
   var jsFiddleSanitizedData = "";
@@ -86,23 +87,27 @@ for(var i = 0; i < codeSnippets.length; i++){
   }
   // build the buttons that will open new tabs in either CodePen.io or jsbin.com with our snippet loaded
   var formCodePen =
-    '<form action="https://codepen.io/pen/define?editors=' + codePenData.editors + '" method="POST" target="_blank" name=\'' + snippetID + '\'>' +
+    '<form action="https://codepen.io/pen/define?editors=' + codePenData.editors + '" method="post" target="_blank" name=\'' + snippetID + '\'>' +
       '<input type="hidden" name="data" value=\'' + codepenSanitizedData + '\'>' +
       '<input type="image" src="/images/codepen.svg" class="codepen-button" title="Edit this snippet on CodePen" onclick="ga(\'send\', \'event\', \'snippet\', \'click-cdpn\', \'' + snippetID + '\')">' +
     '</form>';
   var formJsBin =
-    '<form action="https://jsbin.com/?css,output" method="POST" target="_blank" name=\'' + snippetID + '\'>' +
+    '<form action="https://jsbin.com/?css,output" method="post" target="_blank" name=\'' + snippetID + '\'>' +
       '<input type="hidden" name=\'' + cssPre + '\' value=\'' + jsbinSanitizedData + '\'>' +
       '<input type="image" src="/images/jsbin.svg" class="jsbin-button" title="Edit this snippet on JS Bin" onclick="ga(\'send\', \'event\', \'snippet\', \'click-jsbin\', \'' + snippetID + '\')">' +
     '</form>';
   var formJsFiddle =
-    '<form method="post" action="https://jsfiddle.net/api/post/library/pure/" target="check">' +
+    '<form action="https://jsfiddle.net/api/post/library/pure/" method="post" target="check">' +
       '<input type="image" src="/images/jsfiddle.svg" class="jsfiddle-button" title="Edit this snippet on JSFiddle" onclick="ga(\'send\', \'event\', \'snippet\', \'click-jsfiddle\', \'' + snippetID + '\')">' +
       jsFiddleSanitizedData +
     '</form>';
+  var formStylus =
+    '<a href="http://stylus-lang.com/try.html#?code=' + stylusSanitizedData + '" target="_blank" onclick="ga(\'send\', \'event\', \'snippet\', \'click-stylus\', \'' + snippetID + '\')">' +
+      '<img src="/images/stylus.svg" class="stylus-button" title="Edit this snippet on stylus-lang.com" />' +
+    '</a>';
 
   // append the forms
-  el.innerHTML = el.innerHTML + (cssPre == "postcss" ? "" : formJsBin) + (cssPre == "scss" ? formJsFiddle : "") + formCodePen;
+  el.querySelector(".forms").innerHTML = el.querySelector(".forms").innerHTML + (cssPre == "scss" ? formJsFiddle : "") + (cssPre == "postcss" ? "" : formJsBin) + formCodePen + (cssPre == "stylus" ? formStylus : "");
 };
 
 window.addEventListener("mouseup", getContainerElement);

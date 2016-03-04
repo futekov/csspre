@@ -132,7 +132,7 @@ docpadConfig = {
           local = "";
           currentSnippet = feature[snippetName];
           columnSize = (snippetName === "css" ? columnLastWidth : columnWidth);
-          snippetNameClean = snippetName.replace("-alt", "").replace(" ", "-");
+          snippetNameClean = snippetName.replace("-alt", "");
           id = arg1 + "-" + arg2.replace(" ", "-") + "-" + snippetName;
           sanitizedId = id.replace(" ", "-").replace(/-(.)/g, function(g) {
             return g[1].toUpperCase();
@@ -151,7 +151,7 @@ docpadConfig = {
           snippets.push(
             '<div class="col-' + columnSize + ' ' + snippetNameClean + '">'
             + '<pre name="' + snippetNameClean + '" id="' + sanitizedId + '" ' + lng + vrsn + ' data-type="css" ' + local + '>'
-              + '<code>' + sanitizedCode + '</code>'
+              + '<code>' + sanitizedCode + '</code><div class="forms"></div>'
               + addn
             + '</pre>'
           + '</div>');

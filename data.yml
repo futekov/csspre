@@ -477,6 +477,14 @@ Mixins:
         .mixins-params
           +bordered(#cbf40d)
           +bordered(#d04fbc, 3px)
+    stylus:
+      code: |
+        bordered($color, $thickness = 1px)
+          border: $thickness solid $color
+
+        .mixins-params
+          bordered(#cbf40d)
+          bordered(#d04fbc, 3px)
     postcss:
       local: true
       addons:
@@ -491,14 +499,6 @@ Mixins:
           @mixin bordered #cbf40d;
           @mixin bordered #d04fbc, 3px;
         }
-    stylus:
-      code: |
-        bordered($color, $thickness = 1px)
-          border: $thickness solid $color
-
-        .mixins-params
-          bordered(#cbf40d)
-          bordered(#d04fbc, 3px)
     css:
       code: |
         .mixins-params {
@@ -1029,6 +1029,9 @@ Random Number:
       code: |
         random(min, max)
           return floor( math(0, "random") * max + min )
+
+        .random-number-color
+          color: hsl(random(0, 360), 50%, 50%)
     postcss:
       local: true
       addons:
