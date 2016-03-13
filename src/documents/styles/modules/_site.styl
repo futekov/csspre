@@ -39,3 +39,23 @@ header
   font-family: 'Iceland', sans-serif
   @media screen and (max-width: 800px)
     font-size: 38px
+
+.donate-form
+  text-align: center
+
+  input[type="submit"]
+    background: $purple
+    background: -webkit-linear-gradient(315deg, transparent 5px, $purple 5px)
+    background: linear-gradient(135deg, transparent 5px, $purple 5px)
+    border: 0
+    color: #fff
+    padding: 6px 12px
+    cursor: pointer
+    font-size: 14px
+    &:hover
+      background: darken($purple, 15%)
+      background: -webkit-linear-gradient(315deg, transparent 5px, darken($purple, 15%) 5px)
+      background: linear-gradient(135deg, transparent 5px, darken($purple, 15%) 5px)
+
+  p
+    display: inline-block
