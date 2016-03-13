@@ -1,3 +1,16 @@
+Syntax:
+  Indented Syntax:
+    description: "Ability to omit curly braces `{}` and semicolons `;`"
+    scss:
+      code:
+    stylus:
+      code:
+    postcss:
+      addons:
+        - name: SugarSS
+          url: https://github.com/postcss/sugarss
+      code:
+
 Variables:
   basic:
     description: "Ability to declare variables and use them later"
