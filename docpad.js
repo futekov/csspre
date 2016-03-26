@@ -109,21 +109,9 @@ docpadConfig = {
       return cellIcons + tableOpen + featureGroup.join("") + tableClose;
     },
     code: function(arg1, arg2) {
-      var columnLastWidth, columnSize, columnWidth, currentSnippet, feature, id, lng, local, prop, sanitizedCode, sanitizedId, scssCount, snippetCount, snippetName, snippetNameClean, snippets, vrsn;
+      var currentSnippet, feature, id, lng, local, prop, sanitizedCode, sanitizedId, snippetName, snippetNameClean, snippets, vrsn;
       feature = DATA[arg1][arg2];
       snippets = [];
-      columnWidth = 6;
-      snippetCount = 0;
-      scssCount = 0;
-      for (prop in feature) {
-        if (prop !== "description") {
-          ++snippetCount;
-        }
-        if (prop.substring(0, 4) === "scss") {
-          ++scssCount;
-        }
-      }
-      columnLastWidth = ((snippetCount - scssCount) % 2 === 1 ? 12 : columnWidth);
       for (snippetName in feature) {
         if (snippetName !== "description") {
           vrsn = "";
@@ -131,7 +119,6 @@ docpadConfig = {
           lng = "";
           local = "";
           currentSnippet = feature[snippetName];
-          columnSize = (snippetName === "css" ? columnLastWidth : columnWidth);
           snippetNameClean = snippetName.replace("-alt", "");
           id = arg1 + "-" + arg2.replace(" ", "-") + "-" + snippetName;
           sanitizedId = id.replace(" ", "-").replace(/-(.)/g, function(g) {
@@ -149,7 +136,7 @@ docpadConfig = {
           }
           sanitizedCode = currentSnippet.code.replace(/\*/g, "&#42;").replace(/\`/g, "&#96;");
           snippets.push(
-            '<div class="col-' + columnSize + ' ' + snippetNameClean + '">'
+            '<div class="col-6 ' + snippetNameClean + '">'
             + '<pre name="' + snippetNameClean + '" id="' + sanitizedId + '" ' + lng + vrsn + ' data-type="css" ' + local + '>'
               + '<code>' + sanitizedCode + '</code><div class="forms"></div>'
               + addn

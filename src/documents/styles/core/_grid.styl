@@ -17,18 +17,17 @@ $col-common
 
 $grid-col-class = col
 
-for $i in 1..$grid-columns
-  if $i == 3 || $i == 4 || $i == 6 || $i == 9 || $i == 12
-    .{$grid-col-class}-{$i}
-      @extend $col-common
-      width: (100% / (12 / $i)) - unit($grid-gutter-size, '')
-      margin-bottom: $grid-gutter-size
+for $i in (3 4 6 9)
+  .{$grid-col-class}-{$i}
+    @extend $col-common
+    width: (100% / (12 / $i)) - unit($grid-gutter-size, '')
+    margin-bottom: $grid-gutter-size
 
-      // all non-50% rows should become 100% at a ~ tablet-sized screen
-      if $i != ($grid-columns / 2)
-        @media screen and (max-width: 800px)
-          width: 100% - unit($grid-gutter-size, '')
-      // 50% columns should become 100% on smaller screens
-      else
-        @media screen and (max-width: 500px)
-          width: 100% - unit($grid-gutter-size, '')
+    // all non-50% rows should become 100% at a ~ tablet-sized screen
+    if $i != ($grid-columns / 2)
+      @media screen and (max-width: 800px)
+        width: 100% - unit($grid-gutter-size, '')
+    // 50% columns should become 100% on smaller screens
+    else
+      @media screen and (max-width: 500px)
+        width: 100% - unit($grid-gutter-size, '')
