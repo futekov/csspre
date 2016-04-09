@@ -46,15 +46,16 @@ Compiling preprocessor code to CSS can be done with [GUI programs](#gui), [onlin
       <td></td>
     </tr>
     <tr>
-      <th>Windows &amp; Mac</th>
+      <th rowspan="2">Windows &amp; Mac</th>
+      <td colspan="3"><a href="http://www.vanamco.com/ghostlab/" target="_blank">Ghostlab (trial or $49)</a></td>
+    </tr>
+    <tr>
       <td></td>
       <td><a href="http://mhs.github.io/scout-app/" target="_blank">Scout (free)</a></td>
       <td></td>
     </tr>
     <tr>
-      <th rowspan="3">Windows</th>
-    </tr>
-    <tr>
+      <th rowspan="2">Windows</th>
       <td colspan="3"><a href="http://livereload.com/" target="_blank">LiveReload (free)</a></td>
     </tr>
     <tr>
