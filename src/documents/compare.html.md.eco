@@ -5,6 +5,10 @@ pageOrder: 2
 description: "Comprehensive comparison table for CSS Preprocessors, comparison of selected features of the popular CSS Preprocessors"
 ---
 
+<div class="meta">
+  Last Modified: <time datetime="2016-03-13" itemprop="dateModified">2016-03-13</time>
+</div>
+
 <%- @tableComparison('Comparison of support for selected features') %>
 
 If you are considering migrating to another preprocessor this [roundup of conversion tools](/convert) might help you.
