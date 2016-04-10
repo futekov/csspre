@@ -1,14 +1,12 @@
-var moment, yaml, DATA, docpadConfig;
-
-moment = require("moment");
-yaml = require("yamljs");
-DATA = yaml.load("data.yml");
-fs = require("fs");
+var moment = require("moment");
+var yaml = require("yamljs");
+var DATA = yaml.load("data.yml");
+var fs = require("fs");
 
 function addons(e) {
   if (e) {
-    addonArray = [];
-    addnCount = e.length == 1 ? "an addon" : e.length + " addons";
+    var addonArray = [];
+    var addnCount = e.length == 1 ? "an addon" : e.length + " addons";
     for(var i in e) {
       var name = e[i].name;
       var url = e[i].url;
@@ -67,17 +65,16 @@ docpadConfig = {
       return moment(date).format(format);
     },
     tableComparison: function(title) {
-      var cellIcons, currentFeature, feature, featureGroup, featureSingle, longDecription, section, setCell, tableClose, tableOpen;
-      cellIcons = '<svg style="display:none"><defs><path id="available" d="M4 8 L8 4 L16 12 L24 4 L28 8 L20 16 L28 24 L24 28 L16 20 L8 28 L4 24 L12 16 z"/><path id="unavailable" d="M1 14 L5 10 L13 18 L27 4 L31 8 L13 26 z"/></defs></svg>';
-      tableOpen = '<table class="table-content"><caption>' + title + '</caption><thead><tr><th></th><th class="narrow">Less</th><th class="narrow">Sass</th><th class="narrow">Stylus</th><th class="narrow">PostCSS</th></tr></thead><tbody>';
-      tableClose = '</tbody></table>';
-      setCell = function(arg) {
+      var cellIcons = '<svg style="display:none"><defs><path id="available" d="M4 8 L8 4 L16 12 L24 4 L28 8 L20 16 L28 24 L24 28 L16 20 L8 28 L4 24 L12 16 z"/><path id="unavailable" d="M1 14 L5 10 L13 18 L27 4 L31 8 L13 26 z"/></defs></svg>';
+      var tableOpen = '<table class="table-content"><caption>' + title + '</caption><thead><tr><th></th><th class="narrow">Less</th><th class="narrow">Sass</th><th class="narrow">Stylus</th><th class="narrow">PostCSS</th></tr></thead><tbody>';
+      var tableClose = '</tbody></table>';
+      var setCell = function(arg) {
         var cellClass, note, vrsn;
         if (!arg) {
           return '<td class="not-available"><svg width="32" height="32" viewBox="0 0 32 32" role="img"><use xlink:href="#available"/></svg></td>';
         } else {
-          vrsn = "";
           addn = "";
+          vrsn = "";
           note = "";
           cellClass = "available";
           if (arg.version) {
@@ -93,12 +90,12 @@ docpadConfig = {
           return '<td class="' + cellClass + '">' + vrsn + '<svg width="32" height="32" viewBox="0 0 32 32" role="img"><use xlink:href="#unavailable"/></svg>' + note + addn + '</td>';
         }
       };
-      featureGroup = [];
+      var featureGroup = [];
       for (section in DATA) {
-        featureSingle = [];
+        var featureSingle = [];
         for (feature in DATA[section]) {
-          currentFeature = DATA[section][feature];
-          longDecription = "";
+          var currentFeature = DATA[section][feature];
+          var longDecription = "";
           if (currentFeature.description) {
             longDecription = "<p>" + currentFeature.description + "</p>";
           }
@@ -109,19 +106,19 @@ docpadConfig = {
       return cellIcons + tableOpen + featureGroup.join("") + tableClose;
     },
     code: function(arg1, arg2) {
-      var currentSnippet, feature, id, lng, local, prop, sanitizedCode, sanitizedId, snippetName, snippetNameClean, snippets, vrsn;
-      feature = DATA[arg1][arg2];
-      snippets = [];
+      var snippetName;
+      var feature = DATA[arg1][arg2];
+      var snippets = [];
       for (snippetName in feature) {
         if (snippetName !== "description") {
-          vrsn = "";
           addn = "";
-          lng = "";
-          local = "";
-          currentSnippet = feature[snippetName];
-          snippetNameClean = snippetName.replace("-alt", "");
-          id = arg1 + "-" + arg2.replace(" ", "-") + "-" + snippetName;
-          sanitizedId = id.replace(" ", "-").replace(/-(.)/g, function(g) {
+          var vrsn = "";
+          var lng = "";
+          var local = "";
+          var currentSnippet = feature[snippetName];
+          var snippetNameClean = snippetName.replace("-alt", "");
+          var id = arg1 + "-" + arg2.replace(" ", "-") + "-" + snippetName;
+          var sanitizedId = id.replace(" ", "-").replace(/-(.)/g, function(g) {
             return g[1].toUpperCase();
           });
           if (currentSnippet.local === true) {
@@ -134,7 +131,7 @@ docpadConfig = {
             }
             addons(currentSnippet.addons);
           }
-          sanitizedCode = currentSnippet.code.replace(/\*/g, "&#42;").replace(/\`/g, "&#96;");
+          var sanitizedCode = currentSnippet.code.replace(/\*/g, "&#42;").replace(/\`/g, "&#96;");
           snippets.push(
             '<div class="col-6 ' + snippetNameClean + '">'
             + '<pre name="' + snippetNameClean + '" id="' + sanitizedId + '" ' + lng + vrsn + ' data-type="css" ' + local + '>'
