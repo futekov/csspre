@@ -40,9 +40,7 @@ pre
       display: block
       color: #fff
       background: $purple
-      background: -webkit-linear-gradient(315deg, transparent 9px, $purple 9px)
-      background: linear-gradient(135deg, transparent 9px, $purple 9px)
-      font-weight: 700
+      font-weight: 100
       padding: 7px 0
       text-indent: 15px
       text-transform: uppercase
@@ -53,8 +51,6 @@ pre
     &:before
       content: attr(data-csspre)
       background: #6a6a6a
-      background: -webkit-linear-gradient(315deg, transparent 9px, @background 9px)
-      background: linear-gradient(135deg, transparent 9px, @background 9px)
     &[data-version]
       &:after
         content: attr(data-version)'+'
@@ -126,6 +122,10 @@ $export-button
   &:hover
     -webkit-transform: scale(1.5)
     transform: scale(1.5)
+  @media (min-width: 1280px)
+    opacity: 0.5
+    pre:hover &
+      opacity: 1
 
 .codepen-button
   @extend $export-button
