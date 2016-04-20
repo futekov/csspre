@@ -49,20 +49,10 @@ for(var i = 0; i < codeSnippets.length; i++){
     , cssAddon    = el.getAttribute("data-addon-name")
     , cssCode     = el.getElementsByTagName("code")[0].innerHTML
     , codePenData = {
-        title              : ""
-      , description        : ""
-      , tags               : "csspre"
-      , editors            : "010"
+        editors            : "0100"
       , html               : "<style>head,head style:first-of-type{display:block;white-space:pre;font:1.2em monospace;padding:0 10px}</style>"
-      , html_pre_processor : "none"
       , css                : addonAdd(el, cssPre, cssCode)
       , css_pre_processor  : cssPre
-      , css_starter        : "neither"
-      , css_prefix         : "neither"
-      , js                 : ""
-      , html_classes       : ""
-      , css_external       : ""
-      , js_external        : ""
       }
     , jsFiddleData = {
         panel_html         :  "0"
@@ -87,7 +77,7 @@ for(var i = 0; i < codeSnippets.length; i++){
   }
   // build the buttons that will open new tabs in either CodePen.io or jsbin.com with our snippet loaded
   var formCodePen =
-    '<form action="https://codepen.io/pen/define?editors=' + codePenData.editors + '" method="post" target="_blank" name=\'' + snippetID + '\'>' +
+    '<form action="https://codepen.io/pen/define" method="post" target="_blank" name=\'' + snippetID + '\'>' +
       '<input type="hidden" name="data" value=\'' + codepenSanitizedData + '\'>' +
       '<input type="image" src="/images/codepen.svg" class="codepen-button" title="Edit this snippet on CodePen" onclick="ga(\'send\', \'event\', \'snippet\', \'click-cdpn\', \'' + snippetID + '\')">' +
     '</form>';
