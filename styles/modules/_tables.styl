@@ -1,0 +1,172 @@
+table,
+th,
+td
+  border: 1px solid rgba(0, 0, 0, 0.1)
+
+table
+  border-collapse: collapse
+  border-spacing: 0
+  margin-bottom: 24px
+  width: 100%
+
+caption,
+th,
+td
+  font-weight: normal
+  text-align: left
+
+th
+  border-width: 0 1px 1px 0
+  font-weight: bold
+  padding-right: 0.5em
+  padding-left: 0.5em
+  @media only screen and (max-width: 700px)
+    font-size: 13px
+    font-weight: normal
+  @media only screen and (max-width: 500px)
+    font-size: 11px
+
+cell-color($fill, $has-color = true)
+  fill: $fill
+  background-color: lighten($fill, 90%)
+  if $has-color == true
+    color: darken($fill, 60%)
+    .required-version
+      background-color: rgba(desaturate(darken(@background-color, 20%), 20%), 0.5)
+
+td
+  border-width: 0 1px 1px 0
+  position: relative
+  background-clip: padding-box
+  &.available
+    cell-color(#447B3D)
+  &.partial
+    cell-color(#DF9C0C)
+  &.not-available
+    cell-color(#A21F1F, false)
+
+.table-content
+  -transparent-bg()
+  position: relative
+  margin-top: 2em
+  table-layout: fixed
+  border-color: #d4d4d4
+
+  .required-version
+    position: absolute
+    top: 0
+    left: 0
+    font-size: 14px
+    padding: 0 5px
+    @media only screen and (max-width: 800px)
+      font-size: 12px
+
+  .note
+    display: block
+    font-size: 12px
+    @media only screen and (max-width: 800px)
+      font-size: 10px
+
+  .narrow
+    width: 19%
+    @media only screen and (max-width: 800px)
+      &:nth-child(5)
+        min-width: 130px
+      /.table-content
+        table-layout: auto
+        th
+          padding-left: 0
+          padding-right: 0
+        code
+          white-space: normal
+    @media only screen and (max-width: 439px)
+      &:nth-child(5)
+        min-width: 86px
+      /.addon
+        font-size: 0.7em
+        padding: 0
+    @media only screen and (max-width: 386px)
+      &:nth-child(5)
+        min-width: 0
+      /.addon
+        display: none
+        
+
+  @media only screen and (max-width: 800px)
+    font-size: 13px
+
+  th
+    background-color: #bbb
+    font-weight: 300
+    font-family: Roboto Slab
+    font-size: 1.3em
+
+  td
+    padding: 5px 8px
+    @media only screen and (max-width: 800px)
+      padding: 4px 1px
+      font-size: 0.85em
+      overflow: scroll
+    &:first-child
+      text-align: left
+    strong
+      display: block
+      text-transform: capitalize
+    p
+      font-size: 0.9em
+      margin-bottom: 0
+
+  td,
+  th
+    border-color: @border-color
+    text-align: center
+    &.disabled
+      background-color: @border-color
+
+  tbody
+    th
+      text-align: left
+      background: #e0e0e0
+
+  caption
+    color: #fff
+    top: -2em
+    left: 0
+    right: -1px
+    background: $purple
+    padding: 5px 0 4px 15px
+    text-transform: uppercase
+    font-family: "Consolas", monospace
+
+.table-links
+  th,
+  td
+    padding: 0
+  th
+    text-indent: 8px
+  td
+    vertical-align: top
+  a
+    display: block
+    text-decoration: none
+    text-align: center
+    background-color: rgba(123, 61, 102, 0.1)
+    margin: 0
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05)
+    line-height: 1.6
+    &:hover,
+    &:focus
+      background-color: rgba(123, 61, 102, 0.2)
+      color: darken($purple, 20%)
+    &:last-child
+      margin-bottom: -1px
+    @media only screen and (max-width: 800px)
+      font-size: 0.9em
+
+.table-filters
+  a
+    display: none
+  input[type="checkbox"]#win:checked ~ & a.win,
+  input[type="checkbox"]#mac:checked ~ & a.mac,
+  input[type="checkbox"]#linux:checked ~ & a.linux
+    display: block

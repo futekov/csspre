@@ -1,0 +1,1286 @@
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title><![CDATA[CSS PREprocessors]]></title>
+        <description><![CDATA[CSS Preprocessors - preprocessor comparisons and reference guide, play around with all code snippets, explore tools for conversion from/to CSS]]></description>
+        <link>http://csspre.com</link>
+        <generator>RSS for Node</generator>
+        <lastBuildDate>Mon, 08 May 2017 04:08:29 GMT</lastBuildDate>
+        <atom:link href="http://csspre.com/rss.xml" rel="self" type="application/rss+xml"/>
+        <author><![CDATA[https://plus.google.com/+AlexanderFutekov]]></author>
+        <pubDate>Mon, 08 May 2017 04:08:18 GMT</pubDate>
+        <item>
+            <title><![CDATA[Rounding Numbers]]></title>
+            <description><![CDATA[<p>Having precise numbers is crucial when working with percentage-based grid because <a href="http://cruft.io/posts/percentage-calculations-in-ie/">browsers round numbers differently</a>. If you encounter sizing issues in your grid that might be due to the low number of decimal places in the output CSS.</p>
+<h2 id="round-ceil-and-floor-functions">Round, ceil, and floor functions</h2>
+<p>The round/ceil/floor functions round a number (with or without units) to the closest/upper/lower integer.</p>
+<div class="grid"><div class="col-6 less"><pre name="less" id="RoundingNumbersRoundFunctionsLess" data-csspre='less' data-type="css" ><code>.round-number {
+  fn-round: round(1.618em);
+  fn-floor: floor(1.618em);
+  fn-ceil: ceil(1.618em);
+}
+</code><div class="forms"></div></pre></div><div class="col-6 scss"><pre name="scss" id="RoundingNumbersRoundFunctionsScss" data-csspre='scss' data-type="css" ><code>.round-number {
+  fn-round: round(1.618em);
+  fn-floor: floor(1.618em);
+  fn-ceil: ceil(1.618em);
+}
+</code><div class="forms"></div></pre></div><div class="col-6 sass"><pre name="sass" id="RoundingNumbersRoundFunctionsSass" data-csspre='sass' data-type="css" ><code>.round-number
+  fn-round: round(1.618em)
+  fn-floor: floor(1.618em)
+  fn-ceil: ceil(1.618em)
+</code><div class="forms"></div></pre></div><div class="col-6 stylus"><pre name="stylus" id="RoundingNumbersRoundFunctionsStylus" data-csspre='stylus' data-type="css" ><code>.round-number
+  fn-round: round(1.618em)
+  fn-floor: floor(1.618em)
+  fn-ceil: ceil(1.618em)
+</code><div class="forms"></div></pre></div><div class="col-6 postcss"><pre name="postcss" id="RoundingNumbersRoundFunctionsPostcss" data-csspre='postcss' data-type="css"  data-local><code>.round-number {
+  fn-round: resolve(round(1.618))em;
+  fn-floor: resolve(floor(1.618))em;
+  fn-ceil: resolve(ceil(1.618))em;
+}
+</code><div class="forms"></div><div class='addon' title='This code requires an addon to work'> <a href='https://github.com/dtrussia/postcss-mathjs' target='_blank'>mathjs</a></div></pre></div><div class="col-6 css"><pre name="css" id="RoundingNumbersRoundFunctionsCss"  data-type="css" ><code>.round-number {
+  fn-round: 2em;
+  fn-floor: 1em;
+  fn-ceil: 2em;
+}
+</code><div class="forms"></div></pre></div></div>
+
+
+
+<h2 id="custom-case-by-case-precision">Custom case by case precision</h2>
+<p>Some preprocessors accept a second argument to the round function family to specify precision, Sass however, requires a custom function to achieve the same functionality (Sass snippet adapted from <a href="https://css-tricks.com/snippets/sass/fix-number-n-digits/">Hugo Giraugel&#39;s</a>).</p>
+<div class="grid"><div class="col-6 less"><pre name="less" id="RoundingNumbersCustomPrecisionLess" data-csspre='less' data-type="css" ><code>.precision-round {
+  @number: 3.14159265359px;
+  border-radius: round(@number, 1);
+  border-radius: round(@number, 2);
+  border-radius: round(@number, 3);
+  border-radius: round(@number, 4);
+}
+</code><div class="forms"></div></pre></div><div class="col-6 scss"><pre name="scss" id="RoundingNumbersCustomPrecisionScss" data-csspre='scss' data-type="css" ><code>@function pow($x, $n) {
+  $ret: 1;
+
+  @if $n &gt;= 0 {
+    @for $i from 1 through $n {
+      $ret: $ret &#42; $x;
+    }
+  } @else {
+    @for $i from $n to 0 {
+      $ret: $ret / $x;
+    }
+  }
+  @return $ret;
+}
+
+@function precision-round($float, $digits) {
+  $sass-precision: 5;
+
+  @if $digits &gt; $sass-precision {
+    @warn &quot;Sass sets default precision to #{$sass-precision} digits, and there is no way to change that for now.&quot;
+    + &quot;The returned number will have #{$sass-precision} digits, even if you asked for &#96;#{$digits}&#96;.&quot;
+    + &quot;See github.com/sass/sass/issues/1122 for further informations.&quot;;
+  }
+
+  $pow: pow(10, $digits);
+
+  @return round($float &#42; $pow) / $pow;
+}
+
+.precision-round {
+  $number: 3.14159265359px;
+  border-radius: precision-round($number, 1);
+  border-radius: precision-round($number, 2);
+  border-radius: precision-round($number, 3);
+  border-radius: precision-round($number, 4);
+}
+</code><div class="forms"></div></pre></div><div class="col-6 sass"><pre name="sass" id="RoundingNumbersCustomPrecisionSass" data-csspre='sass' data-type="css" ><code>@function pow($x, $n)
+  $ret: 1
+
+  @if $n &gt;= 0
+    @for $i from 1 through $n
+      $ret: $ret &#42; $x
+  @else
+    @for $i from $n to 0
+      $ret: $ret / $x
+
+  @return $ret
+
+@function precision-round($float, $digits)
+  $sass-precision: 5
+
+  @if $digits &gt; $sass-precision
+    @warn &quot;Sass sets default precision to #{$sass-precision} digits, and there is no way to change that for now.&quot; + &quot;The returned number will have #{$sass-precision} digits, even if you asked for &#96;#{$digits}&#96;.&quot; + &quot;See github.com/sass/sass/issues/1122 for further informations.&quot;
+
+  $pow: pow(10, $digits)
+
+  @return round($float &#42; $pow) / $pow
+
+.precision-round
+  $number: 3.14159265359px
+  border-radius: precision-round($number, 1)
+  border-radius: precision-round($number, 2)
+  border-radius: precision-round($number, 3)
+  border-radius: precision-round($number, 4)
+</code><div class="forms"></div></pre></div><div class="col-6 stylus"><pre name="stylus" id="RoundingNumbersCustomPrecisionStylus" data-csspre='stylus' data-type="css" ><code>.precision-round
+  $number = 3.14159265359px
+  border-radius: round($number, 1)
+  border-radius: round($number, 2)
+  border-radius: round($number, 3)
+  border-radius: round($number, 4)
+</code><div class="forms"></div></pre></div><div class="col-6 postcss"><pre name="postcss" id="RoundingNumbersCustomPrecisionPostcss" data-csspre='postcss' data-type="css"  data-local><code>.precision-round {
+  $number: 3.14159265359;
+  border-radius: resolve(round($number, 1))px;
+  border-radius: resolve(round($number, 2))px;
+  border-radius: resolve(round($number, 3))px;
+  border-radius: resolve(round($number, 4))px;
+}
+</code><div class="forms"></div><div class='addon' title='This code requires 2 addons to work'> <a href='https://github.com/dtrussia/postcss-mathjs' target='_blank'>mathjs</a>, <a href='https://github.com/postcss/postcss-simple-vars' target='_blank'>simple-vars</a></div></pre></div><div class="col-6 css"><pre name="css" id="RoundingNumbersCustomPrecisionCss"  data-type="css" ><code>.precision-round {
+  border-radius: 3.1px;
+  border-radius: 3.14px;
+  border-radius: 3.142px;
+  border-radius: 3.1416px;
+}
+</code><div class="forms"></div></pre></div></div>
+
+
+
+<h2 id="global-precision-after-math-operations">Global precision after math operations</h2>
+<p>For non-integer numbers the different preprocessors put different number of digits after the decimal point (e.g. <code>0.33333</code> for Sass vs <code>0.333333333333333</code> for Stylus).
+Only Sass allows a custom global precision value to be set.</p>
+<table class="table-content">
+  <caption>Global Precision</caption>
+  <thead>
+    <tr>
+      <th></th>
+      <th>Less</th>
+      <th>SCSS/Sass</th>
+      <th>Stylus</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>Rounding precision (decimal places)</th>
+      <td><code>8</code> (1 / 3 = 0.33333333)</td>
+      <td><code>5</code> (1 / 3 = 0.33333)</td>
+      <td><code>15</code> (1 / 3 = 0.333333333333333)</td>
+    </tr>
+    <tr>
+      <th>Ability to set custom global precision</th>
+      <td>No</td>
+      <td>Yes, with the <code>precision</code> option</td>
+      <td>No</td>
+    </tr>
+  </tbody>
+</table>]]></description>
+            <link>http://csspre.com/rounding-numbers/</link>
+            <guid isPermaLink="true">http://csspre.com/rounding-numbers/</guid>
+            <dc:creator><![CDATA[https://plus.google.com/+AlexanderFutekov]]></dc:creator>
+            <pubDate>Mon, 28 Dec 2015 00:00:00 GMT</pubDate>
+        </item>
+        <item>
+            <title><![CDATA[Image helpers]]></title>
+            <description><![CDATA[<p>If/else conditions are incredibly useful when you want a part of your code to depend on something else. This gives maximum flexibility to write the type of logic that meets your needs.</p>
+<h2 id="image-size">Image size</h2>
+<p>If you need the exact dimensions of an image all preprocessors have a way to do that instead of you.</p>
+<div class="grid"><div class="col-6 less"><pre name="less" id="ImageHelpersDimensionsLess" data-csspre='less' data-version='2.2.0' data-type="css"  data-local><code>.image {
+  bg-size: image-size(&quot;img.png&quot;);
+  bg-width: image-width(&quot;img.png&quot;);
+  bg-height: image-height(&quot;img.png&quot;);
+}
+</code><div class="forms"></div></pre></div><div class="col-6 scss"><pre name="scss" id="ImageHelpersDimensionsScss" data-csspre='scss' data-type="css"  data-local><code>.image {
+  bg-size: image-width(&quot;img.png&quot;) image-height(&quot;img.png&quot;);
+  bg-width: image-width(&quot;img.png&quot;);
+  bg-height: image-height(&quot;img.png&quot;);
+}
+</code><div class="forms"></div><div class='addon' title='This code requires an addon to work'> <a href='http://compass-style.org/' target='_blank'>compass</a></div></pre></div><div class="col-6 sass"><pre name="sass" id="ImageHelpersDimensionsSass" data-csspre='sass' data-type="css"  data-local><code>.image
+  bg-size: image-width(&quot;img.png&quot;) image-height(&quot;img.png&quot;)
+  bg-width: image-width(&quot;img.png&quot;)
+  bg-height: image-height(&quot;img.png&quot;)
+</code><div class="forms"></div><div class='addon' title='This code requires an addon to work'> <a href='http://compass-style.org/' target='_blank'>compass</a></div></pre></div><div class="col-6 stylus"><pre name="stylus" id="ImageHelpersDimensionsStylus" data-csspre='stylus' data-type="css"  data-local><code>.image
+  bg-size: image-size(&quot;img.png&quot;)
+  bg-width: image-size(&quot;img.png&quot;)[0]
+  bg-height: image-size(&quot;img.png&quot;)[1]
+</code><div class="forms"></div></pre></div><div class="col-6 postcss"><pre name="postcss" id="ImageHelpersDimensionsPostcss" data-csspre='postcss' data-type="css"  data-local><code>.image {
+  width: width(&quot;img.png&quot;);
+  height: height(&quot;img.png&quot;);
+  background-size: size(&quot;img.png&quot;);
+}
+</code><div class="forms"></div><div class='addon' title='This code requires an addon to work'> <a href='https://github.com/assetsjs/postcss-assets' target='_blank'>assets</a></div></pre></div><div class="col-6 css"><pre name="css" id="ImageHelpersDimensionsCss"  data-type="css" ><code>.image {
+  bg-size: 20px 10px;
+  bg-width: 20px;
+  bg-height: 10px;
+}
+</code><div class="forms"></div></pre></div></div>
+
+
+
+<h2 id="inline-image">Inline image</h2>
+<p>Encoding images to base64 and inlining them in your stylesheets reduces the number of request a user will make on your site, here&#39;s how to automate the conversion of images to base64.</p>
+<p>Note that for Stylus you need to use <a href="http://learnboost.github.io/stylus/docs/functions.url.html#data-uri-image-inlining">the url function</a>, the positive side is that you can use any name for the function - <code>inline-image</code> is just an example.</p>
+<div class="grid"><div class="col-6 less"><pre name="less" id="ImageHelpersInlineLess" data-csspre='less' data-version='1.4.0' data-type="css"  data-local><code>.image {
+  background-image: data-uri(&quot;pixel.png&quot;);
+}
+</code><div class="forms"></div></pre></div><div class="col-6 scss"><pre name="scss" id="ImageHelpersInlineScss" data-csspre='scss' data-type="css"  data-local><code>.image {
+  background-image: inline-image(&quot;pixel.png&quot;);
+}
+</code><div class="forms"></div><div class='addon' title='This code requires an addon to work'> <a href='http://compass-style.org/' target='_blank'>compass</a></div></pre></div><div class="col-6 sass"><pre name="sass" id="ImageHelpersInlineSass" data-csspre='sass' data-type="css"  data-local><code>.image
+  background-image: inline-image(&quot;pixel.png&quot;)
+</code><div class="forms"></div><div class='addon' title='This code requires an addon to work'> <a href='http://compass-style.org/' target='_blank'>compass</a></div></pre></div><div class="col-6 stylus"><pre name="stylus" id="ImageHelpersInlineStylus" data-csspre='stylus' data-type="css"  data-local><code>.image
+  background-image: inline-image(&quot;pixel.png&quot;)
+</code><div class="forms"></div></pre></div><div class="col-6 postcss"><pre name="postcss" id="ImageHelpersInlinePostcss" data-csspre='postcss' data-type="css"  data-local><code>.image {
+  background-image: inline(&quot;pixel.png&quot;);
+}
+</code><div class="forms"></div><div class='addon' title='This code requires an addon to work'> <a href='https://github.com/assetsjs/postcss-assets' target='_blank'>assets</a></div></pre></div><div class="col-6 css"><pre name="css" id="ImageHelpersInlineCss"  data-type="css" ><code>.image {
+  background-image: url(&quot;data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7&quot;)
+}
+</code><div class="forms"></div></pre></div></div>]]></description>
+            <link>http://csspre.com/image-helpers/</link>
+            <guid isPermaLink="true">http://csspre.com/image-helpers/</guid>
+            <dc:creator><![CDATA[https://plus.google.com/+AlexanderFutekov]]></dc:creator>
+            <pubDate>Wed, 21 Jan 2015 00:00:00 GMT</pubDate>
+        </item>
+        <item>
+            <title><![CDATA[Conditionals]]></title>
+            <description><![CDATA[<p>If/else conditions are incredibly useful when you want a part of your code to depend on something else. This gives maximum flexibility to write the type of logic that meets your needs.</p>
+<h2 id="conditionals-inside-declarations">Conditionals inside declarations</h2>
+<p>Supoort for <code>if</code> statements within a declaration. Less uses a slightly unconventional syntax, but works as expected.</p>
+<div class="grid"><div class="col-6 less"><pre name="less" id="ConditionalsBasicLess" data-csspre='less' data-type="css" ><code>.if-condition {
+  foo: bar;
+  &amp; when (1 = 1) {
+    baz: qux;
+  }
+}
+</code><div class="forms"></div></pre></div><div class="col-6 scss"><pre name="scss" id="ConditionalsBasicScss" data-csspre='scss' data-type="css" ><code>.if-condition {
+  foo: bar;
+  @if 1 == 1 {
+    baz: qux;
+  }
+}
+</code><div class="forms"></div></pre></div><div class="col-6 sass"><pre name="sass" id="ConditionalsBasicSass" data-csspre='sass' data-type="css" ><code>.if-condition
+  foo: bar
+  @if 1 == 1
+    baz: qux
+</code><div class="forms"></div></pre></div><div class="col-6 stylus"><pre name="stylus" id="ConditionalsBasicStylus" data-csspre='stylus' data-type="css" ><code>.if-condition
+  foo: bar
+  if 1 == 1
+    baz: qux
+</code><div class="forms"></div></pre></div><div class="col-6 postcss"><pre name="postcss" id="ConditionalsBasicPostcss" data-csspre='postcss' data-type="css" ><code>.if-condition {
+  foo: bar;
+  @if 1 == 1 {
+    baz: qux;
+  }
+}
+</code><div class="forms"></div><div class='addon' title='This code requires an addon to work'> <a href='https://github.com/andyjansson/postcss-conditionals' target='_blank'>conditionals</a></div></pre></div><div class="col-6 css"><pre name="css" id="ConditionalsBasicCss"  data-type="css" ><code>.if-condition {
+  foo: bar;
+  baz: qux;
+}
+</code><div class="forms"></div></pre></div></div>
+
+
+
+<h2 id="ternary-operators">Ternary operators</h2>
+<p>Ternary operators allow for a single-line if/else test in the format of <code>x &gt; 0 ? true : false</code>.</p>
+<div class="grid"><div class="col-6 scss"><pre name="scss" id="ConditionalsTernaryScss" data-csspre='scss' data-type="css" ><code>.if-ternary {
+  one-equals-one: if(1 == 1, true, false);
+}
+</code><div class="forms"></div></pre></div><div class="col-6 sass"><pre name="sass" id="ConditionalsTernarySass" data-csspre='sass' data-type="css" ><code>.if-ternary
+  one-equals-one: if(1 == 1, true, false)
+</code><div class="forms"></div></pre></div><div class="col-6 stylus"><pre name="stylus" id="ConditionalsTernaryStylus" data-csspre='stylus' data-type="css" ><code>.if-ternary
+  one-equals-one: 1 == 1 ? true : false
+</code><div class="forms"></div></pre></div><div class="col-6 css"><pre name="css" id="ConditionalsTernaryCss"  data-type="css" ><code>.if-ternary {
+  one-equals-one: true;
+}
+</code><div class="forms"></div></pre></div></div>
+
+
+
+<h2 id="interpolate-conditionals-inside-properties">Interpolate conditionals inside properties</h2>
+<p>Ability to interpolate <code>if</code> statements inside property names.</p>
+<div class="grid"><div class="col-6 scss"><pre name="scss" id="ConditionalsPropertyScss" data-csspre='scss' data-type="css" ><code>.if-within-property {
+  #{if(1 == 1, &quot;property&quot;, &quot;false&quot;)}: bar;
+}
+</code><div class="forms"></div></pre></div><div class="col-6 sass"><pre name="sass" id="ConditionalsPropertySass" data-csspre='sass' data-type="css" ><code>.if-within-property
+  #{if(1 == 1, &quot;property&quot;, &quot;false&quot;)}: bar
+</code><div class="forms"></div></pre></div><div class="col-6 stylus"><pre name="stylus" id="ConditionalsPropertyStylus" data-csspre='stylus' data-type="css" ><code>.if-within-property
+  {1 == 1 ? &quot;property&quot; : &quot;false&quot;}: bar
+</code><div class="forms"></div></pre></div><div class="col-6 css"><pre name="css" id="ConditionalsPropertyCss"  data-type="css" ><code>.if-within-property {
+  property: bar;
+}
+</code><div class="forms"></div></pre></div></div>
+
+
+
+<h2 id="interpolate-conditionals-inside-selectors">Interpolate conditionals inside selectors</h2>
+<p>Ability to interpolate <code>if</code> statements inside selectors - there probably aren&#39;t a lot of use cases for using tests inside a selector but one never knows.</p>
+<div class="grid"><div class="col-6 scss"><pre name="scss" id="ConditionalsSelectorScss" data-csspre='scss' data-type="css" ><code>.if-within-selector--#{if(1 == 1, &quot;true&quot;, &quot;false&quot;)} {
+  foo: bar;
+}
+</code><div class="forms"></div></pre></div><div class="col-6 sass"><pre name="sass" id="ConditionalsSelectorSass" data-csspre='sass' data-type="css" ><code>.if-within-selector--#{if(1 == 1, &quot;true&quot;, &quot;false&quot;)}
+  foo: bar
+</code><div class="forms"></div></pre></div><div class="col-6 stylus"><pre name="stylus" id="ConditionalsSelectorStylus" data-csspre='stylus' data-type="css" ><code>$if-result = 1 == 1 ? &quot;true&quot; : &quot;false&quot;
+
+.if-within-selector--{$if-result}
+  foo: bar
+</code><div class="forms"></div></pre></div><div class="col-6 css"><pre name="css" id="ConditionalsSelectorCss"  data-type="css" ><code>.if-within-selector--true {
+  foo: bar;
+}
+</code><div class="forms"></div></pre></div></div>]]></description>
+            <link>http://csspre.com/conditionals/</link>
+            <guid isPermaLink="true">http://csspre.com/conditionals/</guid>
+            <dc:creator><![CDATA[https://plus.google.com/+AlexanderFutekov]]></dc:creator>
+            <pubDate>Sun, 28 Sep 2014 00:00:00 GMT</pubDate>
+        </item>
+        <item>
+            <title><![CDATA[Variable Interpolation]]></title>
+            <description><![CDATA[<p>You can interpolate a variable anywhere - in the property, value, and even the selector.</p>
+<div class="grid"><div class="col-6 less"><pre name="less" id="VariableInterpolationBasicLess" data-csspre='less' data-type="css" ><code>@var: color;
+
+.class-@{var} {
+  @{var}: #7b3d66;
+  background-@{var}: #7b3d66;
+  content: @var;
+}
+</code><div class="forms"></div></pre></div><div class="col-6 scss"><pre name="scss" id="VariableInterpolationBasicScss" data-csspre='scss' data-type="css" ><code>$var: color;
+
+.class-#{$var} {
+  #{$var}: #7b3d66;
+  background-#{$var}: #7b3d66;
+  content: $var;
+}
+</code><div class="forms"></div></pre></div><div class="col-6 sass"><pre name="sass" id="VariableInterpolationBasicSass" data-csspre='sass' data-type="css" ><code>$var: color
+
+.class-#{$var}
+  #{$var}: #7b3d66
+  background-#{$var}: #7b3d66
+  content: $var
+</code><div class="forms"></div></pre></div><div class="col-6 stylus"><pre name="stylus" id="VariableInterpolationBasicStylus" data-csspre='stylus' data-type="css" ><code>$var = color
+
+.class-{$var}
+  {$var}: #7b3d66
+  background-{$var}: #7b3d66
+  content: $var
+</code><div class="forms"></div></pre></div><div class="col-6 postcss"><pre name="postcss" id="VariableInterpolationBasicPostcss" data-csspre='postcss' data-type="css" ><code>$var: color;
+
+.class-$var {
+  $(var): #7b3d66;
+  background-$(var): #7b3d66;
+  content: $var;
+}
+</code><div class="forms"></div><div class='addon' title='This code requires an addon to work'> <a href='https://github.com/postcss/postcss-simple-vars' target='_blank'>simple-vars</a></div></pre></div><div class="col-6 css"><pre name="css" id="VariableInterpolationBasicCss"  data-type="css" ><code>.class-color {
+  color: #7b3d66;
+  background-color: #7b3d66;
+  content: color;
+}
+</code><div class="forms"></div></pre></div></div>
+
+
+<h2 id="interpolation-in-calc-">Interpolation in <code>calc()</code></h2>
+<p>Some preprocessors require more special treatment when using variables inside <code>calc()</code>:</p>
+<div class="grid"><div class="col-6 less"><pre name="less" id="VariableInterpolationCalcLess" data-csspre='less' data-type="css" ><code>@var: 5px;
+
+div {
+  height: ~&quot;calc(7em + @{var})&quot;;
+}
+</code><div class="forms"></div></pre></div><div class="col-6 scss"><pre name="scss" id="VariableInterpolationCalcScss" data-csspre='scss' data-type="css" ><code>$var: 5px;
+
+div {
+  height: calc(7em + #{$var});
+}
+</code><div class="forms"></div></pre></div><div class="col-6 sass"><pre name="sass" id="VariableInterpolationCalcSass" data-csspre='sass' data-type="css" ><code>$var: 5px
+
+div
+  height: calc(7em + #{$var})
+</code><div class="forms"></div></pre></div><div class="col-6 stylus"><pre name="stylus" id="VariableInterpolationCalcStylus" data-csspre='stylus' data-type="css" ><code>$var = 5px
+
+div
+  height: &quot;calc(7em + %s)&quot; % $var
+</code><div class="forms"></div></pre></div><div class="col-6 postcss"><pre name="postcss" id="VariableInterpolationCalcPostcss" data-csspre='postcss' data-type="css" ><code>$var: 5px;
+
+div {
+  height: calc(7em + $var);
+}
+</code><div class="forms"></div><div class='addon' title='This code requires an addon to work'> <a href='https://github.com/postcss/postcss-simple-vars' target='_blank'>simple-vars</a></div></pre></div><div class="col-6 css"><pre name="css" id="VariableInterpolationCalcCss"  data-type="css" ><code>div {
+  height: calc(7em + 5px);
+}
+</code><div class="forms"></div></pre></div></div>
+
+
+<h2 id="selectors-interpolation">Selectors interpolation</h2>
+<p>If you have a often-occuring selector pattern you can put it in a variable:</p>
+<div class="grid"><div class="col-6 less"><pre name="less" id="VariableInterpolationSelectorsLess" data-csspre='less' data-type="css" ><code>@headings: h1, .h1, h2, .h2, h3, .h3;
+
+@{headings} {
+  font-family: &quot;Great Custom Font&quot;, sans-serif;
+}
+</code><div class="forms"></div></pre></div><div class="col-6 scss"><pre name="scss" id="VariableInterpolationSelectorsScss" data-csspre='scss' data-type="css" ><code>$headings: &quot;h1, .h1, h2, .h2, h3, .h3&quot;;
+
+#{$headings} {
+  font-family: &quot;Great Custom Font&quot;, sans-serif;
+}
+</code><div class="forms"></div></pre></div><div class="col-6 sass"><pre name="sass" id="VariableInterpolationSelectorsSass" data-csspre='sass' data-type="css" ><code>$headings: &quot;h1, .h1, h2, .h2, h3, .h3&quot;
+
+#{$headings}
+  font-family: &quot;Great Custom Font&quot;, sans-serif
+</code><div class="forms"></div></pre></div><div class="col-6 stylus"><pre name="stylus" id="VariableInterpolationSelectorsStylus" data-csspre='stylus' data-type="css" ><code>$headings = h1, .h1, h2, .h2, h3, .h3
+
+{$headings}
+  font-family: &quot;Great Custom Font&quot;, sans-serif
+</code><div class="forms"></div></pre></div><div class="col-6 postcss"><pre name="postcss" id="VariableInterpolationSelectorsPostcss" data-csspre='postcss' data-type="css" ><code>$headings: h1, .h1, h2, .h2, h3, .h3;
+
+$headings {
+  font-family: &quot;Great Custom Font&quot;, sans-serif;
+}
+</code><div class="forms"></div><div class='addon' title='This code requires an addon to work'> <a href='https://github.com/postcss/postcss-simple-vars' target='_blank'>simple-vars</a></div></pre></div><div class="col-6 css"><pre name="css" id="VariableInterpolationSelectorsCss"  data-type="css" ><code>h1, .h1, h2, .h2, h3, .h3 {
+  font-family: &quot;Great Custom Font&quot;, sans-serif;
+}
+</code><div class="forms"></div></pre></div></div>
+
+<p>Less needs escaping when you have both a dot (<code>.</code>) and a hyphen (<code>-</code>) in a variable <a href="https://github.com/less/less.js/issues/1328">because of reasons</a>.</p>
+<h2 id="nested-selectors-interpolation">Nested selectors interpolation</h2>
+<p>If you often find yourself extending selectors with the same pseudo selectors and/or modifier classes, then you can again use a variable like in the example above, when nesting though this won&#39;t work in Less.</p>
+<div class="grid"><div class="col-6 scss"><pre name="scss" id="VariableInterpolationSelectorsNestedScss" data-csspre='scss' data-type="css" ><code>$active: &quot;&amp;.is-active, &amp;:hover&quot;;
+
+.selector {
+  foo: bar;
+  #{$active} {
+    baz: qux;
+  }
+}
+</code><div class="forms"></div></pre></div><div class="col-6 sass"><pre name="sass" id="VariableInterpolationSelectorsNestedSass" data-csspre='sass' data-type="css" ><code>$active: &quot;&amp;.is-active, &amp;:hover&quot;
+
+.selector
+  foo: bar
+  #{$active}
+    baz: qux
+</code><div class="forms"></div></pre></div><div class="col-6 stylus"><pre name="stylus" id="VariableInterpolationSelectorsNestedStylus" data-csspre='stylus' data-type="css" ><code>$active = &quot;&amp;.is-active, &amp;:hover&quot;
+
+.selector
+  foo: bar
+  {$active}
+    baz: qux
+</code><div class="forms"></div></pre></div><div class="col-6 css"><pre name="css" id="VariableInterpolationSelectorsNestedCss"  data-type="css" ><code>.selector {
+  foo: bar;
+}
+.selector.is-active,
+.selector:hover {
+  baz: qux;
+}
+</code><div class="forms"></div></pre></div></div>
+
+<p>An alternative way of achieving this is using the <a href="/content-directive">@content directive</a> which supports Less.</p>
+]]></description>
+            <link>http://csspre.com/variable-interpolation/</link>
+            <guid isPermaLink="true">http://csspre.com/variable-interpolation/</guid>
+            <dc:creator><![CDATA[https://plus.google.com/+AlexanderFutekov]]></dc:creator>
+            <pubDate>Mon, 04 Aug 2014 00:00:00 GMT</pubDate>
+        </item>
+        <item>
+            <title><![CDATA[Content Directive]]></title>
+            <description><![CDATA[<p>The @content directive is a way to pass a block of styles to a <a href="/mixins">mixin</a>, this is useful in cases when you don&#39;t want to limit your future self in terms of number of parameters a mixin can accept.</p>
+<h2 id="basic-use">Basic use</h2>
+<p>The @content directive allows you to use a common set of selectors everywhere you declare a mixin.</p>
+<div class="grid"><div class="col-6 less"><pre name="less" id="ContentDirectiveBasicLess" data-csspre='less' data-type="css" ><code>.active(@content) {
+  &amp;.is-active,
+  &amp;:hover {
+    @content();
+  }
+}
+
+.content-directive {
+  foo: bar;
+  .active({
+    baz: qux
+  });
+}
+</code><div class="forms"></div></pre></div><div class="col-6 scss"><pre name="scss" id="ContentDirectiveBasicScss" data-csspre='scss' data-version='3.2.0' data-type="css" ><code>@mixin active {
+  &amp;.is-active,
+  &amp;:hover {
+    @content;
+  }
+}
+
+.content-directive {
+  foo: bar;
+  @include active {
+    baz: qux;
+  }
+}
+</code><div class="forms"></div></pre></div><div class="col-6 sass"><pre name="sass" id="ContentDirectiveBasicSass" data-csspre='sass' data-version='3.2.0' data-type="css" ><code>=active()
+  &amp;.is-active,
+  &amp;:hover
+    @content
+
+.content-directive
+  foo: bar
+  +active()
+    baz: qux
+</code><div class="forms"></div></pre></div><div class="col-6 stylus"><pre name="stylus" id="ContentDirectiveBasicStylus" data-csspre='stylus' data-version='0.41.0' data-type="css" ><code>active()
+  &amp;.is-active,
+  &amp;:hover
+    {block}
+
+.content-directive
+  foo: bar
+  +active()
+    baz: qux
+</code><div class="forms"></div></pre></div><div class="col-6 postcss"><pre name="postcss" id="ContentDirectiveBasicPostcss" data-csspre='postcss' data-type="css"  data-local><code>@define-mixin active {
+  &amp;.is-active,
+  &amp;:hover {
+    @mixin-content;
+  }
+}
+
+.content-directive {
+  foo: bar;
+  @mixin active {
+    baz: qux;
+  }
+}
+</code><div class="forms"></div><div class='addon' title='This code requires 2 addons to work'> <a href='https://github.com/postcss/postcss-mixins' target='_blank'>mixins</a>, <a href='https://github.com/postcss/postcss-nested' target='_blank'>nested</a></div></pre></div><div class="col-6 css"><pre name="css" id="ContentDirectiveBasicCss"  data-type="css" ><code>.content-directive {
+  foo: bar;
+}
+.content-directive.is-active,
+.content-directive:hover {
+  baz: qux;
+}
+</code><div class="forms"></div></pre></div></div>
+
+<p>Notice that for Stylus, we need a <code>+</code> before calling the mixin every time when you&#39;re passing content to it (below it, indented).</p>
+<h2 id="simpler-media-queries">Simpler media queries</h2>
+<p>You can use the @content directive to simplify your responsive styles:</p>
+<div class="grid"><div class="col-6 less"><pre name="less" id="ContentDirectiveMediaLess" data-csspre='less' data-type="css" ><code>.media-max(@num, @content) {
+  @media only screen and (max-width: @num) {
+    @content();
+  }
+}
+
+.media-test {
+  width: 400px;
+  .media-max(980px, {
+    max-width: 100%;
+  });
+}
+</code><div class="forms"></div></pre></div><div class="col-6 scss"><pre name="scss" id="ContentDirectiveMediaScss" data-csspre='scss' data-version='3.2.0' data-type="css" ><code>@mixin media-max($num) {
+  @media only screen and (max-width: $num) {
+    @content;
+  }
+}
+
+.media-test {
+  width: 400px;
+  @include media-max(980px) {
+    max-width: 100%;
+  }
+}
+</code><div class="forms"></div></pre></div><div class="col-6 sass"><pre name="sass" id="ContentDirectiveMediaSass" data-csspre='sass' data-version='3.2.0' data-type="css" ><code>=media-max($num)
+  @media only screen and (max-width: $num)
+    @content
+
+.media-test
+  width: 400px
+  +media-max(980px)
+    max-width: 100%
+</code><div class="forms"></div></pre></div><div class="col-6 stylus"><pre name="stylus" id="ContentDirectiveMediaStylus" data-csspre='stylus' data-version='0.41.0' data-type="css" ><code>media-max($num)
+  @media only screen and (max-width: $num)
+    {block}
+
+.media-test
+  width: 400px
+  +media-max(980px)
+    max-width: 100%
+</code><div class="forms"></div></pre></div><div class="col-6 postcss"><pre name="postcss" id="ContentDirectiveMediaPostcss" data-csspre='postcss' data-type="css"  data-local><code>@define-mixin media-max $num {
+  @media only screen and (max-width: $num) {
+    @mixin-content;
+  }
+}
+.media-test {
+  width: 400px;
+  @mixin media-max 980px {
+    max-width: 100%;
+  }
+}
+</code><div class="forms"></div><div class='addon' title='This code requires an addon to work'> <a href='https://github.com/postcss/postcss-mixins' target='_blank'>mixins</a></div></pre></div><div class="col-6 css"><pre name="css" id="ContentDirectiveMediaCss"  data-type="css" ><code>.media-test {
+  width: 400px;
+}
+@media only screen and (max-width: 980px) {
+  .media-test {
+    max-width: 100%;
+  }
+}
+</code><div class="forms"></div></pre></div></div>
+
+
+<h2 id="placeholder-pseudo-element">Placeholder pseudo element</h2>
+<p>Another very useful case where the @content directive can help is when defining styles for placeholder text - you can put a @content directive in each vendor-specific selector (can also be used for keyframes which are still prefixed).
+An alternative to the code snippets below would be to just use <a href="https://github.com/postcss/autoprefixer">Autoprefixer</a>.</p>
+<div class="grid"><div class="col-6 less"><pre name="less" id="ContentDirectivePlaceholderTextLess" data-csspre='less' data-type="css" ><code>.placeholder-text(@content) {
+  &amp;::-webkit-input-placeholder {
+    @content();
+  }
+  &amp;::-moz-placeholder {
+    @content();
+  }
+  &amp;:-ms-input-placeholder {
+    @content();
+  }
+  &amp;::placeholder {
+    @content();
+  }
+}
+
+.text-input {
+  .placeholder-text({
+    color: #acacac;
+    text-transform: uppercase;
+  });
+}
+</code><div class="forms"></div></pre></div><div class="col-6 scss"><pre name="scss" id="ContentDirectivePlaceholderTextScss" data-csspre='scss' data-version='3.2.0' data-type="css" ><code>@mixin placeholder-text {
+  &amp;::-webkit-input-placeholder {
+    @content;
+  }
+  &amp;::-moz-placeholder {
+    @content;
+  }
+  &amp;:-ms-input-placeholder {
+    @content;
+  }
+  &amp;::placeholder {
+    @content;
+  }
+}
+
+.text-input {
+  @include placeholder-text {
+    color: #acacac;
+    text-transform: uppercase;
+  }
+}
+</code><div class="forms"></div></pre></div><div class="col-6 sass"><pre name="sass" id="ContentDirectivePlaceholderTextSass" data-csspre='sass' data-version='3.2.0' data-type="css" ><code>=placeholder-text()
+  &amp;::-webkit-input-placeholder
+    @content
+
+  &amp;::-moz-placeholder
+    @content
+
+  &amp;:-ms-input-placeholder
+    @content
+
+  &amp;::placeholder
+    @content
+
+.text-input
+  +placeholder-text()
+    color: #acacac
+    text-transform: uppercase
+</code><div class="forms"></div></pre></div><div class="col-6 stylus"><pre name="stylus" id="ContentDirectivePlaceholderTextStylus" data-csspre='stylus' data-version='0.41.0' data-type="css" ><code>placeholder-text()
+  &amp;::-webkit-input-placeholder
+    {block}
+
+  &amp;::-moz-placeholder
+    {block}
+
+  &amp;:-ms-input-placeholder
+    {block}
+
+  &amp;::placeholder
+    {block}
+
+.text-input
+  +placeholder-text()
+    color: #acacac
+    text-transform: uppercase
+</code><div class="forms"></div></pre></div><div class="col-6 postcss"><pre name="postcss" id="ContentDirectivePlaceholderTextPostcss" data-csspre='postcss' data-type="css"  data-local><code>@define-mixin placeholder-text {
+  &amp;::-webkit-input-placeholder {
+    @mixin-content;
+  }
+  &amp;::-moz-placeholder {
+    @mixin-content;
+  }
+  &amp;:-ms-input-placeholder {
+    @mixin-content;
+  }
+  &amp;::placeholder {
+    @mixin-content;
+  }
+}
+
+.text-input {
+  @mixin placeholder-text {
+    color: #acacac;
+    text-transform: uppercase;
+  }
+}
+</code><div class="forms"></div><div class='addon' title='This code requires an addon to work'> <a href='https://github.com/postcss/postcss-mixins' target='_blank'>mixins</a></div></pre></div><div class="col-6 css"><pre name="css" id="ContentDirectivePlaceholderTextCss"  data-type="css" ><code>.text-input::-webkit-input-placeholder {
+  color: #acacac;
+  text-transform: uppercase;
+}
+.text-input::-moz-placeholder {
+  color: #acacac;
+  text-transform: uppercase;
+}
+.text-input:-ms-input-placeholder {
+  color: #acacac;
+  text-transform: uppercase;
+}
+.text-input::placeholder {
+  color: #acacac;
+  text-transform: uppercase;
+}
+</code><div class="forms"></div></pre></div></div>
+
+<p>To learn more about placeholder text styling I recommend reading this <a href="http://blog.teamtreehouse.com/the-css3-placeholder-pseudo-element">great article by Treehouse</a>, it explains nicely what can and cannot be styled about the placeholder text.</p>
+]]></description>
+            <link>http://csspre.com/content-directive/</link>
+            <guid isPermaLink="true">http://csspre.com/content-directive/</guid>
+            <dc:creator><![CDATA[https://plus.google.com/+AlexanderFutekov]]></dc:creator>
+            <pubDate>Mon, 04 Aug 2014 00:00:00 GMT</pubDate>
+        </item>
+        <item>
+            <title><![CDATA[Placeholder Selectors]]></title>
+            <description><![CDATA[<p>Placeholder Selectors are like classes, that will not be outputted to the generated CSS, but are easy to reuse in your code. Besides, you can name them anything and no one will ever know!</p>
+<p>Here is how to use them, note that <code>placeholder-2</code> won&#39;t be visible in the final CSS because we haven&#39;t called it anywhere.</p>
+<p>Less doesn&#39;t support actual Placeholder Selectors, but you can simulate one by using a mixin.</p>
+<div class="grid"><div class="col-6 less"><pre name="less" id="PlaceholderSelectorsBasicLess" data-csspre='less' data-type="css" ><code>.placeholder-1() {
+  foo: bar;
+}
+
+.placeholder-2() {
+  baz: qux;
+}
+
+.include-placeholder-1 {
+  .placeholder-1();
+}
+</code><div class="forms"></div></pre></div><div class="col-6 scss"><pre name="scss" id="PlaceholderSelectorsBasicScss" data-csspre='scss' data-type="css" ><code>%placeholder-1 {
+  foo: bar;
+}
+
+%placeholder-2 {
+  baz: qux;
+}
+
+.include-placeholder-1 {
+  @extend %placeholder-1;
+}
+</code><div class="forms"></div></pre></div><div class="col-6 sass"><pre name="sass" id="PlaceholderSelectorsBasicSass" data-csspre='sass' data-type="css" ><code>%placeholder-1
+  foo: bar
+
+%placeholder-2
+  baz: qux
+
+.include-placeholder-1
+  @extend %placeholder-1
+</code><div class="forms"></div></pre></div><div class="col-6 stylus"><pre name="stylus" id="PlaceholderSelectorsBasicStylus" data-csspre='stylus' data-type="css" ><code>$placeholder-1
+  foo: bar
+
+$placeholder-2
+  baz: qux
+
+.include-placeholder-1
+  @extend $placeholder-1
+</code><div class="forms"></div></pre></div><div class="col-6 postcss"><pre name="postcss" id="PlaceholderSelectorsBasicPostcss" data-csspre='postcss' data-type="css"  data-local><code>%placeholder-1 {
+  foo: bar;
+}
+
+%placeholder-2 {
+  baz: qux;
+}
+
+.include-placeholder-1 {
+  @extend %placeholder-1;
+}
+</code><div class="forms"></div><div class='addon' title='This code requires an addon to work'> <a href='https://github.com/travco/postcss-extend' target='_blank'>extend</a></div></pre></div><div class="col-6 css"><pre name="css" id="PlaceholderSelectorsBasicCss"  data-type="css" ><code>.include-placeholder-1 {
+  foo: bar;
+}
+</code><div class="forms"></div></pre></div></div>
+
+<p>Because Sass and Stylus use <code>@extend</code>, they will produce more efficient CSS. If two selectors, let&#39;s call them <code>.selector-1</code> and <code>.selector-2</code>, both extend the same placeholder, then the resulting CSS will have a selector that combines the common styles - <code>.selector-1, .selector-2 {...}</code>.</p>
+]]></description>
+            <link>http://csspre.com/placeholder-selectors/</link>
+            <guid isPermaLink="true">http://csspre.com/placeholder-selectors/</guid>
+            <dc:creator><![CDATA[https://plus.google.com/+AlexanderFutekov]]></dc:creator>
+            <pubDate>Wed, 23 Jul 2014 00:00:00 GMT</pubDate>
+        </item>
+        <item>
+            <title><![CDATA[Mixins]]></title>
+            <description><![CDATA[<h2 id="mixin-basics">Mixin basics</h2>
+<p>Here is how to include a simple mixin, as you can see, the syntax is rather similar between the preprocessors.</p>
+<div class="grid"><div class="col-6 less"><pre name="less" id="MixinsBasicLess" data-csspre='less' data-type="css" ><code>.simple-mixin() {
+  foo: bar;
+}
+
+.include-mixin {
+  .simple-mixin;
+  baz: qux;
+}
+</code><div class="forms"></div></pre></div><div class="col-6 scss"><pre name="scss" id="MixinsBasicScss" data-csspre='scss' data-type="css" ><code>@mixin simple-mixin {
+  foo: bar;
+}
+
+.include-mixin {
+  @include simple-mixin;
+  baz: qux;
+}
+</code><div class="forms"></div></pre></div><div class="col-6 sass"><pre name="sass" id="MixinsBasicSass" data-csspre='sass' data-type="css" ><code>=simple-mixin
+  foo: bar
+
+.include-mixin 
+  +simple-mixin
+  baz: qux
+</code><div class="forms"></div></pre></div><div class="col-6 stylus"><pre name="stylus" id="MixinsBasicStylus" data-csspre='stylus' data-type="css" ><code>simple-mixin()
+  foo: bar
+
+.include-mixin 
+  simple-mixin()
+  baz: qux
+</code><div class="forms"></div></pre></div><div class="col-6 postcss"><pre name="postcss" id="MixinsBasicPostcss" data-csspre='postcss' data-type="css"  data-local><code>@define-mixin simple-mixin {
+  foo: bar;
+}
+
+.include-mixin {
+  @mixin simple-mixin;
+  baz: qux;
+}
+</code><div class="forms"></div><div class='addon' title='This code requires an addon to work'> <a href='https://github.com/postcss/postcss-mixins' target='_blank'>mixins</a></div></pre></div><div class="col-6 css"><pre name="css" id="MixinsBasicCss"  data-type="css" ><code>.include-mixin {
+  foo: bar;
+  baz: qux;
+}
+</code><div class="forms"></div></pre></div></div>
+
+
+<h2 id="mixin-parameters-and-parameter-defaults">Mixin parameters and parameter defaults</h2>
+<p>Mixins can receive one or multiple parameters.</p>
+<p>You can even set defaults for each of the parameters. When a parameter has a default value, you don&#39;t need to set one when calling the mixin - see how we can omit the <code>thickness</code> parameter.</p>
+<div class="grid"><div class="col-6 less"><pre name="less" id="MixinsParamsLess" data-csspre='less' data-type="css" ><code>.bordered(@color; @thickness: 1px) {
+  border: @thickness solid @color;
+}
+
+.mixins-params {
+  .bordered(#cbf40d);
+  .bordered(#d04fbc, 3px);
+}
+</code><div class="forms"></div></pre></div><div class="col-6 scss"><pre name="scss" id="MixinsParamsScss" data-csspre='scss' data-type="css" ><code>@mixin bordered($color, $thickness: 1px) {
+  border: $thickness solid $color;
+}
+
+.mixins-params {
+  @include bordered(#cbf40d);
+  @include bordered(#d04fbc, 3px);
+}
+</code><div class="forms"></div></pre></div><div class="col-6 sass"><pre name="sass" id="MixinsParamsSass" data-csspre='sass' data-type="css" ><code>=bordered($color, $thickness: 1px)
+  border: $thickness solid $color
+
+.mixins-params
+  +bordered(#cbf40d)
+  +bordered(#d04fbc, 3px)
+</code><div class="forms"></div></pre></div><div class="col-6 stylus"><pre name="stylus" id="MixinsParamsStylus" data-csspre='stylus' data-type="css" ><code>bordered($color, $thickness = 1px)
+  border: $thickness solid $color
+
+.mixins-params
+  bordered(#cbf40d)
+  bordered(#d04fbc, 3px)
+</code><div class="forms"></div></pre></div><div class="col-6 postcss"><pre name="postcss" id="MixinsParamsPostcss" data-csspre='postcss' data-type="css"  data-local><code>@define-mixin bordered $color, $thickness: 1px {
+  border: $(thickness) solid $(color);
+}
+
+.mixins-params {
+  @mixin bordered #cbf40d;
+  @mixin bordered #d04fbc, 3px;
+}
+</code><div class="forms"></div><div class='addon' title='This code requires an addon to work'> <a href='https://github.com/postcss/postcss-mixins' target='_blank'>mixins</a></div></pre></div><div class="col-6 css"><pre name="css" id="MixinsParamsCss"  data-type="css" ><code>.mixins-params {
+  border: 1px solid #cbf40d;
+  border: 3px solid #d04fbc;
+}
+</code><div class="forms"></div></pre></div></div>
+
+
+
+<h2 id="named-parameters">Named parameters</h2>
+<p>If, for whatever reason, you want to set the parameters of a mixin in a particular order that is different that the one set in the mixin, you can do that by calling the mixin and explicitly state each of the parameters you&#39;re defining.</p>
+<div class="grid"><div class="col-6 less"><pre name="less" id="MixinsParamsNamedLess" data-csspre='less' data-type="css" ><code>.size(@w, @h) {
+  width: @w;
+  height: @h;
+}
+
+.mixins-named-params {
+  .size(@h: 10px, @w: 25px);
+}
+</code><div class="forms"></div></pre></div><div class="col-6 scss"><pre name="scss" id="MixinsParamsNamedScss" data-csspre='scss' data-type="css" ><code>@mixin size($w, $h) {
+  width: $w;
+  height: $h;
+}
+
+.mixins-named-params {
+  @include size($h: 10px, $w: 25px);
+}
+</code><div class="forms"></div></pre></div><div class="col-6 sass"><pre name="sass" id="MixinsParamsNamedSass" data-csspre='sass' data-type="css" ><code>=size($w, $h)
+  width: $w
+  height: $h
+
+.mixins-named-params
+  +size($h: 10px, $w: 25px)
+</code><div class="forms"></div></pre></div><div class="col-6 stylus"><pre name="stylus" id="MixinsParamsNamedStylus" data-csspre='stylus' data-type="css" ><code>size($w, $h)
+  width: $w
+  height: $h
+
+.mixins-named-params
+  size($h: 10px, $w: 25px)
+</code><div class="forms"></div></pre></div><div class="col-6 css"><pre name="css" id="MixinsParamsNamedCss"  data-type="css" ><code>.mixins-named-params {
+  width: 25px;
+  height: 10px;
+}
+</code><div class="forms"></div></pre></div></div>
+
+
+
+<h2 id="unknown-number-of-parameters">Unknown number of parameters</h2>
+<p>If you want to have a mixin with a varying number of parameters, all CSS preprocessors allow you output all arguments like so:</p>
+<div class="grid"><div class="col-6 less"><pre name="less" id="MixinsArgumentsLess" data-csspre='less' data-type="css" ><code>.transition(...) {
+  -webkit-transition: @arguments;
+  -moz-transition: @arguments;
+  transition: @arguments;
+}
+
+.mixins-arguments {
+  .transition(opacity 200ms);
+}
+</code><div class="forms"></div></pre></div><div class="col-6 scss"><pre name="scss" id="MixinsArgumentsScss" data-csspre='scss' data-type="css" ><code>@mixin transition($args...) {
+  -webkit-transition: $args;
+  -moz-transition: $args;
+  transition: $args;
+}
+
+.mixins-arguments {
+  @include transition(opacity 200ms);
+}
+</code><div class="forms"></div></pre></div><div class="col-6 sass"><pre name="sass" id="MixinsArgumentsSass" data-csspre='sass' data-type="css" ><code>=transition($args...)
+  -webkit-transition: $args
+  -moz-transition: $args
+  transition: $args
+
+.mixins-arguments
+  +transition(opacity 200ms)
+</code><div class="forms"></div></pre></div><div class="col-6 stylus"><pre name="stylus" id="MixinsArgumentsStylus" data-csspre='stylus' data-type="css" ><code>transition($args)
+  -webkit-transition: $args
+  -moz-transition: $args
+  transition: $args
+
+.mixins-arguments
+  transition(opacity 200ms)
+</code><div class="forms"></div></pre></div><div class="col-6 postcss"><pre name="postcss" id="MixinsArgumentsPostcss" data-csspre='postcss' data-type="css"  data-local><code>@define-mixin transition $args {
+  -webkit-transition: $args;
+  -moz-transition: $args;
+  transition: $args;
+}
+
+.mixins-arguments {
+  @mixin transition opacity 200ms;
+}
+</code><div class="forms"></div><div class='addon' title='This code requires an addon to work'> <a href='https://github.com/postcss/postcss-mixins' target='_blank'>mixins</a></div></pre></div><div class="col-6 css"><pre name="css" id="MixinsArgumentsCss"  data-type="css" ><code>.mixins-arguments {
+  -webkit-transition: opacity 200ms;
+  -moz-transition: opacity 200ms;
+  transition: opacity 200ms;
+}
+</code><div class="forms"></div></pre></div></div>]]></description>
+            <link>http://csspre.com/mixins/</link>
+            <guid isPermaLink="true">http://csspre.com/mixins/</guid>
+            <dc:creator><![CDATA[https://plus.google.com/+AlexanderFutekov]]></dc:creator>
+            <pubDate>Mon, 21 Jul 2014 00:00:00 GMT</pubDate>
+        </item>
+        <item>
+            <title><![CDATA[Random Numbers]]></title>
+            <description><![CDATA[<h2 id="generating-a-random-number">Generating a random number</h2>
+<p>Sometimes you just need a random number.</p>
+<p>Here&#39;s how to get a random integer between <code>1</code> and <code>100</code>:</p>
+<div class="grid"><div class="col-6 less"><pre name="less" id="RandomNumberBasicLess" data-csspre='less' data-type="css" ><code>.make-random(@min, @max) { 
+  @rnd: floor(&#96;Math.random() &#42; @{max} + @{min}&#96;);
+}
+
+.random-integer {
+  .make-random(1, 100);
+  foo: @rnd;
+}
+</code><div class="forms"></div></pre></div><div class="col-6 scss"><pre name="scss" id="RandomNumberBasicScss" data-csspre='scss' data-version='3.3.0' data-type="css" ><code>.random-integer {
+  foo: random(100);
+}
+</code><div class="forms"></div></pre></div><div class="col-6 sass"><pre name="sass" id="RandomNumberBasicSass" data-csspre='sass' data-version='3.3.0' data-type="css" ><code>.random-integer
+  foo: random(100)
+</code><div class="forms"></div></pre></div><div class="col-6 stylus"><pre name="stylus" id="RandomNumberBasicStylus" data-csspre='stylus' data-type="css" ><code>random(min, max)
+  return floor( math(0, &quot;random&quot;) &#42; max + min )
+
+.random-integer
+  foo: random(1, 100)
+</code><div class="forms"></div></pre></div><div class="col-6 postcss"><pre name="postcss" id="RandomNumberBasicPostcss" data-csspre='postcss' data-type="css"  data-local><code>.random-integer {
+  foo: resolve(floor(random() &#42; 100 + 1));
+}
+</code><div class="forms"></div><div class='addon' title='This code requires an addon to work'> <a href='https://github.com/dtrussia/postcss-mathjs' target='_blank'>mathjs</a></div></pre></div><div class="col-6 css"><pre name="css" id="RandomNumberBasicCss"  data-type="css" ><code>.random-integer {
+  foo: 56;
+}
+</code><div class="forms"></div></pre></div></div>
+
+<p>Note that Sass&#39; built-in random function can get an upper-limit parameter, so <code>random(100)</code> will give you a value from the range <code>1-100</code>.</p>
+<p>It is apparent from these snippets that Sass offers the cleanest solution in terms of syntax, Stylus can work with a similar syntax but only after setting up a function, and Less requires us to define a mixin, call it, and then use the generated variable from it somewhere.</p>
+<p>However, if you need to modify the lower limit in Sass you have to add or subtract a number after that, (note that this will affect the upper limit as well), the next examples on this page increase/decrease the upper/lower limits with simple addition and subtraction.</p>
+<h2 id="cache-invalidation-with-random-numbers">Cache Invalidation with random numbers</h2>
+<p>Random numbers can also be useful if you need to invalidate the cache of a certain external asset that is called from the CSS (such as background image or font).</p>
+<p>A simple example is adding a four-digit random number as a query parameter:</p>
+<div class="grid"><div class="col-6 less"><pre name="less" id="RandomNumberCacheLess" data-csspre='less' data-type="css" ><code>.make-random(@min, @max) { 
+  @rnd: floor(&#96;Math.random() &#42; @{max} + @{min}&#96;);
+}
+
+.random-number-cache-invalidation {
+  .make-random(1000, 9999);
+  background-image: src(&quot;x.jpg?v=@{rnd}&quot;);
+}
+</code><div class="forms"></div></pre></div><div class="col-6 scss"><pre name="scss" id="RandomNumberCacheScss" data-csspre='scss' data-version='3.3.0' data-type="css" ><code>.random-number-cache-invalidation {
+  background-image: src(&quot;x.jpg?v=#{random(9000) + 999}&quot;);
+}
+</code><div class="forms"></div></pre></div><div class="col-6 sass"><pre name="sass" id="RandomNumberCacheSass" data-csspre='sass' data-version='3.3.0' data-type="css" ><code>.random-number-cache-invalidation
+  background-image: src(&quot;x.jpg?v=#{random(9000)+999}&quot;)
+</code><div class="forms"></div></pre></div><div class="col-6 stylus"><pre name="stylus" id="RandomNumberCacheStylus" data-csspre='stylus' data-type="css" ><code>random(min, max)
+  return floor( math(0, &quot;random&quot;) &#42; max + min )
+
+.random-number-cache-invalidation
+  background-image: src(&quot;x.jpg?v=&quot; + random(1000, 9999))
+</code><div class="forms"></div></pre></div><div class="col-6 postcss"><pre name="postcss" id="RandomNumberCachePostcss" data-csspre='postcss' data-type="css"  data-local><code>.random-number-cache-invalidation {
+  background-image: src(x.jpg?v=resolve(floor(random() &#42; 9999 + 1000)));
+}
+</code><div class="forms"></div><div class='addon' title='This code requires an addon to work'> <a href='https://github.com/dtrussia/postcss-mathjs' target='_blank'>mathjs</a></div></pre></div><div class="col-6 css"><pre name="css" id="RandomNumberCacheCss"  data-type="css" ><code>.random-number-cache-invalidation {
+  background-image: src(&quot;x.jpg?v=5656&quot;);
+}
+</code><div class="forms"></div></pre></div></div>
+
+
+
+<h2 id="random-colors">Random colors</h2>
+<p>You can get a unique color on every compilation by using random number generation.</p>
+<p>One option is to set specific ranges for the R, G and/or B in a RGB color (for example 40-220, to avoid very dark or very light colors).</p>
+<p>However, it&#39;s much more useful to randomize only the Hue in HSL and preset the Lightness and Saturation to get colors that look related and are of the same lightness/darkness:</p>
+<div class="grid"><div class="col-6 less"><pre name="less" id="RandomNumberColorLess" data-csspre='less' data-type="css" ><code>.make-random(@min, @max) { 
+  @rnd: floor(&#96;Math.random() &#42; @{max} + @{min}&#96;);
+}
+
+.random-number-color {
+  .make-random(0, 360);
+  color: hsl(@rnd, 50%, 50%);
+}
+</code><div class="forms"></div></pre></div><div class="col-6 scss"><pre name="scss" id="RandomNumberColorScss" data-csspre='scss' data-version='3.3.0' data-type="css" ><code>.random-number-color {
+  color: hsl(random(361) - 1, 50%, 50%);
+}
+</code><div class="forms"></div></pre></div><div class="col-6 sass"><pre name="sass" id="RandomNumberColorSass" data-csspre='sass' data-version='3.3.0' data-type="css" ><code>.random-number-color
+  color: hsl(random(361)-1, 50%, 50%)
+</code><div class="forms"></div></pre></div><div class="col-6 stylus"><pre name="stylus" id="RandomNumberColorStylus" data-csspre='stylus' data-type="css" ><code>random(min, max)
+  return floor( math(0, &quot;random&quot;) &#42; max + min )
+
+.random-number-color
+  color: hsl(random(0, 360), 50%, 50%)
+</code><div class="forms"></div></pre></div><div class="col-6 postcss"><pre name="postcss" id="RandomNumberColorPostcss" data-csspre='postcss' data-type="css"  data-local><code>.random-number-color {
+  color: hsl(resolve(floor(random() &#42; 360 + 0)), 50%, 50%);
+}
+</code><div class="forms"></div><div class='addon' title='This code requires an addon to work'> <a href='https://github.com/dtrussia/postcss-mathjs' target='_blank'>mathjs</a></div></pre></div><div class="col-6 css"><pre name="css" id="RandomNumberColorCss"  data-type="css" ><code>.random-number-color {
+  color: #4abf40;
+}
+</code><div class="forms"></div></pre></div></div>
+
+<p>Using the same approach you can get a color that is always blue-ish just by setting the random hue value to be somewhere between <code>180</code> and <code>270</code>.</p>
+]]></description>
+            <link>http://csspre.com/random-numbers/</link>
+            <guid isPermaLink="true">http://csspre.com/random-numbers/</guid>
+            <dc:creator><![CDATA[https://plus.google.com/+AlexanderFutekov]]></dc:creator>
+            <pubDate>Sat, 05 Jul 2014 00:00:00 GMT</pubDate>
+        </item>
+        <item>
+            <title><![CDATA[Comments]]></title>
+            <description><![CDATA[<p>Commenting your CSS is important, it is even more important for preprocessors, where you may write some weird-looking things to achieve a specific output or to workaround a preprocessor bug.</p>
+<p>It is therefore important to know well the types of comments that are allowed in the different preprocessors.</p>
+<p>Additionally, if you decide to use a living style guide you can build one with comments in your preprocessor files. Some good tools to achieve this are <a href="http://kaleistyleguide.com/">Kalei Style Guide</a>, <a href="http://jacobrask.github.io/styledocco/">StyleDocco</a>, and <a href="https://github.com/kss-node/kss-node">Knyle Style Sheets</a>.</p>
+<h2 id="types-of-comments">Types of comments</h2>
+<table class="table-content">
+  <caption>Comments appearing in the compiled CSS?</caption>
+  <thead>
+    <tr>
+      <th rowspan="2"></th>
+      <th rowspan="2">Less</th>
+      <th colspan="3">Sass</th>
+      <th colspan="2">Stylus</th>
+    </tr>
+    <tr>
+      <th>expanded, nested</th>
+      <th>compact</th>
+      <th>compressed</th>
+      <th>expanded</th>
+      <th>compressed</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>
+        Single-line comments<br>
+        <code>// foo</code>
+      </th>
+      <td>No</td>
+      <td colspan="3">No</td>
+      <td colspan="2">No</td>
+    </tr>
+    <tr>
+      <th>
+        Block comments<br>
+        <code>/*<br>&nbsp;* foo<br>&nbsp;*/</code>
+      </th>
+      <td>Yes</td>
+      <td>Yes</td>
+      <td>Yes, (output is on a single line)</td>
+      <td>No</td>
+      <td>Yes (except if declared in imported .styl file*)</td>
+      <td>No</td>
+    </tr>
+    <tr>
+      <th>
+        Block comments - alternative<br>
+        <code>/* foo<br>&nbsp;bar<br>&nbsp;baz */</code>
+      </th>
+      <td>Yes</td>
+      <td>Yes, (output has star on every line)</td>
+      <td>Yes, (output is on a single line)</td>
+      <td>No</td>
+      <td>Yes (except if declared in imported .styl file*)</td>
+      <td>No</td>
+    </tr>
+    <tr>
+      <th>
+        Loud block comments<br>
+        <code>/*!<br>&nbsp;* foo<br>&nbsp;* /</code>
+      </th>
+      <td>Yes</td>
+      <td colspan="3">Yes (output keeps the <b>!</b>)</td>
+      <td colspan="2">Yes</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>* You can <a href="https://github.com/stylus/stylus/issues/1389">read more</a> about this <a href="https://github.com/stylus/stylus/pull/935">behavior of Stylus</a>.</p>
+]]></description>
+            <link>http://csspre.com/comments/</link>
+            <guid isPermaLink="true">http://csspre.com/comments/</guid>
+            <dc:creator><![CDATA[https://plus.google.com/+AlexanderFutekov]]></dc:creator>
+            <pubDate>Tue, 01 Jul 2014 00:00:00 GMT</pubDate>
+        </item>
+        <item>
+            <title><![CDATA[Loops]]></title>
+            <description><![CDATA[<p>Loops are useful when you need to create a set of selectors/values that have an underlying mathematical relation of some sort.</p>
+<h2 id="basic-loop">Basic loop</h2>
+<p>Let&#39;s build something simple - a very basic grid system with four columns.</p>
+<p>We will put the columns class name and their number in variables and utilize them through <a href="/variables#interpolating-variables">variable interpolation</a>.</p>
+<div class="grid"><div class="col-6 less"><pre name="less" id="LoopsBasicLess" data-csspre='less' data-type="css" ><code>.generate-column(@i: 1) when (@i =&lt; 4) {
+  .col-@{i} {
+    width: @i &#42; (100% / 4);
+  }
+  .generate-column(@i + 1);
+}
+
+.generate-column();
+</code><div class="forms"></div></pre></div><div class="col-6 less"><pre name="less" id="LoopsBasicLessAlt" data-csspre='less' data-type="css" ><code>.col {
+  .-(@i: 1) when (@i =&lt; 4) {
+    &amp;-@{i} {
+      width: @i &#42; (100% / 4);
+    }.-(@i + 1);
+  }.-;
+}
+</code><div class="forms"></div></pre></div><div class="col-6 scss"><pre name="scss" id="LoopsBasicScss" data-csspre='scss' data-type="css" ><code>@for $i from 1 through 4 {
+  .col-#{$i} {
+    width: $i &#42; (100% / 4);
+  }
+}
+</code><div class="forms"></div></pre></div><div class="col-6 sass"><pre name="sass" id="LoopsBasicSass" data-csspre='sass' data-type="css" ><code>@for $i from 1 through 4
+  .col-#{$i}
+    width: $i &#42; (100% / 4)
+</code><div class="forms"></div></pre></div><div class="col-6 stylus"><pre name="stylus" id="LoopsBasicStylus" data-csspre='stylus' data-type="css" ><code>for $i in 1..4
+  .col-{$i}
+    width: $i &#42; (100% / 4)
+</code><div class="forms"></div></pre></div><div class="col-6 postcss"><pre name="postcss" id="LoopsBasicPostcss" data-csspre='postcss' data-type="css"  data-local><code>@for $i from 1 to 4 {
+  .col-$(i) {
+    width: resolve($(i) &#42; resolve(100 / 4))%;
+  }
+}
+</code><div class="forms"></div><div class='addon' title='This code requires 2 addons to work'> <a href='https://github.com/antyakushev/postcss-for' target='_blank'>for</a>, <a href='https://github.com/dtrussia/postcss-mathjs' target='_blank'>mathjs</a></div></pre></div><div class="col-6 css"><pre name="css" id="LoopsBasicCss"  data-type="css" ><code>.col-1 {
+  width: 25%;
+}
+.col-2 {
+  width: 50%;
+}
+.col-3 {
+  width: 75%;
+}
+.col-4 {
+  width: 100%;
+}
+</code><div class="forms"></div></pre></div></div>
+
+<p>You will notice that Less offers two ways to write a loop, the first way is standard with a <a href="/mixins#mixin-basics">mixin</a> that is later called. The second one is a bit hacky and much uglier, but doesn&#39;t require calling the mixin later.</p>
+<p>In all of the preprocessors you can have both inclusive ranges and exclusive ones. For Less an inclusive range can be achieved with <code>=&lt;</code> and for an exclusive one - <code>&lt;</code>. In Sass inclusive ranges use <code>through</code> and exclusive - <code>to</code>. For Stylus inclusive ranges are written with <code>..</code> and exclusive - <code>...</code>.</p>
+<h2 id="leveling-up">Leveling up</h2>
+<p>Often when you do a loop you want to iterate through something more than numbers, probably a list of colors or some other values. Here is an example of how you can create numbered selectors with values, extracted from a variable.</p>
+<div class="grid"><div class="col-6 less"><pre name="less" id="LoopsIntermediateLess" data-csspre='less' data-type="css" ><code>@colors: #012345, #6789ab, #abcdef;
+
+.color-mixin(@colors; @n) when (@n &gt; 0) {
+  .color-mixin(@colors; (@n - 1));
+  @i: @n - 1;
+  .color-@{i} {
+    background-color: extract(@colors, @n);
+  }
+}
+.color-mixin(@colors; length(@colors));
+</code><div class="forms"></div></pre></div><div class="col-6 scss"><pre name="scss" id="LoopsIntermediateScss" data-csspre='scss' data-type="css" ><code>$colors: #012345, #6789ab, #abcdef;
+
+@for $i from 1 through length($colors) {
+  .color-#{$i - 1} {
+    background: #{nth($colors, $i)};
+  }
+}
+</code><div class="forms"></div></pre></div><div class="col-6 scss"><pre name="scss" id="LoopsIntermediateScssAlt" data-csspre='scss' data-type="css" ><code>$colors: #012345, #6789ab, #abcdef;
+
+@each $color in $colors {
+  $i: index($colors, $color);
+  .color-#{$i - 1} {
+    background: $color;
+  }
+}
+</code><div class="forms"></div></pre></div><div class="col-6 sass"><pre name="sass" id="LoopsIntermediateSass" data-csspre='sass' data-type="css" ><code>$colors: #012345, #6789ab, #abcdef
+
+@for $i from 1 through length($colors)
+  .color-#{$i - 1}
+    background: #{nth($colors, $i)}
+</code><div class="forms"></div></pre></div><div class="col-6 sass"><pre name="sass" id="LoopsIntermediateSassAlt" data-csspre='sass' data-type="css" ><code>$colors: #012345, #6789ab, #abcdef
+
+@each $color in $colors
+  $i: index($colors, $color)
+  .color-#{$i - 1}
+    background: $color
+</code><div class="forms"></div></pre></div><div class="col-6 stylus"><pre name="stylus" id="LoopsIntermediateStylus" data-csspre='stylus' data-type="css" ><code>$colors = #012345, #6789ab, #abcdef
+
+for $color, $i in $colors
+  .color-{$i}
+    background: $color
+</code><div class="forms"></div></pre></div><div class="col-6 postcss"><pre name="postcss" id="LoopsIntermediatePostcss" data-csspre='postcss' data-type="css" ><code>$colors = #012345, #6789ab, #abcdef;
+@each $color, $i in ($colors) {
+  .color-$(i) {
+    background: $(color);
+  }
+}
+</code><div class="forms"></div><div class='addon' title='This code requires an addon to work'> <a href='https://github.com/outpunk/postcss-each' target='_blank'>each</a></div></pre></div><div class="col-6 css"><pre name="css" id="LoopsIntermediateCss"  data-type="css" ><code>.color-0 {
+  background: #012345;
+}
+.color-1 {
+  background: #6789ab;
+}
+.color-2 {
+  background: #abcdef;
+}
+</code><div class="forms"></div></pre></div></div>
+
+<p>In addition to an index-based iteration, Sass can also iterate through values directly. As Sass <a href="https://github.com/sass/sass/issues/996">does not yet provide</a> an index variable when iterating values, we have to retrieve it manually.</p>
+]]></description>
+            <link>http://csspre.com/loops/</link>
+            <guid isPermaLink="true">http://csspre.com/loops/</guid>
+            <dc:creator><![CDATA[https://plus.google.com/+AlexanderFutekov]]></dc:creator>
+            <pubDate>Fri, 27 Jun 2014 00:00:00 GMT</pubDate>
+        </item>
+    </channel>
+</rss>

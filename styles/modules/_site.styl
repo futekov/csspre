@@ -1,0 +1,55 @@
+html
+  background-color: #b7b2ad
+  padding: 0
+
+header
+  background: $purple
+  text-align: center
+
+.site
+  background: #f6f7f8
+  -transparent-bg(0.36)
+  max-width: $site-width
+  margin: 0 auto 20px
+  padding: 2% 3.6% 1%
+  position: relative
+  + .site
+    padding-top: 30px
+
+.site-title
+  margin: 0
+  font-size: 52px
+  line-height: 1.3
+  color: #eee
+  @media screen and (max-width: 800px)
+    font-size: 46px
+  @media screen and (max-width: 660px)
+    font-size: 30px
+    text-align: left
+    text-indent: 5px
+
+.site-title a
+  color: #eee
+  &:hover
+    color: #fff
+
+.page-title
+  font-size: 44px
+  @media screen and (max-width: 800px)
+    font-size: 36px
+
+.donate-form
+  text-align: center
+
+  input[type="submit"]
+    background: $purple
+    border: 0
+    color: #fff
+    padding: 6px 12px
+    cursor: pointer
+    font-size: 14px
+    &:hover
+      background: darken($purple, 15%)
+
+  p
+    display: inline-block

@@ -1,0 +1,53 @@
+.post,
+section
+  @extend $u-cf
+
+.post
+  h2
+    padding-top: 1em
+  div[class*='sass']
+    display: none
+
+#sass-syntax
+  overflow: hidden
+  clip: rect(0 0 0 0)
+  height: 1px
+  width: 1px
+  margin: -1px
+  padding: 0
+  border: 0
+  &-badge
+    -webkit-user-select: none
+    -moz-user-select: none
+    -ms-user-select: none
+    user-select: none
+    padding: 0.2em 0.4em
+    font-family: Consolas, "Andale Mono", monospace
+    font-size: 18px
+    background-color: #999
+    background-image: -webkit-linear-gradient(to right, #fff 50%, transparent 50%)
+    background-image: linear-gradient(to right, #fff 50%, transparent 50%)
+    z-index: 1
+    cursor: pointer
+    #sass-syntax:checked ~ &
+      background-image: -webkit-linear-gradient(to right, transparent 50%, #fff 50%)
+      background-image: linear-gradient(to right, transparent 50%, #fff 50%)
+  &,
+  &-badge
+    position: fixed
+    top: 0.6em
+    right: 1em
+    @media only screen and (max-width: 660px)
+      top: 0.4em
+      right: 5px
+      font-size: 13px
+  &:checked ~ .post
+    div[class*='scss']
+      display: none
+    div[class*='sass']
+      display: inline-block
+
+.meta
+  font-size: 0.8em
+  margin-bottom: 30px
+  color: #666

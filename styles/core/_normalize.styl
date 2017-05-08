@@ -1,0 +1,89 @@
+html
+  font-size: 1em
+  line-height: 1.4
+  -webkit-text-size-adjust: 100%
+  -ms-text-size-adjust: 100%
+
+body
+  margin: 0
+
+body,
+button,
+input
+  color: #111
+  font-family: sans-serif
+  font-size: 16px
+  font-weight: 400
+  line-height: 1.5
+
+::selection
+  background: $purple
+  color: #fff
+  text-shadow: none
+
+::-moz-selection
+  background: $purple
+  color: #fff
+  text-shadow: none
+
+:target
+  -webkit-animation: yellow-fade 4s 1
+  animation: yellow-fade 4s 1
+
+@-webkit-keyframes yellow-fade
+  0%
+    background-color: rgba(251, 255, 42, 0.6)
+  100%
+    background-color: rgba(0, 0, 0, 0)
+@keyframes yellow-fade
+  0%
+    background-color: rgba(251, 255, 42, 0.6)
+  100%
+    background-color: rgba(0, 0, 0, 0)
+
+svg
+  vertical-align: middle
+
+header,
+nav,
+section
+  display: block
+
+time
+  display: inline-block
+
+iframe
+  margin-bottom: 24px
+  max-width: 100%
+
+input
+  border: 1px solid rgba(0, 0, 0, 0.1)
+  color: #2b2b2b
+  padding: 8px 10px 7px
+  background-image: -webkit-linear-gradient(hsla(0,0%,100%,0), hsla(0,0%,100%,0)) /* Removing the inner shadow, rounded corners on iOS inputs */
+
+  &:focus
+    border: 1px solid rgba(0, 0, 0, 0.3)
+    outline: 0
+
+  &[type="image"]
+    padding: 0
+    border: 0
+    vertical-align: middle
+    &:focus
+      border: 0
+
+button,
+input
+  box-sizing: border-box
+  font-size: 100%
+  margin: 0
+  max-width: 100%
+  vertical-align: baseline
+  line-height: normal
+
+
+button::-moz-focus-inner,
+input::-moz-focus-inner
+  border: 0
+  padding: 0

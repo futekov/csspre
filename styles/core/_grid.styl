@@ -1,0 +1,33 @@
+$grid-columns = 12
+$grid-gutter-size = 2%
+
+.grid
+  margin-left: -2%
+  font-size: 0
+  > *
+    margin-left: abs(@margin-left)
+
+// Common styles for grid columns
+$col-common
+  position: relative
+  display: inline-block
+  min-height: 1px
+  font-size: 16px
+  vertical-align: top
+
+$grid-col-class = col
+
+for $i in (3 4 6 9)
+  .{$grid-col-class}-{$i}
+    @extend $col-common
+    width: (100% / (12 / $i)) - unit($grid-gutter-size, '')
+    margin-bottom: $grid-gutter-size
+
+    // all non-50% rows should become 100% at a ~ tablet-sized screen
+    if $i != ($grid-columns / 2)
+      @media screen and (max-width: 800px)
+        width: 100% - unit($grid-gutter-size, '')
+    // 50% columns should become 100% on smaller screens
+    else
+      @media screen and (max-width: 500px)
+        width: 100% - unit($grid-gutter-size, '')
