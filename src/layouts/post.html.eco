@@ -21,7 +21,7 @@ layout: base
 <section class="site">
 
 <h2>Interactive</h2>
-<p>Leave a comment below or <a href="<%- @site.github %>/blob/master/src/documents<%- @document.url %>.html.md.eco" target="_blank">suggest improvements on GitHub</a>.</p>
+<p>Leave a comment below or <a href="<%- @site.github %>/blob/master/src/documents/<%- @document.name %>.md.eco" target="_blank">suggest improvements on GitHub</a>.</p>
 
 <script src="/scripts/code-edit.js"></script>
 
