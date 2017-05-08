@@ -184,6 +184,9 @@ docpadConfig = {
         compress: true,
         "include css": true
       }
+    },
+    cleanurls: {
+      trailingSlashes: true
     }
   }
 };
